@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SMIS Helper — Automasi Pendaftaran Sukan SMIS</title>
+  <meta name="description" content="Chrome Extension untuk automasi pendaftaran peserta sukan di SMIS (smis.events). Jimat masa, kurang kesilapan.">
+  <style>
+    :root {
+      --brand: #4472C4;
+      --brand-dark: #3561B0;
+      --success: #2E7D32;
+      --text: #333;
+      --text-light: #666;
+      --bg: #fff;
+      --bg-muted: #f8f9ff;
+      --bg-dark: #1a1a2e;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: -apple-system, 'Segoe UI', sans-serif; color: var(--text); line-height: 1.6; }
+
+    /* Hero */
+    .hero {
+      background: linear-gradient(135deg, var(--brand) 0%, var(--brand-dark) 100%);
+      color: #fff;
+      padding: 60px 20px 50px;
+      text-align: center;
+    }
+    .hero h1 { font-size: 2.2rem; font-weight: 700; margin-bottom: 8px; }
+    .hero .tagline { font-size: 1.1rem; opacity: 0.9; max-width: 500px; margin: 0 auto 24px; }
+    .hero .price-box {
+      display: inline-block;
+      background: rgba(255,255,255,0.15);
+      border-radius: 12px;
+      padding: 16px 32px;
+      margin-bottom: 20px;
+    }
+    .hero .price-old { font-size: 1rem; text-decoration: line-through; opacity: 0.6; }
+    .hero .price-new { font-size: 2.4rem; font-weight: 800; }
+    .hero .price-note { font-size: 0.85rem; opacity: 0.8; }
+    .hero .cta-btn {
+      display: inline-block;
+      background: #fff;
+      color: var(--brand);
+      font-size: 1.1rem;
+      font-weight: 700;
+      padding: 14px 40px;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .hero .cta-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 20px rgba(0,0,0,0.2); }
+    .hero .free-note { margin-top: 12px; font-size: 0.85rem; opacity: 0.75; }
+
+    /* Features */
+    .features { padding: 50px 20px; max-width: 800px; margin: 0 auto; }
+    .features h2 { text-align: center; font-size: 1.6rem; margin-bottom: 32px; color: var(--brand); }
+    .feature-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    @media (max-width: 600px) { .feature-grid { grid-template-columns: 1fr; } }
+    .feature-card {
+      padding: 20px;
+      border: 1px solid #eee;
+      border-radius: 10px;
+      background: var(--bg);
+    }
+    .feature-card .icon { font-size: 28px; margin-bottom: 8px; }
+    .feature-card h3 { font-size: 1rem; margin-bottom: 4px; }
+    .feature-card p { font-size: 0.85rem; color: var(--text-light); }
+
+    /* How it works */
+    .how { padding: 50px 20px; background: var(--bg-muted); }
+    .how .inner { max-width: 700px; margin: 0 auto; }
+    .how h2 { text-align: center; font-size: 1.6rem; margin-bottom: 32px; color: var(--brand); }
+    .step { display: flex; gap: 16px; margin-bottom: 24px; align-items: flex-start; }
+    .step-num {
+      width: 36px; height: 36px; min-width: 36px;
+      background: var(--brand); color: #fff;
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      font-weight: 700; font-size: 1rem;
+    }
+    .step-content h3 { font-size: 1rem; margin-bottom: 2px; }
+    .step-content p { font-size: 0.85rem; color: var(--text-light); }
+
+    /* Pricing comparison */
+    .pricing { padding: 50px 20px; max-width: 600px; margin: 0 auto; text-align: center; }
+    .pricing h2 { font-size: 1.6rem; margin-bottom: 24px; color: var(--brand); }
+    .plan-compare { display: flex; gap: 16px; justify-content: center; }
+    @media (max-width: 500px) { .plan-compare { flex-direction: column; } }
+    .plan {
+      flex: 1; max-width: 260px;
+      border: 2px solid #eee; border-radius: 12px;
+      padding: 24px 20px; text-align: center;
+    }
+    .plan.pro { border-color: var(--brand); }
+    .plan h3 { font-size: 1.2rem; margin-bottom: 8px; }
+    .plan .plan-price { font-size: 2rem; font-weight: 800; color: var(--brand); margin-bottom: 12px; }
+    .plan .plan-price small { font-size: 0.8rem; font-weight: 400; color: var(--text-light); }
+    .plan ul { list-style: none; text-align: left; font-size: 0.85rem; }
+    .plan ul li { padding: 4px 0; }
+    .plan ul li::before { content: "✓ "; color: var(--success); font-weight: 700; }
+    .plan ul li.limit::before { content: "— "; color: #ccc; }
+    .plan .plan-btn {
+      display: block; margin-top: 16px; padding: 10px;
+      border-radius: 6px; text-decoration: none; font-weight: 600; font-size: 0.9rem;
+    }
+    .plan.free .plan-btn { background: #eee; color: var(--text); }
+    .plan.pro .plan-btn { background: var(--brand); color: #fff; }
+
+    /* FAQ */
+    .faq { padding: 50px 20px; background: var(--bg-muted); }
+    .faq .inner { max-width: 700px; margin: 0 auto; }
+    .faq h2 { text-align: center; font-size: 1.6rem; margin-bottom: 24px; color: var(--brand); }
+    .faq-item { margin-bottom: 16px; }
+    .faq-item summary {
+      font-weight: 600; cursor: pointer; padding: 10px 0;
+      border-bottom: 1px solid #eee; font-size: 0.95rem;
+    }
+    .faq-item p { padding: 10px 0; font-size: 0.85rem; color: var(--text-light); }
+
+    /* Footer */
+    .site-footer {
+      padding: 30px 20px; text-align: center;
+      font-size: 0.8rem; color: var(--text-light);
+      border-top: 1px solid #eee;
+    }
+    .site-footer a { color: var(--brand); text-decoration: none; }
+  </style>
+</head>
+<body>
+
+  <!-- Hero -->
+  <section class="hero">
+    <h1>SMIS Helper</h1>
+    <p class="tagline">Automasi pendaftaran peserta sukan di SMIS. Apa yang mengambil berjam-jam, kini selesai dalam beberapa minit.</p>
+    <div class="price-box">
+      <div class="price-old">RM99</div>
+      <div class="price-new">RM79</div>
+      <div class="price-note">Sekali bayar, guna selamanya</div>
+    </div>
+    <br>
+    <a href="#pricing" class="cta-btn">Dapatkan Sekarang</a>
+    <div class="free-note">Percuma untuk 10 peserta pertama. Tiada kad kredit diperlukan.</div>
+  </section>
+
+  <!-- Features -->
+  <section class="features">
+    <h2>Ciri-Ciri Utama</h2>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <div class="icon">📋</div>
+        <h3>Template Excel Dinamik</h3>
+        <p>Dijana terus dari SMIS — dropdown Acara, Tahun, Kaum disertakan automatik.</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon">📝</div>
+        <h3>Tambah + Kemaskini Satu Klik</h3>
+        <p>Daftar peserta baru, isi semua details, assign acara dan kategori dalam satu operasi.</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon">📷</div>
+        <h3>Upload Foto & Dokumen</h3>
+        <p>Padankan fail secara automatik dengan nama atau IC peserta. Pratonton sebelum upload.</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon">📥</div>
+        <h3>Muat Turun M01/R01</h3>
+        <p>Download borang pendaftaran secara pukal dalam format PDF atau HTML.</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon">🔄</div>
+        <h3>Pelbagai Acara per Peserta</h3>
+        <p>Satu peserta boleh menyertai 3+ acara — Extension gabungkan secara automatik.</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon">🏫</div>
+        <h3>Auto-Detect Sekolah</h3>
+        <p>Masukkan Kod Sekolah sahaja — nama, alamat, guru besar diisi automatik dari SMIS.</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon">✅</div>
+        <h3>Pengesahan Data</h3>
+        <p>Semak IC (12 digit), medan wajib, tarikh lahir. Ralat dipapar dengan nombor baris.</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon">🔁</div>
+        <h3>Cuba Semula Automatik</h3>
+        <p>Item gagal disimpan. Klik Cuba Semula untuk proses hanya yang gagal.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- How it works -->
+  <section class="how">
+    <div class="inner">
+      <h2>Cara Penggunaan</h2>
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <h3>Jana Template</h3>
+          <p>Buka SMIS, log masuk, klik SMIS Helper, klik "Jana template". Excel dimuat turun dengan dropdown Acara.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <h3>Isi Data Peserta</h3>
+          <p>Isi senarai peserta dalam Excel. Pilih Acara dari dropdown. Simpan.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <h3>Upload & Proses</h3>
+          <p>Upload Excel ke Extension. Pilih Negeri & PPD. Klik "Tambah + Kemaskini". Selesai!</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-content">
+          <h3>Upload Foto & Dokumen</h3>
+          <p>Pilih gambar/dokumen — Extension padankan secara automatik. Sahkan dan upload.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing -->
+  <section class="pricing" id="pricing">
+    <h2>Pilih Pelan Anda</h2>
+    <div class="plan-compare">
+      <div class="plan free">
+        <h3>Percuma</h3>
+        <div class="plan-price">RM0</div>
+        <ul>
+          <li>Jana template (tanpa had)</li>
+          <li>10 peserta</li>
+          <li>10 upload foto/dokumen</li>
+          <li>10 download M01/R01</li>
+          <li class="limit">Tiada sokongan</li>
+        </ul>
+        <a href="https://github.com/davinmaking/smis-helper/releases" class="plan-btn" target="_blank">Muat Turun</a>
+      </div>
+      <div class="plan pro">
+        <h3>Pro</h3>
+        <div class="plan-price">RM79 <small>RM99</small></div>
+        <ul>
+          <li>Semua ciri Percuma</li>
+          <li>Peserta tanpa had</li>
+          <li>Upload tanpa had</li>
+          <li>Download tanpa had</li>
+          <li>Sokongan WhatsApp</li>
+        </ul>
+        <a href="#buy" class="plan-btn" id="buyBtn">Beli Sekarang</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq">
+    <div class="inner">
+      <h2>Soalan Lazim</h2>
+      <details class="faq-item">
+        <summary>Adakah ini selamat digunakan?</summary>
+        <p>Ya. Extension hanya berinteraksi dengan smis.events dan pelayan lesen kami. Tiada data disimpan di pelayan lain. Kod sumber terbuka di GitHub.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Bolehkah saya guna untuk semua jenis sukan?</summary>
+        <p>Ya! Extension menyokong semua sukan dalam SMIS — olahraga, bola keranjang, merentas desa, dan lain-lain. Template dijana mengikut acara kejohanan anda.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Bagaimana saya mendapat kunci Pro?</summary>
+        <p>Selepas pembayaran, kunci lesen (SMIS-XXXX-XXXX) akan dipaparkan secara automatik. Masukkan kunci dalam Extension untuk mengaktifkan Pro.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Bagaimana jika saya padam Extension?</summary>
+        <p>Hubungi kami untuk reset kunci. Kunci anda masih sah — hanya perlu diaktifkan semula pada peranti baru.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Bolehkah lebih dari seorang guru guna satu kunci?</summary>
+        <p>Satu kunci untuk satu peranti. Setiap guru memerlukan kunci sendiri.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Adakah ini berfungsi di semua pelayar?</summary>
+        <p>Ya — Chrome, Edge, Brave, dan Opera. Tidak menyokong Firefox atau Safari.</p>
+      </details>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <p>SMIS Helper &copy; 2026 <strong>Davin Wong</strong></p>
+    <p><a href="privacy.html">Dasar Privasi</a> | <a href="mailto:davin.making@gmail.com">Hubungi Kami</a></p>
+  </footer>
+
+</body>
+</html>

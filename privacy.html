@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dasar Privasi — SMIS Helper</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: -apple-system, 'Segoe UI', sans-serif; color: #333; line-height: 1.8; padding: 40px 20px; max-width: 700px; margin: 0 auto; }
+    h1 { font-size: 1.8rem; margin-bottom: 8px; color: #4472C4; }
+    h2 { font-size: 1.2rem; margin: 24px 0 8px; color: #333; }
+    p, li { font-size: 0.9rem; color: #555; margin-bottom: 8px; }
+    ul { padding-left: 20px; }
+    .updated { font-size: 0.8rem; color: #999; margin-bottom: 24px; }
+    a { color: #4472C4; }
+    .back { display: inline-block; margin-bottom: 20px; font-size: 0.85rem; }
+  </style>
+</head>
+<body>
+  <a href="index.html" class="back">&larr; Kembali ke laman utama</a>
+  <h1>Dasar Privasi / Privacy Policy</h1>
+  <p class="updated">Kemaskini terakhir: 3 April 2026</p>
+
+  <h2>1. Pengenalan</h2>
+  <p>SMIS Helper ("Extension") ialah Chrome Extension yang membantu guru mendaftarkan peserta sukan ke dalam sistem SMIS (smis.events). Dasar privasi ini menerangkan bagaimana Extension mengendalikan data anda.</p>
+
+  <h2>2. Data Yang Dikumpul</h2>
+  <p>Extension mengumpul dan memproses data berikut:</p>
+  <ul>
+    <li><strong>Data peserta dari Excel:</strong> Nama, No. KP, jantina, tahun, kaum, acara, dan maklumat lain yang diisi oleh guru dalam template Excel. Data ini diproses secara tempatan dalam pelayar dan dihantar terus ke smis.events.</li>
+    <li><strong>Maklumat sekolah:</strong> Kod sekolah, nama, alamat. Diambil dari API smis.events.</li>
+    <li><strong>Kunci lesen:</strong> Kunci lesen Pro dan ID peranti (dijana secara rawak). Disimpan di pelayan kami untuk pengesahan lesen.</li>
+    <li><strong>Tetapan Extension:</strong> Pilihan Negeri/PPD, status data. Disimpan dalam chrome.storage.local pada peranti anda.</li>
+  </ul>
+
+  <h2>3. Data Yang TIDAK Dikumpul</h2>
+  <ul>
+    <li>Kami <strong>tidak</strong> mengumpul data peribadi guru (nama, emel, telefon) kecuali jika guru secara sukarela menghubungi kami.</li>
+    <li>Kami <strong>tidak</strong> menyimpan data peserta (nama, IC, gambar, dokumen) di mana-mana pelayan selain smis.events.</li>
+    <li>Kami <strong>tidak</strong> menggunakan cookies penjejak, analitik, atau perkhidmatan pihak ketiga.</li>
+    <li>Kami <strong>tidak</strong> menjual atau berkongsi sebarang data dengan pihak ketiga.</li>
+  </ul>
+
+  <h2>4. Ke Mana Data Dihantar</h2>
+  <ul>
+    <li><strong>smis.events</strong> — Data peserta dihantar ke SMIS melalui API rasmi mereka. Extension bertindak sebagai perantara antara guru dan SMIS.</li>
+    <li><strong>xucdnakrfhoeqnjyrvkd.supabase.co</strong> — Hanya untuk pengesahan kunci lesen (kunci + ID peranti). Tiada data peserta dihantar ke pelayan ini.</li>
+  </ul>
+
+  <h2>5. Penyimpanan Data</h2>
+  <ul>
+    <li>Data peserta disimpan sementara dalam chrome.storage.local (peranti guru) selama 2 jam, kemudian dikosongkan secara automatik.</li>
+    <li>Kunci lesen disimpan dalam chrome.storage.local sehingga guru memadam Extension.</li>
+    <li>Di pelayan lesen, kami menyimpan: kunci lesen, ID peranti, tarikh pengaktifan. Tiada data peribadi disimpan.</li>
+  </ul>
+
+  <h2>6. Kebenaran Extension</h2>
+  <p>Extension memerlukan kebenaran berikut:</p>
+  <ul>
+    <li><strong>activeTab, scripting:</strong> Untuk berinteraksi dengan halaman smis.events.</li>
+    <li><strong>storage:</strong> Untuk menyimpan data sementara dan tetapan.</li>
+    <li><strong>tabs:</strong> Untuk mengesan tab SMIS yang aktif.</li>
+    <li><strong>debugger:</strong> Untuk menjana PDF (M01/R01). Hanya digunakan untuk fungsi cetak.</li>
+    <li><strong>downloads:</strong> Untuk memuat turun fail template dan M01/R01.</li>
+    <li><strong>alarms:</strong> Untuk mengekalkan proses PDF semasa muat turun.</li>
+    <li><strong>host_permissions (smis.events):</strong> Untuk mengakses halaman dan API SMIS.</li>
+  </ul>
+
+  <h2>7. Keselamatan</h2>
+  <p>Semua komunikasi dengan smis.events dan pelayan lesen menggunakan HTTPS. Tiada data disimpan dalam bentuk teks biasa di pelayan kami.</p>
+
+  <h2>8. Hak Pengguna</h2>
+  <p>Anda boleh pada bila-bila masa:</p>
+  <ul>
+    <li>Memadam Extension dan semua data tempatan akan dikosongkan.</li>
+    <li>Menghubungi kami untuk memadam rekod lesen anda.</li>
+  </ul>
+
+  <h2>9. Hubungi Kami</h2>
+  <p>Untuk sebarang pertanyaan mengenai dasar privasi ini:</p>
+  <p><strong>Davin Wong</strong><br>Emel: <a href="mailto:davin.making@gmail.com">davin.making@gmail.com</a></p>
+
+  <h2>10. Perubahan Dasar</h2>
+  <p>Dasar privasi ini mungkin dikemaskini dari semasa ke semasa. Perubahan akan diumumkan melalui kemaskini Extension.</p>
+</body>
+</html>
