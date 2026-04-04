@@ -250,10 +250,29 @@
           <li>Download tanpa had</li>
           <li>Sokongan WhatsApp</li>
         </ul>
-        <a href="#buy" class="plan-btn" id="buyBtn">Beli Sekarang</a>
+        <button class="plan-btn" id="buyBtn" onclick="buyPro()" style="border:none;cursor:pointer;width:100%;">Beli Sekarang</button>
       </div>
     </div>
   </section>
+
+  <!-- Buy modal -->
+  <div id="buyModal" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.5);z-index:100;align-items:center;justify-content:center;">
+    <div style="background:#fff;border-radius:12px;padding:32px;max-width:380px;width:90%;text-align:center;">
+      <h3 style="margin-bottom:16px;color:#4472C4;">Beli SMIS Helper Pro</h3>
+      <p style="font-size:0.85rem;color:#666;margin-bottom:16px;">RM79.00 — sekali bayar, guna selamanya</p>
+      <div style="text-align:left;margin-bottom:16px;">
+        <label style="display:block;font-size:0.8rem;color:#888;margin-bottom:3px;">Nama (pilihan)</label>
+        <input type="text" id="buyName" placeholder="Nama anda" style="width:100%;padding:8px;border:1px solid #ddd;border-radius:6px;font-size:0.9rem;margin-bottom:10px;">
+        <label style="display:block;font-size:0.8rem;color:#888;margin-bottom:3px;">Emel (pilihan — untuk terima kunci)</label>
+        <input type="email" id="buyEmail" placeholder="emel@contoh.com" style="width:100%;padding:8px;border:1px solid #ddd;border-radius:6px;font-size:0.9rem;margin-bottom:10px;">
+        <label style="display:block;font-size:0.8rem;color:#888;margin-bottom:3px;">No. Telefon (pilihan)</label>
+        <input type="tel" id="buyPhone" placeholder="01XXXXXXXXX" style="width:100%;padding:8px;border:1px solid #ddd;border-radius:6px;font-size:0.9rem;">
+      </div>
+      <button id="payBtn" onclick="startPayment()" style="width:100%;padding:12px;background:#4472C4;color:#fff;border:none;border-radius:8px;font-size:1rem;font-weight:700;cursor:pointer;">Teruskan ke Pembayaran</button>
+      <button onclick="document.getElementById('buyModal').style.display='none'" style="margin-top:10px;background:none;border:none;color:#888;cursor:pointer;font-size:0.85rem;">Batal</button>
+      <p id="payError" style="display:none;color:#C62828;font-size:0.8rem;margin-top:8px;"></p>
+    </div>
+  </div>
 
   <!-- FAQ -->
   <section class="faq">
@@ -292,5 +311,42 @@
     <p><a href="privacy.html">Dasar Privasi</a> | <a href="mailto:davin.making@gmail.com">Hubungi Kami</a></p>
   </footer>
 
+  <script>
+    function buyPro() {
+      document.getElementById("buyModal").style.display = "flex";
+    }
+
+    async function startPayment() {
+      const btn = document.getElementById("payBtn");
+      const err = document.getElementById("payError");
+      btn.textContent = "Memproses...";
+      btn.disabled = true;
+      err.style.display = "none";
+
+      try {
+        const resp = await fetch("https://xucdnakrfhoeqnjyrvkd.supabase.co/functions/v1/payment", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            name: document.getElementById("buyName").value || "Guru",
+            email: document.getElementById("buyEmail").value || "",
+            phone: document.getElementById("buyPhone").value || "",
+          }),
+        });
+        const data = await resp.json();
+
+        if (data.paymentUrl) {
+          window.location.href = data.paymentUrl;
+        } else {
+          throw new Error(data.error || "Gagal mencipta pembayaran");
+        }
+      } catch (e) {
+        err.textContent = e.message;
+        err.style.display = "block";
+        btn.textContent = "Teruskan ke Pembayaran";
+        btn.disabled = false;
+      }
+    }
+  </script>
 </body>
 </html>

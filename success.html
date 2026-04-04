@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pembayaran Berjaya — SMIS Helper Pro</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: -apple-system, 'Segoe UI', sans-serif; color: #333; min-height: 100vh; display: flex; align-items: center; justify-content: center; background: #f5f7fa; padding: 20px; }
+    .card { background: #fff; border-radius: 16px; padding: 40px; max-width: 460px; width: 100%; text-align: center; box-shadow: 0 4px 24px rgba(0,0,0,0.08); }
+    .icon { font-size: 48px; margin-bottom: 16px; }
+    h1 { font-size: 1.5rem; color: #2E7D32; margin-bottom: 8px; }
+    .subtitle { color: #666; font-size: 0.9rem; margin-bottom: 24px; }
+    .key-box { background: #E8F5E9; border: 2px solid #81C784; border-radius: 10px; padding: 20px; margin-bottom: 20px; }
+    .key-label { font-size: 0.8rem; color: #666; margin-bottom: 6px; }
+    .key-value { font-size: 1.8rem; font-weight: 800; color: #2E7D32; font-family: monospace; letter-spacing: 2px; user-select: all; }
+    .copy-btn { margin-top: 10px; padding: 8px 24px; background: #4472C4; color: #fff; border: none; border-radius: 6px; font-size: 0.9rem; cursor: pointer; font-weight: 600; }
+    .copy-btn:hover { background: #3561B0; }
+    .copy-btn.copied { background: #2E7D32; }
+    .steps { text-align: left; margin: 20px 0; font-size: 0.85rem; color: #555; }
+    .steps li { margin-bottom: 8px; padding-left: 4px; }
+    .steps strong { color: #333; }
+    .note { font-size: 0.8rem; color: #999; margin-top: 16px; }
+    .loading { display: none; }
+    .loading.show { display: block; }
+    .error { display: none; color: #C62828; }
+    .error.show { display: block; }
+    .spinner { display: inline-block; width: 24px; height: 24px; border: 3px solid #ddd; border-top-color: #4472C4; border-radius: 50%; animation: spin 0.8s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <!-- Success state -->
+    <div id="successState" style="display:none">
+      <div class="icon">&#10003;</div>
+      <h1>Pembayaran Berjaya!</h1>
+      <p class="subtitle">Terima kasih kerana membeli SMIS Helper Pro.</p>
+      <div class="key-box">
+        <div class="key-label">Kunci Lesen Anda:</div>
+        <div class="key-value" id="licenseKey">—</div>
+        <button class="copy-btn" id="copyBtn" onclick="copyKey()">Salin Kunci</button>
+      </div>
+      <ol class="steps">
+        <li>Buka Chrome dan klik ikon <strong>SMIS Helper</strong></li>
+        <li>Klik butang <strong>"Naik Taraf"</strong></li>
+        <li>Tampal kunci di atas dan klik <strong>"Aktifkan"</strong></li>
+      </ol>
+      <p class="note">Simpan kunci ini. Anda memerlukannya jika memasang semula Extension.</p>
+    </div>
+
+    <!-- Loading state -->
+    <div id="loadingState" class="loading show">
+      <div class="icon"><div class="spinner"></div></div>
+      <h1 style="color:#4472C4">Mengesahkan Pembayaran...</h1>
+      <p class="subtitle">Sila tunggu sebentar.</p>
+    </div>
+
+    <!-- Error/pending state -->
+    <div id="errorState" class="error">
+      <div class="icon">&#9888;</div>
+      <h1 style="color:#F57F17">Pembayaran Belum Disahkan</h1>
+      <p class="subtitle" id="errorMsg">Pembayaran anda sedang diproses. Kunci lesen akan dipaparkan setelah pengesahan selesai.</p>
+      <p class="note">Jika anda telah membayar, sila hubungi <a href="mailto:davin.making@gmail.com">davin.making@gmail.com</a></p>
+    </div>
+  </div>
+
+  <script>
+    // ToyyibPay redirects back with: ?status_id=1&billcode=XXX&order_id=XXX
+    const params = new URLSearchParams(window.location.search);
+    const statusId = params.get("status_id");
+    const billcode = params.get("billcode");
+
+    async function checkPayment() {
+      if (statusId !== "1" || !billcode) {
+        // Payment failed or pending
+        document.getElementById("loadingState").classList.remove("show");
+        document.getElementById("errorState").classList.add("show");
+        if (statusId === "3") {
+          document.getElementById("errorMsg").textContent = "Pembayaran gagal. Sila cuba semula.";
+        }
+        return;
+      }
+
+      // Poll for license key (webhook may take a few seconds)
+      let attempts = 0;
+      const maxAttempts = 15;
+
+      while (attempts < maxAttempts) {
+        try {
+          const resp = await fetch("https://xucdnakrfhoeqnjyrvkd.supabase.co/functions/v1/payment-status?billcode=" + billcode);
+          const data = await resp.json();
+
+          if (data.license_key) {
+            // Show success
+            document.getElementById("loadingState").classList.remove("show");
+            document.getElementById("successState").style.display = "block";
+            document.getElementById("licenseKey").textContent = data.license_key;
+            return;
+          }
+        } catch (_) {}
+
+        attempts++;
+        await new Promise(r => setTimeout(r, 2000)); // wait 2s between polls
+      }
+
+      // Timeout — webhook might be delayed
+      document.getElementById("loadingState").classList.remove("show");
+      document.getElementById("errorState").classList.add("show");
+      document.getElementById("errorMsg").textContent = "Pengesahan mengambil masa lebih lama dari biasa. Kunci lesen akan dihantar ke emel anda, atau hubungi kami.";
+    }
+
+    function copyKey() {
+      const key = document.getElementById("licenseKey").textContent;
+      navigator.clipboard.writeText(key).then(() => {
+        const btn = document.getElementById("copyBtn");
+        btn.textContent = "Disalin!";
+        btn.classList.add("copied");
+        setTimeout(() => { btn.textContent = "Salin Kunci"; btn.classList.remove("copied"); }, 2000);
+      });
+    }
+
+    checkPayment();
+  </script>
+</body>
+</html>
