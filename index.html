@@ -19,7 +19,7 @@
       --bg-alt: #F0F2F5;
       --fg: #0A0A0A;
       --fg-muted: #555;
-      --fg-faint: #888;
+      --fg-faint: #6B6B6B;
       --accent: #4472C4;
       --accent-dark: #2B5AA6;
       --accent-light: #EBF0FA;
@@ -30,6 +30,7 @@
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
+    *:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
     html { scroll-behavior: smooth; }
 
     body {
@@ -47,7 +48,7 @@
       position: fixed;
       top: 0; left: 0; right: 0; bottom: 0;
       pointer-events: none;
-      z-index: 9999;
+      z-index: 1;
       opacity: 0.02;
       background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
     }
@@ -68,10 +69,10 @@
     nav .nav-link {
       font-size: 0.8rem; font-weight: 600; text-transform: uppercase;
       letter-spacing: 0.1em; color: var(--accent); text-decoration: none;
-      position: relative; padding-bottom: 2px;
+      position: relative; padding: 12px 0;
     }
     nav .nav-link::after {
-      content: ""; position: absolute; bottom: 0; left: 0; right: 0;
+      content: ""; position: absolute; bottom: 8px; left: 0; right: 0;
       height: 2px; background: var(--accent);
       transform: scaleX(0); transition: transform 0.15s;
     }
@@ -117,11 +118,11 @@
       display: inline-flex; align-items: center; gap: 8px;
       font-size: 0.85rem; font-weight: 600; text-transform: uppercase;
       letter-spacing: 0.1em; color: var(--accent); text-decoration: none;
-      position: relative; padding: 8px 0; border: none; background: none;
+      position: relative; padding: 12px 0; border: none; background: none;
       cursor: pointer; font-family: inherit;
     }
     .btn-primary::after {
-      content: ""; position: absolute; bottom: 0; left: 0; right: 0;
+      content: ""; position: absolute; bottom: 4px; left: 0; right: 0;
       height: 2px; background: var(--accent); transition: transform 0.15s;
     }
     .btn-primary:hover::after { transform: scaleX(1.1); }
@@ -131,7 +132,7 @@
       display: inline-flex; align-items: center; gap: 8px;
       font-size: 0.85rem; font-weight: 600; text-transform: uppercase;
       letter-spacing: 0.1em; color: var(--fg);
-      border: 1px solid var(--fg); padding: 12px 28px;
+      border: 1px solid var(--fg); padding: 12px 28px; min-height: 44px;
       text-decoration: none; transition: all 0.15s; background: none;
       cursor: pointer; font-family: inherit;
     }
@@ -190,7 +191,9 @@
     }
     .feature:hover { background: var(--accent-light); }
     .feature-icon {
-      font-size: 1.5rem; margin-bottom: 16px;
+      font-family: "JetBrains Mono", monospace;
+      font-size: 1.2rem; font-weight: 500; color: var(--accent);
+      margin-bottom: 16px;
     }
     .feature h3 {
       font-size: 1rem; font-weight: 700;
@@ -228,7 +231,6 @@
       display: grid; grid-template-columns: 1fr; gap: 1px;
       background: var(--border-light); margin-top: 48px;
     }
-    @media (min-width: 640px) { .pricing-grid { grid-template-columns: 1fr 1fr; } }
     @media (min-width: 1024px) { .pricing-grid { grid-template-columns: 1fr 1fr 1fr; } }
     .plan {
       background: var(--bg); padding: 40px 32px;
@@ -275,43 +277,36 @@
 
     .btn-accent {
       display: inline-flex; align-items: center; justify-content: center;
-      width: 100%; padding: 14px 0;
+      width: 100%; padding: 14px 0; min-height: 48px;
       font-size: 0.85rem; font-weight: 600; text-transform: uppercase;
       letter-spacing: 0.1em; text-decoration: none;
       border: none; cursor: pointer; font-family: inherit;
       transition: all 0.15s;
     }
-    .btn-accent.fill {
-      background: var(--accent); color: var(--white);
-    }
+    .btn-accent.fill { background: var(--accent); color: var(--white); }
     .btn-accent.fill:hover { background: var(--accent-dark); }
-    .btn-accent.ghost {
-      background: none; color: var(--accent); border: 1px solid var(--border);
-    }
+    .btn-accent.ghost { background: none; color: var(--accent); border: 1px solid var(--border); }
     .btn-accent.ghost:hover { border-color: var(--accent); }
-    .btn-accent.service {
-      background: var(--service); color: var(--white);
-    }
+    .btn-accent.service { background: var(--service); color: var(--white); }
     .btn-accent.service:hover { background: #BF360C; }
 
     /* ===== FAQ ===== */
     .faq { padding: 80px 0; background: var(--bg-alt); border-bottom: 1px solid var(--border-light); }
     @media (min-width: 768px) { .faq { padding: 112px 0; } }
     .faq-list { margin-top: 48px; max-width: 700px; }
-    .faq-item {
-      border-bottom: 1px solid var(--border);
-    }
+    .faq-item { border-bottom: 1px solid var(--border); }
     .faq-item summary {
       font-size: 1rem; font-weight: 600; cursor: pointer;
-      padding: 20px 0; list-style: none;
+      padding: 20px 0; list-style: none; min-height: 44px;
       display: flex; justify-content: space-between; align-items: center;
     }
     .faq-item summary::-webkit-details-marker { display: none; }
     .faq-item summary::after {
       content: "+"; font-size: 1.2rem; font-weight: 300;
       color: var(--fg-faint); transition: transform 0.2s;
+      min-width: 24px; text-align: center;
     }
-    .faq-item[open] summary::after { content: "−"; }
+    .faq-item[open] summary::after { content: "\2212"; }
     .faq-item p {
       font-size: 0.9rem; color: var(--fg-muted);
       padding: 0 0 20px; line-height: 1.7;
@@ -326,13 +321,11 @@
       display: flex; justify-content: space-between;
       align-items: center; flex-wrap: wrap; gap: 16px;
     }
-    footer .brand {
-      font-size: 0.8rem; color: var(--fg-faint);
-    }
+    footer .brand { font-size: 0.8rem; color: var(--fg-faint); }
     footer .links { display: flex; gap: 24px; }
     footer .links a {
       font-size: 0.75rem; color: var(--fg-faint); text-decoration: none;
-      text-transform: uppercase; letter-spacing: 0.1em;
+      text-transform: uppercase; letter-spacing: 0.1em; padding: 8px 0;
     }
     footer .links a:hover { color: var(--accent); }
 
@@ -365,9 +358,9 @@
       outline: none; transition: border-color 0.15s;
     }
     .modal input:focus { border-color: var(--accent); }
-    .modal input::placeholder { color: var(--fg-faint); }
+    .modal input::placeholder { color: #999; }
     .modal .modal-btn {
-      width: 100%; margin-top: 24px; padding: 14px;
+      width: 100%; margin-top: 24px; padding: 14px; min-height: 48px;
       background: var(--accent); color: var(--white); border: none;
       font-size: 0.9rem; font-weight: 700; text-transform: uppercase;
       letter-spacing: 0.08em; cursor: pointer; font-family: inherit;
@@ -378,7 +371,7 @@
     .modal .modal-close {
       background: none; border: none; color: var(--fg-faint);
       font-size: 0.85rem; cursor: pointer; margin-top: 12px;
-      font-family: inherit;
+      font-family: inherit; padding: 8px 0;
     }
     .modal .modal-error {
       display: none; color: #C62828; font-size: 0.8rem; margin-top: 8px;
@@ -389,7 +382,7 @@
 <body>
 
   <!-- Nav -->
-  <nav>
+  <nav aria-label="Navigasi utama">
     <div class="container inner">
       <a href="#" class="logo">SMIS <span>Helper</span></a>
       <a href="#pricing" class="nav-link">Dapatkan Sekarang &rarr;</a>
@@ -397,10 +390,10 @@
   </nav>
 
   <!-- Hero -->
-  <section class="hero">
+  <section class="hero" aria-labelledby="hero-title">
     <div class="container">
       <div class="hero-label">Chrome Extension untuk Guru Sukan</div>
-      <h1>Daftar peserta <em>dalam minit</em>, bukan berjam.</h1>
+      <h1 id="hero-title">Daftar peserta <em>dalam minit</em>, bukan berjam.</h1>
       <p class="hero-sub">Automasi pendaftaran sukan di SMIS — tambah peserta, isi details, assign acara, upload dokumen. Satu klik untuk semua.</p>
       <div class="hero-cta">
         <a href="#pricing" class="btn-primary">Lihat Harga &darr;</a>
@@ -411,104 +404,52 @@
   </section>
 
   <!-- Stats -->
-  <section class="stats">
+  <section class="stats" aria-label="Statistik">
     <div class="container">
       <div class="stats-grid">
-        <div>
-          <div class="stat-num">96%</div>
-          <div class="stat-label">Jenis Kejohanan Disokong</div>
-        </div>
-        <div>
-          <div class="stat-num">74</div>
-          <div class="stat-label">Acara Diuji</div>
-        </div>
-        <div>
-          <div class="stat-num">3x</div>
-          <div class="stat-label">Lebih Pantas</div>
-        </div>
-        <div>
-          <div class="stat-num">0</div>
-          <div class="stat-label">Kesilapan Taip</div>
-        </div>
+        <div><div class="stat-num">96%</div><div class="stat-label">Jenis Kejohanan Disokong</div></div>
+        <div><div class="stat-num">74</div><div class="stat-label">Acara Diuji</div></div>
+        <div><div class="stat-num">3x</div><div class="stat-label">Lebih Pantas</div></div>
+        <div><div class="stat-num">0</div><div class="stat-label">Kesilapan Taip</div></div>
       </div>
     </div>
   </section>
 
   <!-- Features -->
-  <section class="features">
+  <section class="features" aria-labelledby="features-title">
     <div class="container">
       <div class="section-label">Ciri-Ciri</div>
-      <h2 class="section-title">Semua yang guru sukan perlukan.</h2>
+      <h2 class="section-title" id="features-title">Semua yang guru sukan perlukan.</h2>
       <div class="features-grid">
-        <div class="feature">
-          <div class="feature-icon">01</div>
-          <h3>Template Excel Dinamik</h3>
-          <p>Dijana terus dari SMIS — dropdown Acara, Tahun, Kaum disertakan automatik mengikut tetapan kejohanan.</p>
-        </div>
-        <div class="feature">
-          <div class="feature-icon">02</div>
-          <h3>Satu Klik Daftar</h3>
-          <p>Daftar peserta baru, isi semua details, assign acara dan kategori. Satu operasi untuk semua.</p>
-        </div>
-        <div class="feature">
-          <div class="feature-icon">03</div>
-          <h3>Upload Foto & Dokumen</h3>
-          <p>Padankan fail secara automatik dengan nama atau IC peserta. Pratonton sebelum upload.</p>
-        </div>
-        <div class="feature">
-          <div class="feature-icon">04</div>
-          <h3>Muat Turun M01/R01</h3>
-          <p>Download borang pendaftaran secara pukal dalam format PDF. Satu klik untuk semua peserta.</p>
-        </div>
-        <div class="feature">
-          <div class="feature-icon">05</div>
-          <h3>Pelbagai Acara</h3>
-          <p>Satu peserta boleh menyertai 3+ acara — Extension gabungkan secara automatik dari Excel.</p>
-        </div>
-        <div class="feature">
-          <div class="feature-icon">06</div>
-          <h3>Pengesahan Data</h3>
-          <p>Semak IC (12 digit), medan wajib, tarikh lahir. Ralat dipapar jelas dengan nombor baris.</p>
-        </div>
+        <div class="feature"><div class="feature-icon">01</div><h3>Template Excel Dinamik</h3><p>Dijana terus dari SMIS — dropdown Acara, Tahun, Kaum disertakan automatik mengikut tetapan kejohanan.</p></div>
+        <div class="feature"><div class="feature-icon">02</div><h3>Satu Klik Daftar</h3><p>Daftar peserta baru, isi semua details, assign acara dan kategori. Satu operasi untuk semua.</p></div>
+        <div class="feature"><div class="feature-icon">03</div><h3>Upload Foto & Dokumen</h3><p>Padankan fail secara automatik dengan nama atau IC peserta. Pratonton sebelum upload.</p></div>
+        <div class="feature"><div class="feature-icon">04</div><h3>Muat Turun M01/R01</h3><p>Download borang pendaftaran secara pukal dalam format PDF. Satu klik untuk semua peserta.</p></div>
+        <div class="feature"><div class="feature-icon">05</div><h3>Pelbagai Acara</h3><p>Satu peserta boleh menyertai 3+ acara — Extension gabungkan secara automatik dari Excel.</p></div>
+        <div class="feature"><div class="feature-icon">06</div><h3>Pengesahan Data</h3><p>Semak IC (12 digit), medan wajib, tarikh lahir. Ralat dipapar jelas dengan nombor baris.</p></div>
       </div>
     </div>
   </section>
 
   <!-- How It Works -->
-  <section class="how" id="how">
+  <section class="how" id="how" aria-labelledby="how-title">
     <div class="container">
       <div class="section-label">Cara Guna</div>
-      <h2 class="section-title">Empat langkah sahaja.</h2>
+      <h2 class="section-title" id="how-title">Empat langkah sahaja.</h2>
       <div class="steps">
-        <div class="step">
-          <div class="step-num">01</div>
-          <h3>Jana Template</h3>
-          <p>Buka SMIS, log masuk, klik SMIS Helper, klik "Jana template". Excel dimuat turun dengan dropdown Acara yang dijana dari kejohanan anda.</p>
-        </div>
-        <div class="step">
-          <div class="step-num">02</div>
-          <h3>Isi Data Peserta</h3>
-          <p>Isi senarai peserta dalam Excel. Pilih Acara dari dropdown. Boleh isi secara berkumpulan di Google Sheets.</p>
-        </div>
-        <div class="step">
-          <div class="step-num">03</div>
-          <h3>Upload & Proses</h3>
-          <p>Upload Excel ke Extension. Pilih Negeri & PPD. Klik "Tambah + Kemaskini". Tunggu selesai.</p>
-        </div>
-        <div class="step">
-          <div class="step-num">04</div>
-          <h3>Upload Dokumen</h3>
-          <p>Pilih gambar dan dokumen — Extension padankan dengan peserta secara automatik. Sahkan dan upload.</p>
-        </div>
+        <div class="step"><div class="step-num">01</div><h3>Jana Template</h3><p>Buka SMIS, log masuk, klik SMIS Helper, klik "Jana template". Excel dimuat turun dengan dropdown Acara yang dijana dari kejohanan anda.</p></div>
+        <div class="step"><div class="step-num">02</div><h3>Isi Data Peserta</h3><p>Isi senarai peserta dalam Excel. Pilih Acara dari dropdown. Boleh isi secara berkumpulan di Google Sheets.</p></div>
+        <div class="step"><div class="step-num">03</div><h3>Upload & Proses</h3><p>Upload Excel ke Extension. Pilih Negeri & PPD. Klik "Tambah + Kemaskini". Tunggu selesai.</p></div>
+        <div class="step"><div class="step-num">04</div><h3>Upload Dokumen</h3><p>Pilih gambar dan dokumen — Extension padankan dengan peserta secara automatik. Sahkan dan upload.</p></div>
       </div>
     </div>
   </section>
 
   <!-- Pricing -->
-  <section class="pricing" id="pricing">
+  <section class="pricing" id="pricing" aria-labelledby="pricing-title">
     <div class="container">
       <div class="section-label">Harga</div>
-      <h2 class="section-title">Pilih cara anda.</h2>
+      <h2 class="section-title" id="pricing-title">Pilih cara anda.</h2>
       <div class="pricing-grid">
         <div class="plan">
           <div class="plan-name">Percuma</div>
@@ -521,7 +462,7 @@
             <li>10 download M01/R01</li>
             <li class="limit">Tiada sokongan</li>
           </ul>
-          <a href="https://github.com/davinmaking/smis-helper/releases" target="_blank" class="btn-accent ghost plan-cta">Muat Turun</a>
+          <a href="https://github.com/davinmaking/smis-helper/releases" target="_blank" rel="noopener" class="btn-accent ghost plan-cta">Muat Turun</a>
         </div>
         <div class="plan featured">
           <div class="plan-badge">Popular</div>
@@ -535,7 +476,7 @@
             <li>Download tanpa had</li>
             <li>Sokongan WhatsApp</li>
           </ul>
-          <button class="btn-accent fill plan-cta" onclick="buyPro()">Beli Sekarang</button>
+          <button class="btn-accent fill plan-cta" id="buyProBtn">Beli Sekarang</button>
         </div>
         <div class="plan">
           <div class="plan-name">Servis</div>
@@ -555,35 +496,17 @@
   </section>
 
   <!-- FAQ -->
-  <section class="faq">
+  <section class="faq" aria-labelledby="faq-title">
     <div class="container">
       <div class="section-label">Soalan Lazim</div>
-      <h2 class="section-title">Ada soalan?</h2>
+      <h2 class="section-title" id="faq-title">Ada soalan?</h2>
       <div class="faq-list">
-        <details class="faq-item">
-          <summary>Adakah ini selamat?</summary>
-          <p>Ya. Extension hanya berinteraksi dengan smis.events. Tiada data disimpan di pelayan lain. Tiada penjejak atau analitik.</p>
-        </details>
-        <details class="faq-item">
-          <summary>Bolehkah saya guna untuk semua jenis sukan?</summary>
-          <p>Ya. Extension menyokong semua sukan dalam SMIS — olahraga, bola keranjang, merentas desa, dan lain-lain. Template dijana mengikut acara kejohanan anda.</p>
-        </details>
-        <details class="faq-item">
-          <summary>Bagaimana saya mendapat kunci Pro?</summary>
-          <p>Selepas pembayaran melalui FPX, kunci lesen dipaparkan secara automatik. Masukkan kunci dalam Extension untuk mengaktifkan Pro.</p>
-        </details>
-        <details class="faq-item">
-          <summary>Bagaimana jika saya padam Extension?</summary>
-          <p>Hubungi kami untuk reset kunci. Kunci anda masih sah — hanya perlu diaktifkan semula.</p>
-        </details>
-        <details class="faq-item">
-          <summary>Pelayar apa yang disokong?</summary>
-          <p>Chrome, Edge, Brave, dan Opera. Tidak menyokong Firefox atau Safari.</p>
-        </details>
-        <details class="faq-item">
-          <summary>Bolehkah seorang peserta menyertai lebih dari satu acara?</summary>
-          <p>Ya. Tambah baris baru dalam Excel dengan IC yang sama, atau tulis beberapa acara dipisahkan oleh koma dalam satu sel.</p>
-        </details>
+        <details class="faq-item"><summary>Adakah ini selamat?</summary><p>Ya. Extension hanya berinteraksi dengan smis.events. Tiada data disimpan di pelayan lain. Tiada penjejak atau analitik.</p></details>
+        <details class="faq-item"><summary>Bolehkah saya guna untuk semua jenis sukan?</summary><p>Ya. Extension menyokong semua sukan dalam SMIS — olahraga, bola keranjang, merentas desa, dan lain-lain. Template dijana mengikut acara kejohanan anda.</p></details>
+        <details class="faq-item"><summary>Bagaimana saya mendapat kunci Pro?</summary><p>Selepas pembayaran melalui FPX, kunci lesen dipaparkan secara automatik. Masukkan kunci dalam Extension untuk mengaktifkan Pro.</p></details>
+        <details class="faq-item"><summary>Bagaimana jika saya padam Extension?</summary><p>Hubungi kami untuk reset kunci. Kunci anda masih sah — hanya perlu diaktifkan semula.</p></details>
+        <details class="faq-item"><summary>Pelayar apa yang disokong?</summary><p>Chrome, Edge, Brave, dan Opera. Tidak menyokong Firefox atau Safari.</p></details>
+        <details class="faq-item"><summary>Bolehkah seorang peserta menyertai lebih dari satu acara?</summary><p>Ya. Tambah baris baru dalam Excel dengan IC yang sama, atau tulis beberapa acara dipisahkan oleh koma dalam satu sel.</p></details>
       </div>
     </div>
   </section>
@@ -600,34 +523,57 @@
   </footer>
 
   <!-- Buy Modal -->
-  <div class="modal-overlay" id="buyModal">
+  <div class="modal-overlay" id="buyModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
     <div class="modal">
-      <h3>SMIS Helper Pro</h3>
+      <h3 id="modalTitle">SMIS Helper Pro</h3>
       <p class="modal-sub">RM79.00 — sekali bayar, guna selamanya</p>
-      <label>Nama (pilihan)</label>
+      <label for="buyName">Nama (pilihan)</label>
       <input type="text" id="buyName" placeholder="Nama anda">
-      <label>Emel (pilihan)</label>
+      <label for="buyEmail">Emel (pilihan)</label>
       <input type="email" id="buyEmail" placeholder="emel@contoh.com">
-      <label>No. Telefon (pilihan)</label>
+      <label for="buyPhone">No. Telefon (pilihan)</label>
       <input type="tel" id="buyPhone" placeholder="01XXXXXXXXX">
-      <button class="modal-btn" id="payBtn" onclick="startPayment()">Teruskan ke Pembayaran</button>
-      <button class="modal-close" onclick="document.getElementById('buyModal').classList.remove('show')">Batal</button>
-      <div class="modal-error" id="payError"></div>
+      <button class="modal-btn" id="payBtn">Teruskan ke Pembayaran</button>
+      <button class="modal-close" id="modalClose">Batal</button>
+      <div class="modal-error" id="payError" role="alert"></div>
     </div>
   </div>
 
   <script>
-    function buyPro() {
-      document.getElementById("buyModal").classList.add("show");
+    // All event listeners — no inline onclick
+    var buyModal = document.getElementById("buyModal");
+    var payBtn = document.getElementById("payBtn");
+    var modalClose = document.getElementById("modalClose");
+    var buyProBtn = document.getElementById("buyProBtn");
+    var payError = document.getElementById("payError");
+
+    function openModal() {
+      buyModal.classList.add("show");
+      document.getElementById("buyName").focus();
     }
-    async function startPayment() {
-      const btn = document.getElementById("payBtn");
-      const err = document.getElementById("payError");
-      btn.textContent = "Memproses...";
-      btn.disabled = true;
-      err.classList.remove("show");
+    function closeModal() {
+      buyModal.classList.remove("show");
+    }
+
+    buyProBtn.addEventListener("click", openModal);
+    modalClose.addEventListener("click", closeModal);
+
+    // Close on overlay click
+    buyModal.addEventListener("click", function(e) {
+      if (e.target === buyModal) closeModal();
+    });
+
+    // Close on Escape
+    document.addEventListener("keydown", function(e) {
+      if (e.key === "Escape" && buyModal.classList.contains("show")) closeModal();
+    });
+
+    payBtn.addEventListener("click", async function() {
+      payBtn.textContent = "Memproses...";
+      payBtn.disabled = true;
+      payError.classList.remove("show");
       try {
-        const resp = await fetch("https://xucdnakrfhoeqnjyrvkd.supabase.co/functions/v1/payment", {
+        var resp = await fetch("https://xucdnakrfhoeqnjyrvkd.supabase.co/functions/v1/payment", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
@@ -636,16 +582,16 @@
             phone: document.getElementById("buyPhone").value || "",
           }),
         });
-        const data = await resp.json();
+        var data = await resp.json();
         if (data.paymentUrl) { window.location.href = data.paymentUrl; }
         else { throw new Error(data.error || "Gagal mencipta pembayaran"); }
       } catch (e) {
-        err.textContent = e.message;
-        err.classList.add("show");
-        btn.textContent = "Teruskan ke Pembayaran";
-        btn.disabled = false;
+        payError.textContent = e.message;
+        payError.classList.add("show");
+        payBtn.textContent = "Teruskan ke Pembayaran";
+        payBtn.disabled = false;
       }
-    }
+    });
   </script>
 </body>
 </html>
