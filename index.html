@@ -41,7 +41,7 @@
     @media(min-width:768px) { .nav-links { display: flex; } }
     .nav-links a { font-size: 0.875rem; color: var(--gray-600); text-decoration: none; transition: color 0.15s; }
     .nav-links a:hover { color: var(--gray-900); }
-    .nav-cta { padding: 10px 20px; background: linear-gradient(135deg, var(--blue-600), var(--violet-600)); color: var(--white); font-size: 0.875rem; font-weight: 500; border-radius: 8px; border: none; cursor: pointer; text-decoration: none; transition: opacity 0.15s; }
+    .nav-cta { padding: 12px 20px; min-height: 44px; background: linear-gradient(135deg, var(--blue-600), var(--violet-600)); color: var(--white); font-size: 0.875rem; font-weight: 500; border-radius: 8px; border: none; cursor: pointer; text-decoration: none; transition: opacity 0.15s; }
     .nav-cta:hover { opacity: 0.9; }
     .nav-burger { display: flex; padding: 8px; border-radius: 8px; border: none; background: none; cursor: pointer; }
     @media(min-width:768px) { .nav-burger { display: none; } }
@@ -162,7 +162,7 @@
     .faq-item button svg { width: 20px; height: 20px; color: var(--gray-400); flex-shrink: 0; transition: transform 0.2s; }
     .faq-item.open button svg { transform: rotate(180deg); }
     .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.2s ease-out; }
-    .faq-item.open .faq-answer { max-height: 200px; }
+    .faq-item.open .faq-answer { max-height: 500px; }
     .faq-answer p { padding: 0 24px 20px; font-size: 0.875rem; color: var(--gray-600); line-height: 1.7; }
 
     /* CTA */
@@ -211,11 +211,20 @@
     .modal-error { display: none; color: #DC2626; font-size: 0.8rem; margin-top: 8px; }
     .modal-error.show { display: block; }
 
-    /* SVG icons inline */
-    .check-svg { display: inline-block; }
+    /* Utilities */
+    .text-center { text-align: center; }
+    .color-orange { color: var(--orange-600); }
+    .color-orange-price { color: var(--orange-500); }
+    .footer-col h3 { font-weight: 600; color: var(--gray-700); margin-bottom: 12px; font-size: 0.875rem; }
   </style>
 </head>
 <body>
+  <!-- SVG symbols for reuse -->
+  <svg style="display:none" aria-hidden="true">
+    <symbol id="icon-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></symbol>
+    <symbol id="icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></symbol>
+    <symbol id="icon-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></symbol>
+  </svg>
 
   <!-- Nav -->
   <nav aria-label="Navigasi utama">
@@ -256,7 +265,7 @@
   </section>
 
   <!-- Stats -->
-  <section class="stats">
+  <section class="stats" aria-label="Statistik">
     <div class="container">
       <div class="stats-inner">
         <div class="stat"><div class="stat-num">96%</div><div class="stat-label">Kejohanan Disokong</div></div>
@@ -268,11 +277,11 @@
   </section>
 
   <!-- Features -->
-  <section id="features" class="features">
+  <section id="features" class="features" aria-labelledby="features-title">
     <div class="container">
-      <div style="text-align:center">
+      <div class="text-center">
         <p class="sh-label">Ciri-Ciri</p>
-        <h2 class="sh-title">Semua yang guru sukan perlukan</h2>
+        <h2 class="sh-title" id="features-title">Semua yang guru sukan perlukan</h2>
         <p class="sh-sub">Dibina khusus untuk menyelesaikan masalah pendaftaran SMIS yang memakan masa.</p>
       </div>
       <div class="features-grid">
@@ -285,11 +294,11 @@
   </section>
 
   <!-- How it works -->
-  <section id="how" class="how">
+  <section id="how" class="how" aria-labelledby="how-title">
     <div class="container">
-      <div style="text-align:center">
+      <div class="text-center">
         <p class="sh-label">Cara Guna</p>
-        <h2 class="sh-title">Empat langkah mudah</h2>
+        <h2 class="sh-title" id="how-title">Empat langkah mudah</h2>
         <p class="sh-sub">Dari mula hingga selesai dalam beberapa minit sahaja.</p>
       </div>
       <div class="how-steps">
@@ -302,11 +311,11 @@
   </section>
 
   <!-- Pricing -->
-  <section id="pricing" class="pricing">
+  <section id="pricing" class="pricing" aria-labelledby="pricing-title">
     <div class="container">
-      <div style="text-align:center">
+      <div class="text-center">
         <p class="sh-label">Harga</p>
-        <h2 class="sh-title">Pilih cara anda</h2>
+        <h2 class="sh-title" id="pricing-title">Pilih cara anda</h2>
         <p class="sh-sub">Tiada yuran tersembunyi. Batal bila-bila masa.</p>
       </div>
       <div class="pricing-grid">
@@ -316,10 +325,10 @@
           <div class="plan-price">RM0</div>
           <div class="plan-period">Sentiasa percuma</div>
           <ul class="plan-features">
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> Jana template tanpa had</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> 10 peserta</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> 10 upload foto/dokumen</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> 10 download M01/R01</li>
+            <li><svg width="16" height="16"><use href="#icon-check"/></svg> Jana template tanpa had</li>
+            <li><svg width="16" height="16"><use href="#icon-check"/></svg> 10 peserta</li>
+            <li><svg width="16" height="16"><use href="#icon-check"/></svg> 10 upload foto/dokumen</li>
+            <li><svg width="16" height="16"><use href="#icon-check"/></svg> 10 download M01/R01</li>
           </ul>
           <a href="https://github.com/davinmaking/smis-helper/releases" target="_blank" rel="noopener" class="plan-btn">Muat Turun</a>
         </div>
@@ -330,24 +339,24 @@
           <div class="plan-price">RM79 <span class="old">RM99</span></div>
           <div class="plan-period">Sekali bayar, guna selamanya</div>
           <ul class="plan-features">
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> Semua ciri Percuma</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> Peserta tanpa had</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> Upload tanpa had</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> Download tanpa had</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> Sokongan WhatsApp</li>
+            <li><svg width="16" height="16"><use href="#icon-check"/></svg> Semua ciri Percuma</li>
+            <li><svg width="16" height="16"><use href="#icon-check"/></svg> Peserta tanpa had</li>
+            <li><svg width="16" height="16"><use href="#icon-check"/></svg> Upload tanpa had</li>
+            <li><svg width="16" height="16"><use href="#icon-check"/></svg> Download tanpa had</li>
+            <li><svg width="16" height="16"><use href="#icon-check"/></svg> Sokongan WhatsApp</li>
           </ul>
           <button class="plan-btn" id="buyProBtn">Beli Sekarang</button>
         </div>
         <div class="plan service">
-          <div class="plan-name" style="color:var(--orange-600)">Servis</div>
+          <div class="plan-name color-orange">Servis</div>
           <div class="plan-desc">Kami bantu daftarkan</div>
-          <div class="plan-price" style="color:var(--orange-500)">RM19 <small>/kejohanan</small></div>
+          <div class="plan-price color-orange-price">RM19 <small>/kejohanan</small></div>
           <div class="plan-period">Tiada perlu install apa-apa</div>
           <ul class="plan-features">
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> Kami daftarkan untuk anda</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> Isi semua details peserta</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> Upload foto & dokumen</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> Assign acara & kategori</li>
+            <li><svg width="16" height="16"><use href="#icon-check"/></svg> Kami daftarkan untuk anda</li>
+            <li><svg width="16" height="16"><use href="#icon-check"/></svg> Isi semua details peserta</li>
+            <li><svg width="16" height="16"><use href="#icon-check"/></svg> Upload foto & dokumen</li>
+            <li><svg width="16" height="16"><use href="#icon-check"/></svg> Assign acara & kategori</li>
           </ul>
           <a href="https://wa.me/60165768796?text=Saya%20berminat%20dengan%20Servis%20SMIS%20Helper%20(RM19%2Fkejohanan)." target="_blank" rel="noopener" class="plan-btn">WhatsApp Kami</a>
         </div>
@@ -356,19 +365,19 @@
   </section>
 
   <!-- FAQ -->
-  <section id="faq" class="faq">
+  <section id="faq" class="faq" aria-labelledby="faq-title">
     <div class="container">
-      <div style="text-align:center">
+      <div class="text-center">
         <p class="sh-label">FAQ</p>
-        <h2 class="sh-title">Soalan lazim</h2>
+        <h2 class="sh-title" id="faq-title">Soalan lazim</h2>
         <p class="sh-sub">Semua yang anda perlu tahu sebelum bermula.</p>
       </div>
       <div class="faq-list" id="faqList">
-        <div class="faq-item"><button><span>Adakah ini selamat?</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button><div class="faq-answer"><p>Ya. Extension hanya berinteraksi dengan smis.events. Tiada data disimpan di pelayan lain. Tiada penjejak atau analitik.</p></div></div>
-        <div class="faq-item"><button><span>Bolehkah saya guna untuk semua jenis sukan?</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button><div class="faq-answer"><p>Ya. Extension menyokong semua sukan dalam SMIS — olahraga, bola keranjang, merentas desa, dan lain-lain.</p></div></div>
-        <div class="faq-item"><button><span>Bagaimana saya mendapat kunci Pro?</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button><div class="faq-answer"><p>Selepas pembayaran melalui FPX, kunci lesen dipaparkan secara automatik. Masukkan kunci dalam Extension untuk mengaktifkan Pro.</p></div></div>
-        <div class="faq-item"><button><span>Bagaimana jika saya padam Extension?</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button><div class="faq-answer"><p>Hubungi kami untuk reset kunci. Kunci anda masih sah — hanya perlu diaktifkan semula.</p></div></div>
-        <div class="faq-item"><button><span>Pelayar apa yang disokong?</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button><div class="faq-answer"><p>Chrome, Edge, Brave, dan Opera. Tidak menyokong Firefox atau Safari.</p></div></div>
+        <div class="faq-item"><button><span>Adakah ini selamat?</span><svg width="20" height="20"><use href="#icon-chevron"/></svg></button><div class="faq-answer"><p>Ya. Extension hanya berinteraksi dengan smis.events. Tiada data disimpan di pelayan lain. Tiada penjejak atau analitik.</p></div></div>
+        <div class="faq-item"><button><span>Bolehkah saya guna untuk semua jenis sukan?</span><svg width="20" height="20"><use href="#icon-chevron"/></svg></button><div class="faq-answer"><p>Ya. Extension menyokong semua sukan dalam SMIS — olahraga, bola keranjang, merentas desa, dan lain-lain.</p></div></div>
+        <div class="faq-item"><button><span>Bagaimana saya mendapat kunci Pro?</span><svg width="20" height="20"><use href="#icon-chevron"/></svg></button><div class="faq-answer"><p>Selepas pembayaran melalui FPX, kunci lesen dipaparkan secara automatik. Masukkan kunci dalam Extension untuk mengaktifkan Pro.</p></div></div>
+        <div class="faq-item"><button><span>Bagaimana jika saya padam Extension?</span><svg width="20" height="20"><use href="#icon-chevron"/></svg></button><div class="faq-answer"><p>Hubungi kami untuk reset kunci. Kunci anda masih sah — hanya perlu diaktifkan semula.</p></div></div>
+        <div class="faq-item"><button><span>Pelayar apa yang disokong?</span><svg width="20" height="20"><use href="#icon-chevron"/></svg></button><div class="faq-answer"><p>Chrome, Edge, Brave, dan Opera. Tidak menyokong Firefox atau Safari.</p></div></div>
       </div>
     </div>
   </section>
@@ -396,13 +405,13 @@
         </div>
         <div class="footer-links">
           <div class="footer-col">
-            <p>Produk</p>
+            <h3>Produk</h3>
             <a href="#features">Ciri-Ciri</a>
             <a href="#pricing">Harga</a>
             <a href="#faq">FAQ</a>
           </div>
           <div class="footer-col">
-            <p>Lain-lain</p>
+            <h3>Lain-lain</h3>
             <a href="privacy.html">Dasar Privasi</a>
             <a href="mailto:davin.making@gmail.com">Hubungi</a>
           </div>
