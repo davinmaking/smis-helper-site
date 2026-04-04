@@ -4,221 +4,495 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>SMIS Helper — Automasi Pendaftaran Sukan SMIS</title>
-  <meta name="description" content="Chrome Extension untuk automasi pendaftaran peserta sukan di SMIS (smis.events). Jimat masa, kurang kesilapan.">
+  <meta name="description" content="Chrome Extension untuk automasi pendaftaran peserta sukan di SMIS. Jimat masa, kurang kesilapan.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <style>
     :root {
-      --brand: #4472C4;
-      --brand-dark: #3561B0;
-      --success: #2E7D32;
-      --text: #333;
-      --text-light: #666;
-      --bg: #fff;
-      --bg-muted: #f8f9ff;
-      --bg-dark: #1a1a2e;
+      --bg: #FAFAFA;
+      --bg-alt: #F0F2F5;
+      --fg: #0A0A0A;
+      --fg-muted: #555;
+      --fg-faint: #888;
+      --accent: #4472C4;
+      --accent-dark: #2B5AA6;
+      --accent-light: #EBF0FA;
+      --border: #D8DCE2;
+      --border-light: #E8ECF0;
+      --service: #E65100;
+      --white: #fff;
     }
+
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: -apple-system, 'Segoe UI', sans-serif; color: var(--text); line-height: 1.6; }
+    html { scroll-behavior: smooth; }
 
-    /* Hero */
-    .hero {
-      background: linear-gradient(135deg, var(--brand) 0%, var(--brand-dark) 100%);
-      color: #fff;
-      padding: 60px 20px 50px;
-      text-align: center;
-    }
-    .hero h1 { font-size: 2.2rem; font-weight: 700; margin-bottom: 8px; }
-    .hero .tagline { font-size: 1.1rem; opacity: 0.9; max-width: 500px; margin: 0 auto 24px; }
-    .hero .price-box {
-      display: inline-block;
-      background: rgba(255,255,255,0.15);
-      border-radius: 12px;
-      padding: 16px 32px;
-      margin-bottom: 20px;
-    }
-    .hero .price-old { font-size: 1rem; text-decoration: line-through; opacity: 0.6; }
-    .hero .price-new { font-size: 2.4rem; font-weight: 800; }
-    .hero .price-note { font-size: 0.85rem; opacity: 0.8; }
-    .hero .cta-btn {
-      display: inline-block;
-      background: #fff;
-      color: var(--brand);
-      font-size: 1.1rem;
-      font-weight: 700;
-      padding: 14px 40px;
-      border-radius: 8px;
-      text-decoration: none;
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
-    .hero .cta-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 20px rgba(0,0,0,0.2); }
-    .hero .free-note { margin-top: 12px; font-size: 0.85rem; opacity: 0.75; }
-
-    /* Features */
-    .features { padding: 50px 20px; max-width: 800px; margin: 0 auto; }
-    .features h2 { text-align: center; font-size: 1.6rem; margin-bottom: 32px; color: var(--brand); }
-    .feature-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-    @media (max-width: 600px) { .feature-grid { grid-template-columns: 1fr; } }
-    .feature-card {
-      padding: 20px;
-      border: 1px solid #eee;
-      border-radius: 10px;
+    body {
+      font-family: "Inter Tight", "Inter", system-ui, sans-serif;
+      color: var(--fg);
       background: var(--bg);
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
     }
-    .feature-card .icon { font-size: 28px; margin-bottom: 8px; }
-    .feature-card h3 { font-size: 1rem; margin-bottom: 4px; }
-    .feature-card p { font-size: 0.85rem; color: var(--text-light); }
 
-    /* How it works */
-    .how { padding: 50px 20px; background: var(--bg-muted); }
-    .how .inner { max-width: 700px; margin: 0 auto; }
-    .how h2 { text-align: center; font-size: 1.6rem; margin-bottom: 32px; color: var(--brand); }
-    .step { display: flex; gap: 16px; margin-bottom: 24px; align-items: flex-start; }
+    /* Noise texture overlay */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.02;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+    @media (min-width: 768px) { .container { padding: 0 48px; } }
+    @media (min-width: 1024px) { .container { padding: 0 64px; } }
+
+    /* ===== NAV ===== */
+    nav {
+      padding: 20px 0;
+      border-bottom: 1px solid var(--border-light);
+      position: sticky; top: 0; background: var(--bg); z-index: 50;
+    }
+    nav .inner { display: flex; align-items: center; justify-content: space-between; }
+    nav .logo { font-weight: 800; font-size: 1.1rem; letter-spacing: -0.03em; color: var(--fg); text-decoration: none; }
+    nav .logo span { color: var(--accent); }
+    nav .nav-link {
+      font-size: 0.8rem; font-weight: 600; text-transform: uppercase;
+      letter-spacing: 0.1em; color: var(--accent); text-decoration: none;
+      position: relative; padding-bottom: 2px;
+    }
+    nav .nav-link::after {
+      content: ""; position: absolute; bottom: 0; left: 0; right: 0;
+      height: 2px; background: var(--accent);
+      transform: scaleX(0); transition: transform 0.15s;
+    }
+    nav .nav-link:hover::after { transform: scaleX(1); }
+
+    /* ===== HERO ===== */
+    .hero {
+      padding: 100px 0 80px;
+      border-bottom: 1px solid var(--border-light);
+    }
+    .hero-label {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 0.75rem; font-weight: 500;
+      text-transform: uppercase; letter-spacing: 0.2em;
+      color: var(--accent); margin-bottom: 24px;
+    }
+    .hero h1 {
+      font-size: 3rem; font-weight: 900;
+      letter-spacing: -0.04em; line-height: 1.05;
+      margin-bottom: 24px; max-width: 700px;
+    }
+    @media (min-width: 640px) { .hero h1 { font-size: 3.5rem; } }
+    @media (min-width: 768px) { .hero h1 { font-size: 4.5rem; } }
+    @media (min-width: 1024px) { .hero h1 { font-size: 5.5rem; } }
+
+    .hero h1 em {
+      font-style: normal;
+      color: var(--accent);
+      position: relative;
+    }
+    .hero h1 em::after {
+      content: ""; position: absolute; bottom: 4px; left: 0; right: 0;
+      height: 3px; background: var(--accent); opacity: 0.3;
+    }
+    .hero-sub {
+      font-size: 1.1rem; line-height: 1.6;
+      color: var(--fg-muted); max-width: 520px; margin-bottom: 40px;
+    }
+    @media (min-width: 768px) { .hero-sub { font-size: 1.25rem; } }
+
+    .hero-cta { display: flex; gap: 24px; align-items: center; flex-wrap: wrap; }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 0.85rem; font-weight: 600; text-transform: uppercase;
+      letter-spacing: 0.1em; color: var(--accent); text-decoration: none;
+      position: relative; padding: 8px 0; border: none; background: none;
+      cursor: pointer; font-family: inherit;
+    }
+    .btn-primary::after {
+      content: ""; position: absolute; bottom: 0; left: 0; right: 0;
+      height: 2px; background: var(--accent); transition: transform 0.15s;
+    }
+    .btn-primary:hover::after { transform: scaleX(1.1); }
+    .btn-primary:active { transform: translateY(1px); }
+
+    .btn-outline {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 0.85rem; font-weight: 600; text-transform: uppercase;
+      letter-spacing: 0.1em; color: var(--fg);
+      border: 1px solid var(--fg); padding: 12px 28px;
+      text-decoration: none; transition: all 0.15s; background: none;
+      cursor: pointer; font-family: inherit;
+    }
+    .btn-outline:hover { background: var(--fg); color: var(--bg); }
+
+    .hero-note {
+      margin-top: 24px;
+      font-family: "JetBrains Mono", monospace;
+      font-size: 0.75rem; color: var(--fg-faint);
+    }
+
+    /* ===== STATS ===== */
+    .stats {
+      padding: 48px 0;
+      border-bottom: 1px solid var(--border-light);
+    }
+    .stats-grid {
+      display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px;
+    }
+    @media (min-width: 768px) { .stats-grid { grid-template-columns: repeat(4, 1fr); } }
+    .stat-num {
+      font-size: 2.5rem; font-weight: 900; letter-spacing: -0.04em;
+      color: var(--accent); line-height: 1;
+    }
+    @media (min-width: 768px) { .stat-num { font-size: 3rem; } }
+    .stat-label {
+      font-size: 0.8rem; color: var(--fg-muted); margin-top: 4px;
+      text-transform: uppercase; letter-spacing: 0.05em;
+    }
+
+    /* ===== FEATURES ===== */
+    .features { padding: 80px 0; border-bottom: 1px solid var(--border-light); }
+    @media (min-width: 768px) { .features { padding: 112px 0; } }
+    .section-label {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 0.75rem; font-weight: 500;
+      text-transform: uppercase; letter-spacing: 0.2em;
+      color: var(--accent); margin-bottom: 16px;
+    }
+    .section-title {
+      font-size: 2rem; font-weight: 800;
+      letter-spacing: -0.04em; line-height: 1.1;
+      margin-bottom: 48px; max-width: 500px;
+    }
+    @media (min-width: 768px) { .section-title { font-size: 2.5rem; } }
+
+    .features-grid {
+      display: grid; grid-template-columns: 1fr; gap: 1px;
+      background: var(--border-light);
+    }
+    @media (min-width: 640px) { .features-grid { grid-template-columns: 1fr 1fr; } }
+    @media (min-width: 1024px) { .features-grid { grid-template-columns: 1fr 1fr 1fr; } }
+    .feature {
+      background: var(--bg); padding: 32px;
+      transition: background 0.15s;
+    }
+    .feature:hover { background: var(--accent-light); }
+    .feature-icon {
+      font-size: 1.5rem; margin-bottom: 16px;
+    }
+    .feature h3 {
+      font-size: 1rem; font-weight: 700;
+      letter-spacing: -0.01em; margin-bottom: 8px;
+    }
+    .feature p {
+      font-size: 0.85rem; color: var(--fg-muted); line-height: 1.6;
+    }
+
+    /* ===== HOW IT WORKS ===== */
+    .how { padding: 80px 0; background: var(--bg-alt); border-bottom: 1px solid var(--border-light); }
+    @media (min-width: 768px) { .how { padding: 112px 0; } }
+    .steps { margin-top: 48px; }
+    .step {
+      display: grid; grid-template-columns: 1fr; gap: 16px;
+      padding: 32px 0; border-bottom: 1px solid var(--border);
+    }
+    @media (min-width: 768px) {
+      .step { grid-template-columns: 80px 200px 1fr; gap: 32px; align-items: start; }
+    }
     .step-num {
-      width: 36px; height: 36px; min-width: 36px;
-      background: var(--brand); color: #fff;
-      border-radius: 50%; display: flex; align-items: center; justify-content: center;
-      font-weight: 700; font-size: 1rem;
+      font-family: "JetBrains Mono", monospace;
+      font-size: 2.5rem; font-weight: 700;
+      color: var(--border); line-height: 1;
+      transition: color 0.15s;
     }
-    .step-content h3 { font-size: 1rem; margin-bottom: 2px; }
-    .step-content p { font-size: 0.85rem; color: var(--text-light); }
+    .step:hover .step-num { color: var(--accent); }
+    .step h3 { font-size: 1.1rem; font-weight: 700; letter-spacing: -0.01em; }
+    .step p { font-size: 0.9rem; color: var(--fg-muted); line-height: 1.6; }
 
-    /* Pricing comparison */
-    .pricing { padding: 50px 20px; max-width: 600px; margin: 0 auto; text-align: center; }
-    .pricing h2 { font-size: 1.6rem; margin-bottom: 24px; color: var(--brand); }
-    .plan-compare { display: flex; gap: 16px; justify-content: center; }
-    @media (max-width: 500px) { .plan-compare { flex-direction: column; } }
+    /* ===== PRICING ===== */
+    .pricing { padding: 80px 0; border-bottom: 1px solid var(--border-light); }
+    @media (min-width: 768px) { .pricing { padding: 112px 0; } }
+    .pricing-grid {
+      display: grid; grid-template-columns: 1fr; gap: 1px;
+      background: var(--border-light); margin-top: 48px;
+    }
+    @media (min-width: 640px) { .pricing-grid { grid-template-columns: 1fr 1fr; } }
+    @media (min-width: 1024px) { .pricing-grid { grid-template-columns: 1fr 1fr 1fr; } }
     .plan {
-      flex: 1; max-width: 260px;
-      border: 2px solid #eee; border-radius: 12px;
-      padding: 24px 20px; text-align: center;
+      background: var(--bg); padding: 40px 32px;
+      position: relative;
     }
-    .plan.pro { border-color: var(--brand); }
-    .plan h3 { font-size: 1.2rem; margin-bottom: 8px; }
-    .plan .plan-price { font-size: 2rem; font-weight: 800; color: var(--brand); margin-bottom: 12px; }
-    .plan .plan-price small { font-size: 0.8rem; font-weight: 400; color: var(--text-light); }
-    .plan ul { list-style: none; text-align: left; font-size: 0.85rem; }
-    .plan ul li { padding: 4px 0; }
-    .plan ul li::before { content: "✓ "; color: var(--success); font-weight: 700; }
-    .plan ul li.limit::before { content: "— "; color: #ccc; }
-    .plan .plan-btn {
-      display: block; margin-top: 16px; padding: 10px;
-      border-radius: 6px; text-decoration: none; font-weight: 600; font-size: 0.9rem;
+    .plan.featured { border: 2px solid var(--accent); }
+    .plan.featured .plan-badge {
+      position: absolute; top: -1px; left: 32px;
+      background: var(--accent); color: var(--white);
+      font-family: "JetBrains Mono", monospace;
+      font-size: 0.65rem; font-weight: 500;
+      text-transform: uppercase; letter-spacing: 0.15em;
+      padding: 4px 12px;
     }
-    .plan.free .plan-btn { background: #eee; color: var(--text); }
-    .plan.pro .plan-btn { background: var(--brand); color: #fff; }
+    .plan-name {
+      font-size: 0.8rem; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.1em;
+      color: var(--fg-faint); margin-bottom: 12px;
+    }
+    .plan-price {
+      font-size: 3rem; font-weight: 900;
+      letter-spacing: -0.04em; line-height: 1; margin-bottom: 4px;
+    }
+    .plan-price small {
+      font-size: 1rem; font-weight: 400;
+      color: var(--fg-faint); text-decoration: line-through;
+      margin-left: 8px;
+    }
+    .plan-period {
+      font-size: 0.8rem; color: var(--fg-faint); margin-bottom: 24px;
+    }
+    .plan-features {
+      list-style: none; margin-bottom: 32px;
+    }
+    .plan-features li {
+      font-size: 0.85rem; padding: 6px 0;
+      border-bottom: 1px solid var(--border-light);
+      color: var(--fg-muted);
+    }
+    .plan-features li::before { content: "— "; color: var(--accent); font-weight: 600; }
+    .plan-features li.limit { color: var(--fg-faint); }
+    .plan-features li.limit::before { content: "— "; color: var(--border); }
+    .plan-cta { width: 100%; }
 
-    /* FAQ */
-    .faq { padding: 50px 20px; background: var(--bg-muted); }
-    .faq .inner { max-width: 700px; margin: 0 auto; }
-    .faq h2 { text-align: center; font-size: 1.6rem; margin-bottom: 24px; color: var(--brand); }
-    .faq-item { margin-bottom: 16px; }
+    .btn-accent {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 100%; padding: 14px 0;
+      font-size: 0.85rem; font-weight: 600; text-transform: uppercase;
+      letter-spacing: 0.1em; text-decoration: none;
+      border: none; cursor: pointer; font-family: inherit;
+      transition: all 0.15s;
+    }
+    .btn-accent.fill {
+      background: var(--accent); color: var(--white);
+    }
+    .btn-accent.fill:hover { background: var(--accent-dark); }
+    .btn-accent.ghost {
+      background: none; color: var(--accent); border: 1px solid var(--border);
+    }
+    .btn-accent.ghost:hover { border-color: var(--accent); }
+    .btn-accent.service {
+      background: var(--service); color: var(--white);
+    }
+    .btn-accent.service:hover { background: #BF360C; }
+
+    /* ===== FAQ ===== */
+    .faq { padding: 80px 0; background: var(--bg-alt); border-bottom: 1px solid var(--border-light); }
+    @media (min-width: 768px) { .faq { padding: 112px 0; } }
+    .faq-list { margin-top: 48px; max-width: 700px; }
+    .faq-item {
+      border-bottom: 1px solid var(--border);
+    }
     .faq-item summary {
-      font-weight: 600; cursor: pointer; padding: 10px 0;
-      border-bottom: 1px solid #eee; font-size: 0.95rem;
+      font-size: 1rem; font-weight: 600; cursor: pointer;
+      padding: 20px 0; list-style: none;
+      display: flex; justify-content: space-between; align-items: center;
     }
-    .faq-item p { padding: 10px 0; font-size: 0.85rem; color: var(--text-light); }
+    .faq-item summary::-webkit-details-marker { display: none; }
+    .faq-item summary::after {
+      content: "+"; font-size: 1.2rem; font-weight: 300;
+      color: var(--fg-faint); transition: transform 0.2s;
+    }
+    .faq-item[open] summary::after { content: "−"; }
+    .faq-item p {
+      font-size: 0.9rem; color: var(--fg-muted);
+      padding: 0 0 20px; line-height: 1.7;
+    }
 
-    /* Footer */
-    .site-footer {
-      padding: 30px 20px; text-align: center;
-      font-size: 0.8rem; color: var(--text-light);
-      border-top: 1px solid #eee;
+    /* ===== FOOTER ===== */
+    footer {
+      padding: 48px 0;
+      border-top: 1px solid var(--border-light);
     }
-    .site-footer a { color: var(--brand); text-decoration: none; }
+    footer .inner {
+      display: flex; justify-content: space-between;
+      align-items: center; flex-wrap: wrap; gap: 16px;
+    }
+    footer .brand {
+      font-size: 0.8rem; color: var(--fg-faint);
+    }
+    footer .links { display: flex; gap: 24px; }
+    footer .links a {
+      font-size: 0.75rem; color: var(--fg-faint); text-decoration: none;
+      text-transform: uppercase; letter-spacing: 0.1em;
+    }
+    footer .links a:hover { color: var(--accent); }
+
+    /* ===== BUY MODAL ===== */
+    .modal-overlay {
+      display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(10,10,10,0.6); z-index: 100;
+      align-items: center; justify-content: center; padding: 20px;
+    }
+    .modal-overlay.show { display: flex; }
+    .modal {
+      background: var(--white); padding: 40px;
+      max-width: 420px; width: 100%; position: relative;
+    }
+    .modal h3 {
+      font-size: 1.5rem; font-weight: 800;
+      letter-spacing: -0.03em; margin-bottom: 4px;
+    }
+    .modal .modal-sub {
+      font-size: 0.85rem; color: var(--fg-muted); margin-bottom: 24px;
+    }
+    .modal label {
+      display: block; font-size: 0.75rem; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.1em;
+      color: var(--fg-faint); margin-bottom: 4px; margin-top: 16px;
+    }
+    .modal input {
+      width: 100%; padding: 12px 16px; border: 1px solid var(--border);
+      font-size: 1rem; font-family: inherit; background: var(--bg);
+      outline: none; transition: border-color 0.15s;
+    }
+    .modal input:focus { border-color: var(--accent); }
+    .modal input::placeholder { color: var(--fg-faint); }
+    .modal .modal-btn {
+      width: 100%; margin-top: 24px; padding: 14px;
+      background: var(--accent); color: var(--white); border: none;
+      font-size: 0.9rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.08em; cursor: pointer; font-family: inherit;
+      transition: background 0.15s;
+    }
+    .modal .modal-btn:hover { background: var(--accent-dark); }
+    .modal .modal-btn:disabled { opacity: 0.5; cursor: wait; }
+    .modal .modal-close {
+      background: none; border: none; color: var(--fg-faint);
+      font-size: 0.85rem; cursor: pointer; margin-top: 12px;
+      font-family: inherit;
+    }
+    .modal .modal-error {
+      display: none; color: #C62828; font-size: 0.8rem; margin-top: 8px;
+    }
+    .modal .modal-error.show { display: block; }
   </style>
 </head>
 <body>
 
+  <!-- Nav -->
+  <nav>
+    <div class="container inner">
+      <a href="#" class="logo">SMIS <span>Helper</span></a>
+      <a href="#pricing" class="nav-link">Dapatkan Sekarang &rarr;</a>
+    </div>
+  </nav>
+
   <!-- Hero -->
   <section class="hero">
-    <h1>SMIS Helper</h1>
-    <p class="tagline">Automasi pendaftaran peserta sukan di SMIS. Apa yang mengambil berjam-jam, kini selesai dalam beberapa minit.</p>
-    <div class="price-box">
-      <div class="price-old">RM99</div>
-      <div class="price-new">RM79</div>
-      <div class="price-note">Sekali bayar, guna selamanya</div>
+    <div class="container">
+      <div class="hero-label">Chrome Extension untuk Guru Sukan</div>
+      <h1>Daftar peserta <em>dalam minit</em>, bukan berjam.</h1>
+      <p class="hero-sub">Automasi pendaftaran sukan di SMIS — tambah peserta, isi details, assign acara, upload dokumen. Satu klik untuk semua.</p>
+      <div class="hero-cta">
+        <a href="#pricing" class="btn-primary">Lihat Harga &darr;</a>
+        <a href="#how" class="btn-outline">Cara Guna</a>
+      </div>
+      <p class="hero-note">Percuma untuk 10 peserta. Tiada kad kredit diperlukan.</p>
     </div>
-    <br>
-    <a href="#pricing" class="cta-btn">Dapatkan Sekarang</a>
-    <div class="free-note">Percuma untuk 10 peserta pertama. Tiada kad kredit diperlukan.</div>
+  </section>
+
+  <!-- Stats -->
+  <section class="stats">
+    <div class="container">
+      <div class="stats-grid">
+        <div>
+          <div class="stat-num">96%</div>
+          <div class="stat-label">Jenis Kejohanan Disokong</div>
+        </div>
+        <div>
+          <div class="stat-num">74</div>
+          <div class="stat-label">Acara Diuji</div>
+        </div>
+        <div>
+          <div class="stat-num">3x</div>
+          <div class="stat-label">Lebih Pantas</div>
+        </div>
+        <div>
+          <div class="stat-num">0</div>
+          <div class="stat-label">Kesilapan Taip</div>
+        </div>
+      </div>
+    </div>
   </section>
 
   <!-- Features -->
   <section class="features">
-    <h2>Ciri-Ciri Utama</h2>
-    <div class="feature-grid">
-      <div class="feature-card">
-        <div class="icon">📋</div>
-        <h3>Template Excel Dinamik</h3>
-        <p>Dijana terus dari SMIS — dropdown Acara, Tahun, Kaum disertakan automatik.</p>
-      </div>
-      <div class="feature-card">
-        <div class="icon">📝</div>
-        <h3>Tambah + Kemaskini Satu Klik</h3>
-        <p>Daftar peserta baru, isi semua details, assign acara dan kategori dalam satu operasi.</p>
-      </div>
-      <div class="feature-card">
-        <div class="icon">📷</div>
-        <h3>Upload Foto & Dokumen</h3>
-        <p>Padankan fail secara automatik dengan nama atau IC peserta. Pratonton sebelum upload.</p>
-      </div>
-      <div class="feature-card">
-        <div class="icon">📥</div>
-        <h3>Muat Turun M01/R01</h3>
-        <p>Download borang pendaftaran secara pukal dalam format PDF atau HTML.</p>
-      </div>
-      <div class="feature-card">
-        <div class="icon">🔄</div>
-        <h3>Pelbagai Acara per Peserta</h3>
-        <p>Satu peserta boleh menyertai 3+ acara — Extension gabungkan secara automatik.</p>
-      </div>
-      <div class="feature-card">
-        <div class="icon">🏫</div>
-        <h3>Auto-Detect Sekolah</h3>
-        <p>Masukkan Kod Sekolah sahaja — nama, alamat, guru besar diisi automatik dari SMIS.</p>
-      </div>
-      <div class="feature-card">
-        <div class="icon">✅</div>
-        <h3>Pengesahan Data</h3>
-        <p>Semak IC (12 digit), medan wajib, tarikh lahir. Ralat dipapar dengan nombor baris.</p>
-      </div>
-      <div class="feature-card">
-        <div class="icon">🔁</div>
-        <h3>Cuba Semula Automatik</h3>
-        <p>Item gagal disimpan. Klik Cuba Semula untuk proses hanya yang gagal.</p>
+    <div class="container">
+      <div class="section-label">Ciri-Ciri</div>
+      <h2 class="section-title">Semua yang guru sukan perlukan.</h2>
+      <div class="features-grid">
+        <div class="feature">
+          <div class="feature-icon">01</div>
+          <h3>Template Excel Dinamik</h3>
+          <p>Dijana terus dari SMIS — dropdown Acara, Tahun, Kaum disertakan automatik mengikut tetapan kejohanan.</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">02</div>
+          <h3>Satu Klik Daftar</h3>
+          <p>Daftar peserta baru, isi semua details, assign acara dan kategori. Satu operasi untuk semua.</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">03</div>
+          <h3>Upload Foto & Dokumen</h3>
+          <p>Padankan fail secara automatik dengan nama atau IC peserta. Pratonton sebelum upload.</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">04</div>
+          <h3>Muat Turun M01/R01</h3>
+          <p>Download borang pendaftaran secara pukal dalam format PDF. Satu klik untuk semua peserta.</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">05</div>
+          <h3>Pelbagai Acara</h3>
+          <p>Satu peserta boleh menyertai 3+ acara — Extension gabungkan secara automatik dari Excel.</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">06</div>
+          <h3>Pengesahan Data</h3>
+          <p>Semak IC (12 digit), medan wajib, tarikh lahir. Ralat dipapar jelas dengan nombor baris.</p>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- How it works -->
-  <section class="how">
-    <div class="inner">
-      <h2>Cara Penggunaan</h2>
-      <div class="step">
-        <div class="step-num">1</div>
-        <div class="step-content">
+  <!-- How It Works -->
+  <section class="how" id="how">
+    <div class="container">
+      <div class="section-label">Cara Guna</div>
+      <h2 class="section-title">Empat langkah sahaja.</h2>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">01</div>
           <h3>Jana Template</h3>
-          <p>Buka SMIS, log masuk, klik SMIS Helper, klik "Jana template". Excel dimuat turun dengan dropdown Acara.</p>
+          <p>Buka SMIS, log masuk, klik SMIS Helper, klik "Jana template". Excel dimuat turun dengan dropdown Acara yang dijana dari kejohanan anda.</p>
         </div>
-      </div>
-      <div class="step">
-        <div class="step-num">2</div>
-        <div class="step-content">
+        <div class="step">
+          <div class="step-num">02</div>
           <h3>Isi Data Peserta</h3>
-          <p>Isi senarai peserta dalam Excel. Pilih Acara dari dropdown. Simpan.</p>
+          <p>Isi senarai peserta dalam Excel. Pilih Acara dari dropdown. Boleh isi secara berkumpulan di Google Sheets.</p>
         </div>
-      </div>
-      <div class="step">
-        <div class="step-num">3</div>
-        <div class="step-content">
+        <div class="step">
+          <div class="step-num">03</div>
           <h3>Upload & Proses</h3>
-          <p>Upload Excel ke Extension. Pilih Negeri & PPD. Klik "Tambah + Kemaskini". Selesai!</p>
+          <p>Upload Excel ke Extension. Pilih Negeri & PPD. Klik "Tambah + Kemaskini". Tunggu selesai.</p>
         </div>
-      </div>
-      <div class="step">
-        <div class="step-num">4</div>
-        <div class="step-content">
-          <h3>Upload Foto & Dokumen</h3>
-          <p>Pilih gambar/dokumen — Extension padankan secara automatik. Sahkan dan upload.</p>
+        <div class="step">
+          <div class="step-num">04</div>
+          <h3>Upload Dokumen</h3>
+          <p>Pilih gambar dan dokumen — Extension padankan dengan peserta secara automatik. Sahkan dan upload.</p>
         </div>
       </div>
     </div>
@@ -226,115 +500,126 @@
 
   <!-- Pricing -->
   <section class="pricing" id="pricing">
-    <h2>Pilih Pelan Anda</h2>
-    <div class="plan-compare" style="max-width:800px;">
-      <div class="plan free">
-        <h3>Percuma</h3>
-        <div class="plan-price">RM0</div>
-        <ul>
-          <li>Jana template (tanpa had)</li>
-          <li>10 peserta</li>
-          <li>10 upload foto/dokumen</li>
-          <li>10 download M01/R01</li>
-          <li class="limit">Tiada sokongan</li>
-        </ul>
-        <a href="https://github.com/davinmaking/smis-helper/releases" class="plan-btn" target="_blank">Muat Turun</a>
-      </div>
-      <div class="plan pro">
-        <h3>Pro</h3>
-        <div class="plan-price">RM79 <small>RM99</small></div>
-        <ul>
-          <li>Semua ciri Percuma</li>
-          <li>Peserta tanpa had</li>
-          <li>Upload tanpa had</li>
-          <li>Download tanpa had</li>
-          <li>Sokongan WhatsApp</li>
-        </ul>
-        <button class="plan-btn" id="buyBtn" onclick="buyPro()" style="border:none;cursor:pointer;width:100%;">Beli Sekarang</button>
-      </div>
-      <div class="plan service" style="border-color:#FF9800;">
-        <h3 style="color:#E65100;">Servis</h3>
-        <div class="plan-price" style="color:#FF9800;">RM19 <small>/kejohanan</small></div>
-        <ul>
-          <li>Kami daftarkan untuk anda</li>
-          <li>Isi semua details peserta</li>
-          <li>Upload foto & dokumen</li>
-          <li>Assign acara & kategori</li>
-          <li>Tiada perlu install extension</li>
-        </ul>
-        <a href="https://wa.me/60165768796?text=Saya%20berminat%20dengan%20Servis%20SMIS%20Helper%20(RM19%2Fkejohanan).%20Saya%20ada%20kejohanan%20yang%20perlu%20didaftarkan." class="plan-btn" target="_blank" rel="noopener" style="background:#FF9800;color:#fff;">WhatsApp Kami</a>
+    <div class="container">
+      <div class="section-label">Harga</div>
+      <h2 class="section-title">Pilih cara anda.</h2>
+      <div class="pricing-grid">
+        <div class="plan">
+          <div class="plan-name">Percuma</div>
+          <div class="plan-price">RM0</div>
+          <div class="plan-period">Sentiasa percuma</div>
+          <ul class="plan-features">
+            <li>Jana template tanpa had</li>
+            <li>10 peserta</li>
+            <li>10 upload foto/dokumen</li>
+            <li>10 download M01/R01</li>
+            <li class="limit">Tiada sokongan</li>
+          </ul>
+          <a href="https://github.com/davinmaking/smis-helper/releases" target="_blank" class="btn-accent ghost plan-cta">Muat Turun</a>
+        </div>
+        <div class="plan featured">
+          <div class="plan-badge">Popular</div>
+          <div class="plan-name">Pro</div>
+          <div class="plan-price">RM79 <small>RM99</small></div>
+          <div class="plan-period">Sekali bayar, guna selamanya</div>
+          <ul class="plan-features">
+            <li>Semua ciri Percuma</li>
+            <li>Peserta tanpa had</li>
+            <li>Upload tanpa had</li>
+            <li>Download tanpa had</li>
+            <li>Sokongan WhatsApp</li>
+          </ul>
+          <button class="btn-accent fill plan-cta" onclick="buyPro()">Beli Sekarang</button>
+        </div>
+        <div class="plan">
+          <div class="plan-name">Servis</div>
+          <div class="plan-price" style="color:var(--service)">RM19</div>
+          <div class="plan-period">Setiap kejohanan</div>
+          <ul class="plan-features">
+            <li>Kami daftarkan untuk anda</li>
+            <li>Isi semua details peserta</li>
+            <li>Upload foto & dokumen</li>
+            <li>Assign acara & kategori</li>
+            <li>Tiada perlu install extension</li>
+          </ul>
+          <a href="https://wa.me/60165768796?text=Saya%20berminat%20dengan%20Servis%20SMIS%20Helper%20(RM19%2Fkejohanan)." target="_blank" rel="noopener" class="btn-accent service plan-cta">WhatsApp Kami</a>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- Buy modal -->
-  <div id="buyModal" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.5);z-index:100;align-items:center;justify-content:center;">
-    <div style="background:#fff;border-radius:12px;padding:32px;max-width:380px;width:90%;text-align:center;">
-      <h3 style="margin-bottom:16px;color:#4472C4;">Beli SMIS Helper Pro</h3>
-      <p style="font-size:0.85rem;color:#666;margin-bottom:16px;">RM79.00 — sekali bayar, guna selamanya</p>
-      <div style="text-align:left;margin-bottom:16px;">
-        <label style="display:block;font-size:0.8rem;color:#888;margin-bottom:3px;">Nama (pilihan)</label>
-        <input type="text" id="buyName" placeholder="Nama anda" style="width:100%;padding:8px;border:1px solid #ddd;border-radius:6px;font-size:0.9rem;margin-bottom:10px;">
-        <label style="display:block;font-size:0.8rem;color:#888;margin-bottom:3px;">Emel (pilihan — untuk terima kunci)</label>
-        <input type="email" id="buyEmail" placeholder="emel@contoh.com" style="width:100%;padding:8px;border:1px solid #ddd;border-radius:6px;font-size:0.9rem;margin-bottom:10px;">
-        <label style="display:block;font-size:0.8rem;color:#888;margin-bottom:3px;">No. Telefon (pilihan)</label>
-        <input type="tel" id="buyPhone" placeholder="01XXXXXXXXX" style="width:100%;padding:8px;border:1px solid #ddd;border-radius:6px;font-size:0.9rem;">
-      </div>
-      <button id="payBtn" onclick="startPayment()" style="width:100%;padding:12px;background:#4472C4;color:#fff;border:none;border-radius:8px;font-size:1rem;font-weight:700;cursor:pointer;">Teruskan ke Pembayaran</button>
-      <button onclick="document.getElementById('buyModal').style.display='none'" style="margin-top:10px;background:none;border:none;color:#888;cursor:pointer;font-size:0.85rem;">Batal</button>
-      <p id="payError" style="display:none;color:#C62828;font-size:0.8rem;margin-top:8px;"></p>
-    </div>
-  </div>
-
   <!-- FAQ -->
   <section class="faq">
-    <div class="inner">
-      <h2>Soalan Lazim</h2>
-      <details class="faq-item">
-        <summary>Adakah ini selamat digunakan?</summary>
-        <p>Ya. Extension hanya berinteraksi dengan smis.events dan pelayan lesen kami. Tiada data disimpan di pelayan lain. Kod sumber terbuka di GitHub.</p>
-      </details>
-      <details class="faq-item">
-        <summary>Bolehkah saya guna untuk semua jenis sukan?</summary>
-        <p>Ya! Extension menyokong semua sukan dalam SMIS — olahraga, bola keranjang, merentas desa, dan lain-lain. Template dijana mengikut acara kejohanan anda.</p>
-      </details>
-      <details class="faq-item">
-        <summary>Bagaimana saya mendapat kunci Pro?</summary>
-        <p>Selepas pembayaran, kunci lesen (SMIS-XXXX-XXXX) akan dipaparkan secara automatik. Masukkan kunci dalam Extension untuk mengaktifkan Pro.</p>
-      </details>
-      <details class="faq-item">
-        <summary>Bagaimana jika saya padam Extension?</summary>
-        <p>Hubungi kami untuk reset kunci. Kunci anda masih sah — hanya perlu diaktifkan semula pada peranti baru.</p>
-      </details>
-      <details class="faq-item">
-        <summary>Bolehkah lebih dari seorang guru guna satu kunci?</summary>
-        <p>Satu kunci untuk satu peranti. Setiap guru memerlukan kunci sendiri.</p>
-      </details>
-      <details class="faq-item">
-        <summary>Adakah ini berfungsi di semua pelayar?</summary>
-        <p>Ya — Chrome, Edge, Brave, dan Opera. Tidak menyokong Firefox atau Safari.</p>
-      </details>
+    <div class="container">
+      <div class="section-label">Soalan Lazim</div>
+      <h2 class="section-title">Ada soalan?</h2>
+      <div class="faq-list">
+        <details class="faq-item">
+          <summary>Adakah ini selamat?</summary>
+          <p>Ya. Extension hanya berinteraksi dengan smis.events. Tiada data disimpan di pelayan lain. Tiada penjejak atau analitik.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Bolehkah saya guna untuk semua jenis sukan?</summary>
+          <p>Ya. Extension menyokong semua sukan dalam SMIS — olahraga, bola keranjang, merentas desa, dan lain-lain. Template dijana mengikut acara kejohanan anda.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Bagaimana saya mendapat kunci Pro?</summary>
+          <p>Selepas pembayaran melalui FPX, kunci lesen dipaparkan secara automatik. Masukkan kunci dalam Extension untuk mengaktifkan Pro.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Bagaimana jika saya padam Extension?</summary>
+          <p>Hubungi kami untuk reset kunci. Kunci anda masih sah — hanya perlu diaktifkan semula.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Pelayar apa yang disokong?</summary>
+          <p>Chrome, Edge, Brave, dan Opera. Tidak menyokong Firefox atau Safari.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Bolehkah seorang peserta menyertai lebih dari satu acara?</summary>
+          <p>Ya. Tambah baris baru dalam Excel dengan IC yang sama, atau tulis beberapa acara dipisahkan oleh koma dalam satu sel.</p>
+        </details>
+      </div>
     </div>
   </section>
 
   <!-- Footer -->
-  <footer class="site-footer">
-    <p>SMIS Helper &copy; 2026 <strong>Davin Wong</strong></p>
-    <p><a href="privacy.html">Dasar Privasi</a> | <a href="mailto:davin.making@gmail.com">Hubungi Kami</a></p>
+  <footer>
+    <div class="container inner">
+      <div class="brand">&copy; 2026 Davin Wong. SMIS Helper.</div>
+      <div class="links">
+        <a href="privacy.html">Dasar Privasi</a>
+        <a href="mailto:davin.making@gmail.com">Hubungi</a>
+      </div>
+    </div>
   </footer>
+
+  <!-- Buy Modal -->
+  <div class="modal-overlay" id="buyModal">
+    <div class="modal">
+      <h3>SMIS Helper Pro</h3>
+      <p class="modal-sub">RM79.00 — sekali bayar, guna selamanya</p>
+      <label>Nama (pilihan)</label>
+      <input type="text" id="buyName" placeholder="Nama anda">
+      <label>Emel (pilihan)</label>
+      <input type="email" id="buyEmail" placeholder="emel@contoh.com">
+      <label>No. Telefon (pilihan)</label>
+      <input type="tel" id="buyPhone" placeholder="01XXXXXXXXX">
+      <button class="modal-btn" id="payBtn" onclick="startPayment()">Teruskan ke Pembayaran</button>
+      <button class="modal-close" onclick="document.getElementById('buyModal').classList.remove('show')">Batal</button>
+      <div class="modal-error" id="payError"></div>
+    </div>
+  </div>
 
   <script>
     function buyPro() {
-      document.getElementById("buyModal").style.display = "flex";
+      document.getElementById("buyModal").classList.add("show");
     }
-
     async function startPayment() {
       const btn = document.getElementById("payBtn");
       const err = document.getElementById("payError");
       btn.textContent = "Memproses...";
       btn.disabled = true;
-      err.style.display = "none";
-
+      err.classList.remove("show");
       try {
         const resp = await fetch("https://xucdnakrfhoeqnjyrvkd.supabase.co/functions/v1/payment", {
           method: "POST",
@@ -346,15 +631,11 @@
           }),
         });
         const data = await resp.json();
-
-        if (data.paymentUrl) {
-          window.location.href = data.paymentUrl;
-        } else {
-          throw new Error(data.error || "Gagal mencipta pembayaran");
-        }
+        if (data.paymentUrl) { window.location.href = data.paymentUrl; }
+        else { throw new Error(data.error || "Gagal mencipta pembayaran"); }
       } catch (e) {
         err.textContent = e.message;
-        err.style.display = "block";
+        err.classList.add("show");
         btn.textContent = "Teruskan ke Pembayaran";
         btn.disabled = false;
       }
