@@ -20,7 +20,7 @@
 <body>
   <a href="index.html" class="back">&larr; Kembali ke laman utama</a>
   <h1>Dasar Privasi / Privacy Policy</h1>
-  <p class="updated">Kemaskini terakhir: 3 April 2026</p>
+  <p class="updated">Kemaskini terakhir: 7 April 2026</p>
 
   <h2>1. Pengenalan</h2>
   <p>SMIS Helper ("Extension") ialah Chrome Extension yang membantu guru mendaftarkan peserta sukan ke dalam sistem SMIS (smis.events). Dasar privasi ini menerangkan bagaimana Extension mengendalikan data anda.</p>
@@ -58,13 +58,12 @@
   <h2>6. Kebenaran Extension</h2>
   <p>Extension memerlukan kebenaran berikut:</p>
   <ul>
-    <li><strong>activeTab, scripting:</strong> Untuk berinteraksi dengan halaman smis.events.</li>
-    <li><strong>storage:</strong> Untuk menyimpan data sementara dan tetapan.</li>
-    <li><strong>tabs:</strong> Untuk mengesan tab SMIS yang aktif.</li>
-    <li><strong>debugger:</strong> Untuk menjana PDF (M01/R01). Hanya digunakan untuk fungsi cetak.</li>
-    <li><strong>downloads:</strong> Untuk memuat turun fail template dan M01/R01.</li>
-    <li><strong>alarms:</strong> Untuk mengekalkan proses PDF semasa muat turun.</li>
-    <li><strong>host_permissions (smis.events):</strong> Untuk mengakses halaman dan API SMIS.</li>
+    <li><strong>activeTab, scripting:</strong> Untuk mengesan dan berinteraksi dengan halaman smis.events bagi membaca data peserta dan menghantar borang.</li>
+    <li><strong>storage:</strong> Untuk menyimpan tetapan pengguna, data sementara peserta (2 jam TTL), dan status lesen.</li>
+    <li><strong>tabs:</strong> Untuk mencari tab SMIS yang aktif, mengesan nama kejohanan, dan memuat semula halaman selepas operasi selesai.</li>
+    <li><strong>debugger:</strong> Untuk menjana PDF borang M01/R01 melalui Page.printToPDF. Hanya digunakan pada tab tersembunyi yang dicipta oleh Extension, bukan tab pengguna.</li>
+    <li><strong>downloads:</strong> Untuk memuat turun fail PDF (M01/R01) dan fail HTML ke folder Muat Turun pengguna.</li>
+    <li><strong>host_permissions (smis.events):</strong> Untuk mengakses halaman dan API SMIS. Juga mengakses pelayan lesen (Supabase) untuk pengesahan kunci sahaja.</li>
   </ul>
 
   <h2>7. Keselamatan</h2>
