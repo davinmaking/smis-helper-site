@@ -15,18 +15,18 @@
     .key-box { background: #E8F5E9; border: 2px solid #81C784; border-radius: 10px; padding: 20px; margin-bottom: 20px; }
     .key-label { font-size: 0.8rem; color: #666; margin-bottom: 6px; }
     .key-value { font-size: 1.8rem; font-weight: 800; color: #2E7D32; font-family: monospace; letter-spacing: 2px; user-select: all; }
-    .copy-btn { margin-top: 10px; padding: 8px 24px; background: #4472C4; color: #fff; border: none; border-radius: 6px; font-size: 0.9rem; cursor: pointer; font-weight: 600; }
+    .copy-btn { margin-top: 10px; padding: 8px 24px; background: #1e6fd9; color: #fff; border: none; border-radius: 6px; font-size: 0.9rem; cursor: pointer; font-weight: 600; }
     .copy-btn:hover { background: #3561B0; }
     .copy-btn.copied { background: #2E7D32; }
     .steps { text-align: left; margin: 20px 0; font-size: 0.85rem; color: #555; }
     .steps li { margin-bottom: 8px; padding-left: 4px; }
     .steps strong { color: #333; }
-    .note { font-size: 0.8rem; color: #999; margin-top: 16px; }
+    .note { font-size: 0.8rem; color: #6B7280; margin-top: 16px; }
     .loading { display: none; }
     .loading.show { display: block; }
     .error { display: none; color: #C62828; }
     .error.show { display: block; }
-    .spinner { display: inline-block; width: 24px; height: 24px; border: 3px solid #ddd; border-top-color: #4472C4; border-radius: 50%; animation: spin 0.8s linear infinite; }
+    .spinner { display: inline-block; width: 24px; height: 24px; border: 3px solid #ddd; border-top-color: #1e6fd9; border-radius: 50%; animation: spin 0.8s linear infinite; }
     @keyframes spin { to { transform: rotate(360deg); } }
   </style>
 </head>
@@ -53,14 +53,14 @@
     <!-- Loading state -->
     <div id="loadingState" class="loading show">
       <div class="icon"><div class="spinner"></div></div>
-      <h1 style="color:#4472C4">Mengesahkan Pembayaran...</h1>
+      <h1 style="color:#1e6fd9">Mengesahkan Pembayaran...</h1>
       <p class="subtitle">Sila tunggu sebentar.</p>
     </div>
 
     <!-- Error/pending state -->
     <div id="errorState" class="error">
       <div class="icon">&#9888;</div>
-      <h1 style="color:#F57F17">Pembayaran Belum Disahkan</h1>
+      <h1 style="color:#b45309">Pembayaran Belum Disahkan</h1>
       <p class="subtitle" id="errorMsg">Pembayaran anda sedang diproses. Kunci lesen akan dipaparkan setelah pengesahan selesai.</p>
       <p class="note">Jika anda telah membayar, sila hubungi <a href="mailto:davin.making@gmail.com">davin.making@gmail.com</a></p>
     </div>
