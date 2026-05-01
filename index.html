@@ -1194,12 +1194,12 @@
       }
       btn.textContent = "Memproses..."; btn.disabled = true; err.classList.remove("show");
       try {
-        var resp = await fetch("https://xucdnakrfhoeqnjyrvkd.supabase.co/functions/v1/payment", {
+        var resp = await fetch("https://davinhub-api.davin-making.workers.dev/api/payment/create", {
           method: "POST", headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ name: document.getElementById("buyName").value || "Guru", email: emailVal, phone: document.getElementById("buyPhone").value || "" }),
         });
         var data = await resp.json();
-        if (data.paymentUrl) { window.location.href = data.paymentUrl; }
+        if (data.ok && data.data && data.data.paymentUrl) { window.location.href = data.data.paymentUrl; }
         else { throw new Error(data.error || "Gagal mencipta pembayaran"); }
       } catch (e) {
         err.textContent = e.message; err.classList.add("show");

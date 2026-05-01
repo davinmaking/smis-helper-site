@@ -67,13 +67,15 @@
   </div>
 
   <script>
-    // ToyyibPay redirects back with: ?status_id=1&billcode=XXX&order_id=XXX
+    // ToyyibPay redirects back with: ?status_id=1&billcode=XXX&order_id=ORDERREF
+    // Our payment/create also seeds the URL with ?ref=ORDERREF in case
+    // ToyyibPay drops one of theirs. order_id and ref are the same value.
     const params = new URLSearchParams(window.location.search);
     const statusId = params.get("status_id");
-    const billcode = params.get("billcode");
+    const orderRef = params.get("order_id") || params.get("ref");
 
     async function checkPayment() {
-      if (statusId !== "1" || !billcode) {
+      if (statusId !== "1" || !orderRef) {
         // Payment failed or pending
         document.getElementById("loadingState").classList.remove("show");
         document.getElementById("errorState").classList.add("show");
@@ -89,14 +91,14 @@
 
       while (attempts < maxAttempts) {
         try {
-          const resp = await fetch("https://xucdnakrfhoeqnjyrvkd.supabase.co/functions/v1/payment-status?billcode=" + billcode);
+          const resp = await fetch("https://davinhub-api.davin-making.workers.dev/api/payment/status?ref=" + encodeURIComponent(orderRef));
           const data = await resp.json();
 
-          if (data.license_key) {
+          if (data.ok && data.data && data.data.license_key) {
             // Show success
             document.getElementById("loadingState").classList.remove("show");
             document.getElementById("successState").style.display = "block";
-            document.getElementById("licenseKey").textContent = data.license_key;
+            document.getElementById("licenseKey").textContent = data.data.license_key;
             return;
           }
         } catch (_) {}
