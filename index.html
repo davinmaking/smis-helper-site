@@ -1171,8 +1171,20 @@
 
     // Buy modal
     var buyModal = document.getElementById("buyModal");
-    function openModal() { buyModal.classList.add("show"); document.getElementById("buyName").focus(); }
+    // Reset the submit button to its idle state. Called from openModal
+    // and pageshow so a back-from-ToyyibPay (bfcache restore) doesn't
+    // leave the button stuck on "Memproses..." disabled.
+    function resetPayBtn() {
+      var btn = document.getElementById("payBtn");
+      if (btn) { btn.disabled = false; btn.textContent = "Teruskan ke Pembayaran"; }
+      var err = document.getElementById("payError");
+      if (err) err.classList.remove("show");
+    }
+    function openModal() { resetPayBtn(); buyModal.classList.add("show"); document.getElementById("buyName").focus(); }
     function closeModal() { buyModal.classList.remove("show"); }
+    // Browser back from ToyyibPay restores DOM verbatim from bfcache;
+    // explicitly reset on persisted pageshow so the user can retry.
+    window.addEventListener("pageshow", function(e) { if (e.persisted) resetPayBtn(); });
     document.getElementById("buyProBtn").addEventListener("click", openModal);
     document.getElementById("mobCta").addEventListener("click", function() { mobileMenu.classList.remove("open"); openModal(); });
     document.getElementById("modalClose").addEventListener("click", closeModal);
