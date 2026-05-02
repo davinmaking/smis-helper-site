@@ -15,7 +15,7 @@ A landing page for SMIS Helper — the Chrome extension that automates SMIS spor
 1. Trusts that a real Malaysian person built this for their exact job (not generic SaaS)
 2. Understands the time savings concretely (2 hours → 10 minutes)
 3. Sees the freemium promise (15 peserta percuma) without feeling pressured
-4. Either installs the free extension from Chrome Web Store, or buys the Pro license (RM59 launch promo / RM79 normal)
+4. Either installs the free extension from Chrome Web Store, or buys the Pro license (RM59 launch promo / RM99 normal post-promo)
 
 Success looks like a teacher closing the laptop having installed the extension and feeling "this is going to save my life next event." Failure looks like a teacher closing the tab thinking "another one of those SaaS pitches."
 
@@ -45,7 +45,7 @@ Emotional target: **relief** — the teacher should leave the page feeling "I've
 
 3. **Patient with skeptical teachers.** A first-time visitor doesn't know what SMIS is automated. Walk them through the workflow they already know — log in to smis.events, fetch peserta, upload Excel, etc. — and show where the extension fits in. Don't assume they understand "extensions" or "Chrome".
 
-4. **Respect the cost decision.** Pricing is upfront, simple, and stays put. No drip-pricing. RM59 launch promo / RM79 normal. The free tier is a real test, not a teaser.
+4. **Respect the cost decision.** Pricing is upfront, simple, and stays put. No drip-pricing. RM59 launch promo / RM99 normal post-promo. The free tier is a real test, not a teaser.
 
 5. **Brand-grade typography over decoration.** A landing page can be more expressive than the in-app UI; this is brand register, where design IS part of the message. But still no AI-slop tells: no gradient text, no glass cards, no identical-card grids.
 
