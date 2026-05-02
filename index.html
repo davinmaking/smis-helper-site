@@ -274,58 +274,114 @@
     .promo-strip.expired .promo-pill { background: var(--gray-400); }
     .promo-strip.expired .promo-price b { color: var(--gray-700); }
 
-    /* Sedia Dokumen mockups — wider full-page windows showing the
-       Gambar + Pengenalan Diri tabs. Reuses .hm-window chrome, but
-       a separate stack so the layout is two-column on desktop. */
+    /* Sedia Dokumen mockups — full-page window snapshots that mirror
+       the actual Sedia Dokumen UI: blue app bar, help banner, tab
+       strip, drop zone, two-column workspace, bottom action bar.
+       Stacked vertically on landing so each window can be wide
+       enough to show the real two-pane workspace inside. */
     .sd-section { padding: 80px 0; background: var(--white); border-top: 1px solid var(--gray-100); }
-    .sd-stack { display: grid; grid-template-columns: 1fr; gap: 24px; max-width: 1080px; margin: 48px auto 0; }
-    @media(min-width: 900px) { .sd-stack { grid-template-columns: 1fr 1fr; } }
-    .sd-window { background: var(--gray-50); border: 1px solid var(--gray-200); border-radius: 12px; box-shadow: 0 24px 60px -20px rgba(15,23,42,0.18); overflow: hidden; display: flex; flex-direction: column; }
+    .sd-stack { display: flex; flex-direction: column; gap: 32px; max-width: 980px; margin: 48px auto 0; }
+    .sd-window { background: var(--white); border: 1px solid var(--gray-200); border-radius: 12px; box-shadow: 0 24px 60px -20px rgba(15,23,42,0.18); overflow: hidden; display: flex; flex-direction: column; }
     .sd-window .hm-titlebar { background: var(--gray-100); }
-    .sd-window .hm-header { gap: 8px; padding: 11px 16px; }
-    .sd-window .hm-header .hm-title { font-size: 0.9rem; }
-    .sd-tab-strip { display: flex; gap: 0; background: var(--white); border-bottom: 1px solid var(--gray-200); padding: 0 12px; }
-    .sd-tab { padding: 10px 12px; font-size: 0.74rem; color: var(--gray-500); border-bottom: 2px solid transparent; display: inline-flex; align-items: center; gap: 6px; font-weight: 500; }
+
+    /* Blue app bar — sprinter logo + Sedia Dokumen / SMIS Helper +
+       event pill + saved indicator on the right */
+    .sd-appbar { display: flex; align-items: center; gap: 12px; padding: 12px 18px; background: var(--blue-700); color: var(--white); }
+    .sd-appbar-icon { width: 28px; height: 28px; border-radius: 6px; background: rgba(255,255,255,0.15); display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .sd-appbar-text { flex: 1; min-width: 0; }
+    .sd-appbar-text strong { display: block; font-size: 0.95rem; font-weight: 700; line-height: 1.1; }
+    .sd-appbar-text small { display: block; font-size: 0.65rem; font-weight: 500; opacity: 0.7; margin-top: 2px; letter-spacing: 0.03em; }
+    .sd-event-pill { padding: 4px 10px; background: rgba(255,255,255,0.18); border-radius: 99px; font-size: 0.7rem; font-weight: 600; max-width: 220px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .sd-saved { display: inline-flex; align-items: center; gap: 5px; font-size: 0.7rem; color: rgba(255,255,255,0.9); }
+    .sd-saved::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: #6ee06e; }
+
+    /* Help banner */
+    .sd-help { display: flex; align-items: flex-start; gap: 10px; padding: 10px 18px; background: var(--gray-50); border-bottom: 1px solid var(--gray-100); font-size: 0.72rem; color: var(--gray-600); line-height: 1.5; }
+    .sd-help b { color: var(--gray-900); font-weight: 700; }
+    .sd-help-close { color: var(--gray-400); font-weight: normal; flex-shrink: 0; cursor: default; }
+
+    /* Tab strip */
+    .sd-tab-strip { display: flex; gap: 0; background: var(--white); border-bottom: 1px solid var(--gray-200); padding: 0 18px; }
+    .sd-tab { padding: 12px 14px; font-size: 0.78rem; color: var(--gray-500); border-bottom: 2px solid transparent; display: inline-flex; align-items: center; gap: 7px; font-weight: 500; }
     .sd-tab.active { color: var(--blue-700); border-bottom-color: var(--blue-600); font-weight: 700; }
-    .sd-tab svg { width: 13px; height: 13px; }
-    .sd-status { padding: 8px 16px; background: #ecf7ee; color: #166030; font-size: 0.7rem; display: flex; align-items: center; gap: 8px; border-bottom: 1px solid var(--gray-100); }
-    .sd-status .sd-pill { font-size: 0.6rem; font-weight: 700; padding: 1px 6px; background: #166030; color: #fff; border-radius: 99px; letter-spacing: 0.04em; }
+    .sd-tab svg { width: 14px; height: 14px; }
 
-    /* Gambar grid */
-    .sd-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; padding: 14px 16px; flex: 1; }
-    .sd-card { background: var(--white); border: 1px solid var(--gray-200); border-radius: 6px; overflow: hidden; display: flex; flex-direction: column; }
-    .sd-thumb { aspect-ratio: 3 / 4; background: linear-gradient(160deg, var(--blue-200), var(--blue-100)); position: relative; display: flex; align-items: flex-end; }
-    .sd-thumb-1 { background: linear-gradient(160deg, #c4d3ee, #a6bcdc); }
-    .sd-thumb-2 { background: linear-gradient(160deg, #d4d8e3, #b6bdcd); }
-    .sd-thumb-3 { background: linear-gradient(160deg, #e8d6b3, #cdb582); }
-    .sd-thumb-4 { background: linear-gradient(160deg, #b9cfe6, #92acc6); }
-    .sd-thumb-5 { background: linear-gradient(160deg, #d6c5dc, #b298c0); }
-    .sd-thumb-6 { background: linear-gradient(160deg, #c2dfd0, #94c0a3); }
-    .sd-thumb-overlay { position: absolute; bottom: 0; left: 0; right: 0; padding: 6px 8px; background: linear-gradient(180deg, transparent, rgba(0,0,0,0.45)); color: #fff; font-size: 0.55rem; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; }
-    .sd-card-info { padding: 6px 8px; border-top: 1px solid var(--gray-100); }
-    .sd-card-info strong { display: block; font-size: 0.68rem; color: var(--gray-900); font-weight: 600; line-height: 1.25; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-    .sd-card-info small { display: block; font-size: 0.58rem; color: var(--gray-400); margin-top: 1px; }
-    .sd-card-match { display: inline-flex; align-items: center; gap: 3px; font-size: 0.55rem; color: #166030; margin-top: 3px; font-weight: 600; }
-    .sd-card-match svg { width: 9px; height: 9px; }
+    /* Workspace area */
+    .sd-body { padding: 20px 18px; background: var(--white); }
+    .sd-dropzone { border: 1.5px dashed var(--gray-300); border-radius: 10px; padding: 22px 16px; text-align: center; color: var(--gray-500); font-size: 0.78rem; background: var(--gray-50); }
+    .sd-dropzone .sd-drop-icon { width: 32px; height: 32px; margin: 0 auto 6px; color: var(--gray-400); }
+    .sd-dropzone svg { width: 100%; height: 100%; }
 
-    /* Pengenalan Diri list */
-    .sd-list { padding: 8px 16px; flex: 1; }
-    .sd-row { display: grid; grid-template-columns: 24px 1fr auto; gap: 12px; padding: 9px 6px; border-bottom: 1px solid var(--gray-100); align-items: center; }
-    .sd-row:last-child { border-bottom: none; }
-    .sd-row-icon { width: 22px; height: 26px; background: var(--white); border: 1px solid var(--gray-300); border-radius: 3px; display: flex; align-items: center; justify-content: center; font-size: 0.5rem; font-weight: 700; color: #d92525; letter-spacing: 0.02em; flex-shrink: 0; }
-    .sd-row-icon.jpg { color: var(--blue-700); }
-    .sd-row-info strong { display: block; font-size: 0.74rem; font-weight: 600; color: var(--gray-900); line-height: 1.3; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-    .sd-row-info .ocr { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 0.65rem; color: var(--gray-500); display: block; margin-top: 1px; }
-    .sd-row-info .matched { font-size: 0.65rem; color: var(--gray-700); display: block; margin-top: 1px; }
-    .sd-row-info .matched .pill { display: inline-block; padding: 0px 5px; background: var(--blue-50); color: var(--blue-700); font-size: 0.55rem; font-weight: 600; border-radius: 99px; margin-right: 4px; }
-    .sd-confidence { font-size: 0.6rem; font-weight: 700; padding: 2px 7px; border-radius: 99px; white-space: nowrap; }
-    .sd-confidence.high { background: #ecf7ee; color: #166030; }
-    .sd-confidence.medium { background: #fef3c7; color: #92400e; }
+    .sd-action-row { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; padding: 14px 0 0; font-size: 0.72rem; }
+    .sd-action-row .label { color: var(--gray-500); margin-right: 4px; }
+    .sd-chip { padding: 5px 11px; border: 1px solid var(--gray-200); border-radius: 6px; color: var(--gray-700); font-weight: 500; background: var(--white); }
+    .sd-action-spacer { flex: 1; }
+    .sd-action-row .reset-link { color: var(--gray-500); font-size: 0.72rem; }
+    .sd-primary-btn { padding: 7px 14px; background: var(--blue-600); color: var(--white); border-radius: 8px; font-size: 0.72rem; font-weight: 600; display: inline-flex; align-items: center; gap: 4px; }
 
-    /* Action bar at bottom of sd-window */
-    .sd-action-bar { padding: 10px 16px; background: var(--gray-50); border-top: 1px solid var(--gray-100); display: flex; justify-content: space-between; align-items: center; gap: 8px; }
-    .sd-action-info { font-size: 0.7rem; color: var(--gray-500); }
-    .sd-upload-btn { padding: 6px 14px; background: var(--blue-600); color: var(--white); font-size: 0.72rem; font-weight: 600; border-radius: 6px; }
+    /* Two-pane workspace inside Gambar tab */
+    .sd-panels { display: grid; grid-template-columns: 1fr; gap: 16px; padding: 16px 0 0; }
+    @media(min-width: 720px) { .sd-panels { grid-template-columns: 1fr 1.05fr; gap: 20px; } }
+    .sd-panel { border: 1px solid var(--gray-200); border-radius: 10px; background: var(--white); overflow: hidden; }
+    .sd-panel-head { padding: 11px 14px; font-size: 0.78rem; font-weight: 700; color: var(--gray-900); border-bottom: 1px solid var(--gray-100); }
+    .sd-peserta-list { padding: 8px; max-height: 380px; overflow: hidden; }
+    .sd-peserta-row { display: grid; grid-template-columns: 32px 1fr 18px; gap: 10px; padding: 7px 8px; align-items: center; border-radius: 6px; margin-bottom: 4px; border: 1px solid transparent; }
+    .sd-peserta-row.matched { background: #ecf7ee; border-color: #c8e7cf; }
+    .sd-peserta-row.unmatched { background: var(--white); border-color: var(--gray-100); }
+    .sd-avatar { width: 30px; height: 30px; border-radius: 4px; background: linear-gradient(135deg, var(--blue-200), var(--blue-100)); color: var(--white); display: flex; align-items: center; justify-content: center; font-size: 0.62rem; font-weight: 700; flex-shrink: 0; letter-spacing: 0.04em; overflow: hidden; }
+    .sd-avatar.empty { background: var(--gray-100); border: 1px dashed var(--gray-300); }
+    .sd-avatar-1 { background: linear-gradient(135deg, #6e89bd, #4d6ba1); }
+    .sd-avatar-2 { background: linear-gradient(135deg, #8a7ca8, #6c5d92); }
+    .sd-avatar-3 { background: linear-gradient(135deg, #b6905a, #99713c); }
+    .sd-avatar-4 { background: linear-gradient(135deg, #6a9b6e, #4f7d54); }
+    .sd-avatar-5 { background: linear-gradient(135deg, #b87370, #94524f); }
+    .sd-avatar-6 { background: linear-gradient(135deg, #5d8094, #406173); }
+    .sd-peserta-name { font-size: 0.74rem; font-weight: 600; color: var(--gray-900); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; line-height: 1.3; }
+    .sd-peserta-row.matched .sd-peserta-name { color: #1f5f33; }
+    .sd-peserta-x { color: #c44; font-size: 0.85rem; line-height: 1; }
+
+    .sd-unmatch-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; padding: 12px; }
+    .sd-photo-thumb { aspect-ratio: 3 / 4; border-radius: 6px; position: relative; overflow: hidden; }
+    .sd-photo-thumb svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+    .sd-photo-1 { background: linear-gradient(170deg, #d8e1f0, #b8c6dd); }
+    .sd-photo-2 { background: linear-gradient(170deg, #e9d9c9, #c8b393); }
+    .sd-photo-3 { background: linear-gradient(170deg, #d4ddd0, #a5b8a6); }
+    .sd-photo-4 { background: linear-gradient(170deg, #ddd5e2, #b3a4c2); }
+    .sd-photo-5 { background: linear-gradient(170deg, #cad7e5, #94aac4); }
+    .sd-photo-6 { background: linear-gradient(170deg, #e1cfb8, #b89977); }
+    .sd-photo-7 { background: linear-gradient(170deg, #c8d6e3, #93a9c0); }
+    .sd-photo-8 { background: linear-gradient(170deg, #ddc7d4, #b194a7); }
+    .sd-photo-9 { background: linear-gradient(170deg, #cfd8c4, #9ca999); }
+
+    /* Pengenalan Diri palang controls */
+    .sd-palang { padding: 14px; background: var(--gray-50); border: 1px solid var(--gray-100); border-radius: 10px; margin-bottom: 16px; }
+    .sd-palang-head { font-size: 0.78rem; font-weight: 700; color: var(--gray-700); margin-bottom: 10px; display: inline-flex; align-items: center; gap: 6px; }
+    .sd-palang-head::before { content: "▼"; font-size: 0.55rem; color: var(--gray-500); }
+    .sd-palang-toggle { display: flex; align-items: center; gap: 8px; font-size: 0.74rem; color: var(--gray-700); margin-bottom: 10px; }
+    .sd-checkbox { width: 14px; height: 14px; background: var(--blue-600); border-radius: 3px; display: inline-flex; align-items: center; justify-content: center; color: var(--white); font-size: 0.7rem; }
+    .sd-palang-input { background: var(--white); border: 1px solid var(--gray-200); border-radius: 8px; padding: 8px 12px; font-size: 0.78rem; color: var(--gray-900); margin-bottom: 8px; }
+    .sd-palang-presets { display: flex; gap: 8px; flex-wrap: wrap; }
+
+    /* Pengenalan Diri matched cards */
+    .sd-match-pill { display: inline-block; padding: 4px 10px; background: #ecf7ee; color: #1f5f33; font-size: 0.7rem; font-weight: 600; border-radius: 99px; margin: 14px 0 12px; }
+    .sd-doc-list { display: flex; flex-direction: column; gap: 12px; }
+    .sd-doc-card { display: grid; grid-template-columns: 70px 1fr auto; gap: 14px; padding: 12px; background: #f3faf4; border: 1px solid #d3ead8; border-radius: 10px; align-items: center; }
+    .sd-doc-thumb { width: 70px; height: 88px; background: var(--white); border: 1px solid var(--gray-200); border-radius: 4px; padding: 6px 4px; position: relative; overflow: hidden; }
+    .sd-doc-thumb::before { content: ""; position: absolute; inset: 6px 4px; background: repeating-linear-gradient(180deg, var(--gray-200) 0, var(--gray-200) 2px, transparent 2px, transparent 5px); opacity: 0.55; }
+    .sd-doc-thumb-watermark { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; transform: rotate(-30deg); color: rgba(15,23,42,0.18); font-size: 0.5rem; font-weight: 700; letter-spacing: 0.06em; }
+    .sd-doc-info strong { display: block; font-size: 0.85rem; font-weight: 700; color: #1f5f33; line-height: 1.25; }
+    .sd-doc-info .id { display: block; font-size: 0.72rem; color: var(--gray-700); margin-top: 3px; }
+    .sd-doc-info .src { display: block; font-size: 0.7rem; color: var(--gray-500); margin-top: 2px; }
+    .sd-doc-actions { display: flex; flex-direction: column; gap: 6px; align-items: stretch; min-width: 180px; }
+    .sd-doc-select { padding: 6px 10px; background: var(--white); border: 1px solid var(--gray-200); border-radius: 6px; font-size: 0.7rem; color: var(--gray-700); display: flex; justify-content: space-between; align-items: center; }
+    .sd-doc-skip { padding: 5px 10px; border: 1px solid #f0c4c5; color: #c44; background: var(--white); border-radius: 6px; font-size: 0.7rem; font-weight: 500; text-align: center; }
+
+    /* Bottom bar (full window) */
+    .sd-bottom-bar { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 12px 18px; background: var(--gray-50); border-top: 1px solid var(--gray-100); flex-wrap: wrap; }
+    .sd-bottom-bar .sd-bottom-info { font-size: 0.72rem; color: var(--gray-500); }
+    .sd-bottom-bar .sd-back-link { font-size: 0.72rem; color: var(--blue-600); }
+    .sd-bottom-actions { display: flex; gap: 8px; }
+    .sd-bottom-actions .secondary { padding: 7px 14px; border: 1px solid var(--gray-200); border-radius: 8px; background: var(--white); color: var(--gray-700); font-size: 0.72rem; font-weight: 600; }
 
     /* How it works */
     .how { padding: 80px 0; background: var(--gray-50); }
@@ -903,9 +959,9 @@
     </div>
   </section>
 
-  <!-- Sedia Dokumen mockups — two side-by-side window snapshots
-       showing the Gambar tab (photo grid + OCR auto-match) and the
-       Pengenalan Diri tab (PDF/JPG list + IC OCR + matched name).
+  <!-- Sedia Dokumen mockups — full-page window snapshots that
+       mirror the actual UI: blue app bar, help banner, tab strip,
+       drop zone, two-pane workspace, bottom action bar.
        Fictional data ("CONTOH BAKTI", anonymized ICs); no real PII. -->
   <section class="sd-section" aria-labelledby="sd-title">
     <div class="container">
@@ -917,17 +973,27 @@
 
       <div class="sd-stack">
 
-        <!-- Mockup A: Gambar tab -->
+        <!-- Mockup A: Gambar tab — full app bar, help banner, drop
+             zone, action row, two-pane workspace, bottom action bar -->
         <div class="sd-window">
           <div class="hm-titlebar">
             <span class="hm-dot"></span><span class="hm-dot"></span><span class="hm-dot"></span>
             <div class="hm-url">smis-helper · Sedia Dokumen</div>
           </div>
-          <div class="hm-header">
-            <div class="hm-app-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+          <div class="sd-appbar">
+            <div class="sd-appbar-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
             </div>
-            <div class="hm-title">Sedia Dokumen</div>
+            <div class="sd-appbar-text">
+              <strong>Sedia Dokumen</strong>
+              <small>SMIS Helper</small>
+            </div>
+            <span class="sd-event-pill">11902.KEJOHANAN BOLA KERAN…</span>
+            <span class="sd-saved">Tersimpan</span>
+          </div>
+          <div class="sd-help">
+            <span><b>Tiga tab, satu aliran:</b> <b>Gambar</b> untuk gambar peserta. <b>Pengenalan Diri</b> untuk salinan IC atau MyKid. <b>Pengesahan</b> untuk borang sahsiah. Setiap tab: lepas fail, semak padanan, kemudian upload.</span>
+            <span class="sd-help-close">×</span>
           </div>
           <div class="sd-tab-strip">
             <div class="sd-tab active">
@@ -943,77 +1009,114 @@
               Pengesahan
             </div>
           </div>
-          <div class="sd-status">
-            <span class="sd-pill">OCR PADAN</span>
-            <span><b>6 gambar</b> dipadan automatik dengan peserta</span>
+          <div class="sd-body">
+            <div class="sd-dropzone">
+              <div class="sd-drop-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/><circle cx="12" cy="13" r="3.5"/></svg>
+              </div>
+              <div>Lepas gambar peserta di sini. JPG atau PNG, fail tunggal atau berbilang.</div>
+            </div>
+            <div class="sd-action-row">
+              <span class="label">Padan automatik:</span>
+              <span class="sd-chip">Ikut Masa</span>
+              <span class="sd-chip">Ikut Nama Fail</span>
+              <span class="sd-action-spacer"></span>
+              <span class="reset-link">Reset Semua</span>
+              <span class="sd-primary-btn">Potong &amp; Saiz →</span>
+            </div>
+            <div class="sd-panels">
+              <div class="sd-panel">
+                <div class="sd-panel-head">Peserta</div>
+                <div class="sd-peserta-list">
+                  <div class="sd-peserta-row matched">
+                    <span class="sd-avatar sd-avatar-1">TX</span>
+                    <span class="sd-peserta-name">TAN WEI XIANG</span>
+                    <span class="sd-peserta-x">×</span>
+                  </div>
+                  <div class="sd-peserta-row matched">
+                    <span class="sd-avatar sd-avatar-2">LJ</span>
+                    <span class="sd-peserta-name">LIM JING YAN</span>
+                    <span class="sd-peserta-x">×</span>
+                  </div>
+                  <div class="sd-peserta-row matched">
+                    <span class="sd-avatar sd-avatar-3">RK</span>
+                    <span class="sd-peserta-name">RAJ KUMAR A/L SUBRAM…</span>
+                    <span class="sd-peserta-x">×</span>
+                  </div>
+                  <div class="sd-peserta-row matched">
+                    <span class="sd-avatar sd-avatar-4">AH</span>
+                    <span class="sd-peserta-name">AHMAD HAFIZ BIN ROSLI</span>
+                    <span class="sd-peserta-x">×</span>
+                  </div>
+                  <div class="sd-peserta-row unmatched">
+                    <span class="sd-avatar empty"></span>
+                    <span class="sd-peserta-name">LOUIS NG JUN LIANG</span>
+                    <span></span>
+                  </div>
+                  <div class="sd-peserta-row unmatched">
+                    <span class="sd-avatar empty"></span>
+                    <span class="sd-peserta-name">MUHD FAHMIE BIN HARITH</span>
+                    <span></span>
+                  </div>
+                  <div class="sd-peserta-row unmatched">
+                    <span class="sd-avatar empty"></span>
+                    <span class="sd-peserta-name">NURUL AISYAH BINTI ALI</span>
+                    <span></span>
+                  </div>
+                  <div class="sd-peserta-row unmatched">
+                    <span class="sd-avatar empty"></span>
+                    <span class="sd-peserta-name">CHANG WEI MING</span>
+                    <span></span>
+                  </div>
+                </div>
+              </div>
+              <div class="sd-panel">
+                <div class="sd-panel-head">Gambar Belum Dipadankan</div>
+                <div class="sd-unmatch-grid">
+                  <div class="sd-photo-thumb sd-photo-1"></div>
+                  <div class="sd-photo-thumb sd-photo-2"></div>
+                  <div class="sd-photo-thumb sd-photo-3"></div>
+                  <div class="sd-photo-thumb sd-photo-4"></div>
+                  <div class="sd-photo-thumb sd-photo-5"></div>
+                  <div class="sd-photo-thumb sd-photo-6"></div>
+                  <div class="sd-photo-thumb sd-photo-7"></div>
+                  <div class="sd-photo-thumb sd-photo-8"></div>
+                  <div class="sd-photo-thumb sd-photo-9"></div>
+                </div>
+              </div>
+            </div>
           </div>
-          <div class="sd-grid">
-            <div class="sd-card">
-              <div class="sd-thumb sd-thumb-1"><div class="sd-thumb-overlay">Lulus 4:3</div></div>
-              <div class="sd-card-info">
-                <strong>TAN WEI XIANG</strong>
-                <small>161015130519</small>
-                <span class="sd-card-match"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg>Auto-padan</span>
-              </div>
+          <div class="sd-bottom-bar">
+            <span class="sd-back-link">← Kembali ke Senarai Sesi</span>
+            <span class="sd-bottom-info">Gambar: 4 · Pengenalan: 0 · Pengesahan: 0</span>
+            <div class="sd-bottom-actions">
+              <span class="secondary">Upload Gambar</span>
+              <span class="sd-primary-btn">Upload Semua ke SMIS</span>
             </div>
-            <div class="sd-card">
-              <div class="sd-thumb sd-thumb-2"><div class="sd-thumb-overlay">Lulus 4:3</div></div>
-              <div class="sd-card-info">
-                <strong>LIM JING YAN</strong>
-                <small>160712130827</small>
-                <span class="sd-card-match"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg>Auto-padan</span>
-              </div>
-            </div>
-            <div class="sd-card">
-              <div class="sd-thumb sd-thumb-3"><div class="sd-thumb-overlay">Perlu potong</div></div>
-              <div class="sd-card-info">
-                <strong>RAJ KUMAR A/L S…</strong>
-                <small>150510130213</small>
-                <span class="sd-card-match"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg>Auto-padan</span>
-              </div>
-            </div>
-            <div class="sd-card">
-              <div class="sd-thumb sd-thumb-4"><div class="sd-thumb-overlay">Lulus 4:3</div></div>
-              <div class="sd-card-info">
-                <strong>AHMAD HAFIZ B…</strong>
-                <small>150102130433</small>
-                <span class="sd-card-match"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg>Auto-padan</span>
-              </div>
-            </div>
-            <div class="sd-card">
-              <div class="sd-thumb sd-thumb-5"><div class="sd-thumb-overlay">Lulus 4:3</div></div>
-              <div class="sd-card-info">
-                <strong>LOUIS NG JUN L…</strong>
-                <small>160820130127</small>
-                <span class="sd-card-match"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg>Auto-padan</span>
-              </div>
-            </div>
-            <div class="sd-card">
-              <div class="sd-thumb sd-thumb-6"><div class="sd-thumb-overlay">Perlu potong</div></div>
-              <div class="sd-card-info">
-                <strong>MUHD FAHMIE B…</strong>
-                <small>160305130619</small>
-                <span class="sd-card-match"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg>Auto-padan</span>
-              </div>
-            </div>
-          </div>
-          <div class="sd-action-bar">
-            <span class="sd-action-info">6 / 6 sedia · 2 perlu potong</span>
-            <span class="sd-upload-btn">Upload Gambar</span>
           </div>
         </div>
 
-        <!-- Mockup B: Pengenalan Diri tab -->
+        <!-- Mockup B: Pengenalan Diri tab — palang controls + drop
+             zone + matched-document cards with PDF thumbnails -->
         <div class="sd-window">
           <div class="hm-titlebar">
             <span class="hm-dot"></span><span class="hm-dot"></span><span class="hm-dot"></span>
             <div class="hm-url">smis-helper · Sedia Dokumen</div>
           </div>
-          <div class="hm-header">
-            <div class="hm-app-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+          <div class="sd-appbar">
+            <div class="sd-appbar-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
             </div>
-            <div class="hm-title">Sedia Dokumen</div>
+            <div class="sd-appbar-text">
+              <strong>Sedia Dokumen</strong>
+              <small>SMIS Helper</small>
+            </div>
+            <span class="sd-event-pill">11902.KEJOHANAN BOLA KERAN…</span>
+            <span class="sd-saved">Tersimpan</span>
+          </div>
+          <div class="sd-help">
+            <span><b>Tiga tab, satu aliran:</b> <b>Gambar</b> untuk gambar peserta. <b>Pengenalan Diri</b> untuk salinan IC atau MyKid. <b>Pengesahan</b> untuk borang sahsiah. Setiap tab: lepas fail, semak padanan, kemudian upload.</span>
+            <span class="sd-help-close">×</span>
           </div>
           <div class="sd-tab-strip">
             <div class="sd-tab">
@@ -1029,60 +1132,84 @@
               Pengesahan
             </div>
           </div>
-          <div class="sd-status">
-            <span class="sd-pill">OCR IC</span>
-            <span><b>5 / 6 fail</b> dipadan · 1 perlu semakan manual</span>
+          <div class="sd-body">
+            <div class="sd-palang">
+              <div class="sd-palang-head">Palang Dokumen</div>
+              <div class="sd-palang-toggle">
+                <span class="sd-checkbox">✓</span>
+                <span>Aktifkan palang</span>
+              </div>
+              <div class="sd-palang-input">Kegunaan Sukan</div>
+              <div class="sd-palang-presets">
+                <span class="sd-chip">Kegunaan MSSM</span>
+                <span class="sd-chip">Kegunaan Sukan</span>
+              </div>
+            </div>
+            <div class="sd-dropzone">
+              <div class="sd-drop-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><polyline points="9 14 12 11 15 14"/><line x1="12" y1="11" x2="12" y2="17"/></svg>
+              </div>
+              <div>Lepas fail PDF atau gambar pengenalan diri di sini.</div>
+            </div>
+            <span class="sd-match-pill">4 padanan</span>
+            <div class="sd-doc-list">
+              <div class="sd-doc-card">
+                <div class="sd-doc-thumb"><div class="sd-doc-thumb-watermark">KEGUNAAN<br>SUKAN</div></div>
+                <div class="sd-doc-info">
+                  <strong>TAN WEI XIANG</strong>
+                  <span class="id">ID: 161015130519</span>
+                  <span class="src">Dari: TAN WEI XIANG.pdf (hlm 1)</span>
+                </div>
+                <div class="sd-doc-actions">
+                  <span class="sd-doc-select"><span>TAN WEI XIANG (16101…)</span><span>▾</span></span>
+                  <span class="sd-doc-skip">Langkau</span>
+                </div>
+              </div>
+              <div class="sd-doc-card">
+                <div class="sd-doc-thumb"><div class="sd-doc-thumb-watermark">KEGUNAAN<br>SUKAN</div></div>
+                <div class="sd-doc-info">
+                  <strong>LIM JING YAN</strong>
+                  <span class="id">ID: 160712130827</span>
+                  <span class="src">Dari: LIM JING YAN.pdf (hlm 1)</span>
+                </div>
+                <div class="sd-doc-actions">
+                  <span class="sd-doc-select"><span>LIM JING YAN (16071…)</span><span>▾</span></span>
+                  <span class="sd-doc-skip">Langkau</span>
+                </div>
+              </div>
+              <div class="sd-doc-card">
+                <div class="sd-doc-thumb"><div class="sd-doc-thumb-watermark">KEGUNAAN<br>SUKAN</div></div>
+                <div class="sd-doc-info">
+                  <strong>RAJ KUMAR A/L SUBRAMANIAM</strong>
+                  <span class="id">ID: 150510130213</span>
+                  <span class="src">Dari: RAJ KUMAR.pdf (hlm 1)</span>
+                </div>
+                <div class="sd-doc-actions">
+                  <span class="sd-doc-select"><span>RAJ KUMAR (15051…)</span><span>▾</span></span>
+                  <span class="sd-doc-skip">Langkau</span>
+                </div>
+              </div>
+              <div class="sd-doc-card">
+                <div class="sd-doc-thumb"><div class="sd-doc-thumb-watermark">KEGUNAAN<br>SUKAN</div></div>
+                <div class="sd-doc-info">
+                  <strong>AHMAD HAFIZ BIN ROSLI</strong>
+                  <span class="id">ID: 150102130433</span>
+                  <span class="src">Dari: WhatsApp Image 2026-…jpg</span>
+                </div>
+                <div class="sd-doc-actions">
+                  <span class="sd-doc-select"><span>AHMAD HAFIZ (15010…)</span><span>▾</span></span>
+                  <span class="sd-doc-skip">Langkau</span>
+                </div>
+              </div>
+            </div>
           </div>
-          <div class="sd-list">
-            <div class="sd-row">
-              <div class="sd-row-icon">PDF</div>
-              <div class="sd-row-info">
-                <strong>tan_wei_xiang_ic.pdf</strong>
-                <span class="ocr">161015-13-0519</span>
-                <span class="matched"><span class="pill">L12</span>TAN WEI XIANG</span>
-              </div>
-              <span class="sd-confidence high">100%</span>
+          <div class="sd-bottom-bar">
+            <span class="sd-back-link">← Kembali ke Senarai Sesi</span>
+            <span class="sd-bottom-info">Gambar: 4 · Pengenalan: 4 · Pengesahan: 0</span>
+            <div class="sd-bottom-actions">
+              <span class="secondary">Upload Pengenalan Diri</span>
+              <span class="sd-primary-btn">Upload Semua ke SMIS</span>
             </div>
-            <div class="sd-row">
-              <div class="sd-row-icon jpg">JPG</div>
-              <div class="sd-row-info">
-                <strong>IMG_8472.jpg</strong>
-                <span class="ocr">160712-13-0827</span>
-                <span class="matched"><span class="pill">L12</span>LIM JING YAN</span>
-              </div>
-              <span class="sd-confidence high">100%</span>
-            </div>
-            <div class="sd-row">
-              <div class="sd-row-icon">PDF</div>
-              <div class="sd-row-info">
-                <strong>raj_subramaniam.pdf</strong>
-                <span class="ocr">150510-13-0213</span>
-                <span class="matched"><span class="pill">L12</span>RAJ KUMAR A/L S…</span>
-              </div>
-              <span class="sd-confidence high">100%</span>
-            </div>
-            <div class="sd-row">
-              <div class="sd-row-icon jpg">JPG</div>
-              <div class="sd-row-info">
-                <strong>WhatsApp Image 2026-…</strong>
-                <span class="ocr">15010Z-13-0433</span>
-                <span class="matched"><span class="pill">L12</span>AHMAD HAFIZ B… (87% — semak)</span>
-              </div>
-              <span class="sd-confidence medium">87%</span>
-            </div>
-            <div class="sd-row">
-              <div class="sd-row-icon">PDF</div>
-              <div class="sd-row-info">
-                <strong>louis_ng.pdf</strong>
-                <span class="ocr">160820-13-0127</span>
-                <span class="matched"><span class="pill">L12</span>LOUIS NG JUN L…</span>
-              </div>
-              <span class="sd-confidence high">100%</span>
-            </div>
-          </div>
-          <div class="sd-action-bar">
-            <span class="sd-action-info">5 / 6 sedia · 1 perlu semakan</span>
-            <span class="sd-upload-btn">Upload ID</span>
           </div>
         </div>
 
