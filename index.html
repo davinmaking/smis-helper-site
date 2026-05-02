@@ -176,6 +176,8 @@
     .vs-headline { font-size: 1.5rem; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 12px; line-height: 1.25; }
     @media(min-width:768px) { .vs-headline { font-size: 2.25rem; } }
     .vs-headline > span { display: inline-block; }
+    .vs-headline-break { display: inline; }
+    @media(min-width:768px) { .vs-headline-break { display: none; } }
     .vs-headline .vs-bad-num { color: #b94a4f; }
     .vs-headline .vs-arrow { color: var(--gray-300); margin: 0 8px; font-weight: 400; }
     .vs-headline .vs-good-num { color: #2c8849; }
@@ -382,6 +384,25 @@
     .sd-bottom-bar .sd-back-link { font-size: 0.72rem; color: var(--blue-600); }
     .sd-bottom-actions { display: flex; gap: 8px; }
     .sd-bottom-actions .secondary { padding: 7px 14px; border: 1px solid var(--gray-200); border-radius: 8px; background: var(--white); color: var(--gray-700); font-size: 0.72rem; font-weight: 600; }
+
+    /* Mobile fixes for SD mockups — appbar wraps + event pill hidden,
+       doc cards stack vertically so long names like "RAJ KUMAR A/L
+       SUBRAMANIAM" don't push content out of the card. */
+    @media(max-width: 640px) {
+      .sd-event-pill { display: none; }
+      .sd-appbar { gap: 10px; padding: 10px 14px; }
+      .sd-appbar-text strong { font-size: 0.88rem; }
+      .sd-help { padding: 10px 14px; }
+      .sd-tab-strip { padding: 0 10px; gap: 4px; overflow-x: auto; }
+      .sd-tab { padding: 10px 8px; font-size: 0.72rem; flex-shrink: 0; }
+      .sd-body { padding: 16px 14px; }
+      .sd-doc-card { grid-template-columns: 60px 1fr; gap: 10px; padding: 10px; }
+      .sd-doc-actions { grid-column: 1 / -1; flex-direction: row; min-width: 0; gap: 8px; }
+      .sd-doc-actions > * { flex: 1; }
+      .sd-doc-thumb { width: 60px; height: 76px; }
+      .sd-doc-info strong { font-size: 0.8rem; }
+      .sd-bottom-bar { padding: 10px 14px; }
+    }
 
     /* How it works */
     .how { padding: 80px 0; background: var(--gray-50); }
@@ -824,7 +845,7 @@
       <div class="vs-head">
         <p class="sh-label">Bezanya Jelas</p>
         <h2 id="vs-title" class="vs-headline">
-          Bahagian upload ke SMIS:
+          Bahagian upload ke SMIS:<br class="vs-headline-break">
           <span class="vs-bad-num">2 jam</span>
           <span class="vs-arrow">→</span>
           <span class="vs-good-num">5 minit</span>
