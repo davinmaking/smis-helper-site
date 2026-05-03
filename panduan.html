@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Panduan SMIS Helper — Tutorial Lengkap untuk Guru Sukan</title>
+  <meta name="description" content="Tutorial lengkap SMIS Helper: pemasangan, jana template, daftar pukal peserta, upload gambar dan dokumen, Sedia Dokumen, M01/R01.">
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="apple-touch-icon" href="icon128.png">
+  <link rel="canonical" href="https://smis.davinhub.com/panduan">
+  <meta property="og:title" content="Panduan SMIS Helper — Tutorial Lengkap">
+  <meta property="og:description" content="Pemasangan ke daftar peserta ke Sedia Dokumen — semua langkah dengan screenshot dan tip.">
+  <meta property="og:image" content="https://smis.davinhub.com/og-image.png">
+  <meta property="og:url" content="https://smis.davinhub.com/panduan">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="ms_MY">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    /* === Tokens (mirror landing page) === */
+    :root {
+      --blue-50: #EFF6FF; --blue-100: #DBEAFE; --blue-200: #BFDBFE;
+      --blue-500: #3B82F6; --blue-600: #3f6dbe; --blue-700: #355ca2;
+      --gray-50: #F9FAFB; --gray-100: #F3F4F6; --gray-200: #E5E7EB; --gray-300: #D1D5DB;
+      --gray-400: #9CA3AF; --gray-500: #6B7280; --gray-600: #4B5563; --gray-700: #374151;
+      --gray-800: #1F2937; --gray-900: #111827;
+      --white: #fff;
+      --green-50: #ECFDF5; --green-600: #059669; --green-700: #047857;
+      --amber-50: #FFFBEB; --amber-600: #D97706; --amber-700: #B45309;
+      --red-50: #FEF2F2; --red-600: #DC2626;
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    *:focus-visible { outline: 2px solid var(--blue-600); outline-offset: 2px; border-radius: 4px; }
+    html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+    body {
+      font-family: "Inter", system-ui, sans-serif; color: var(--gray-900);
+      background: var(--white); font-size: 16px; line-height: 1.65;
+      -webkit-font-smoothing: antialiased; margin: 0;
+    }
+    a { color: var(--blue-600); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    img { max-width: 100%; height: auto; display: block; }
+
+    /* === Top nav (mirror landing) === */
+    nav.topnav { position: sticky; top: 0; z-index: 50; background: rgba(255,255,255,0.92); backdrop-filter: saturate(180%) blur(10px); border-bottom: 1px solid var(--gray-200); }
+    .nav-inner { max-width: 1200px; margin: 0 auto; padding: 14px 16px; display: flex; align-items: center; justify-content: space-between; }
+    @media(min-width:768px) { .nav-inner { padding: 14px 32px; } }
+    .nav-logo { display: inline-flex; align-items: center; gap: 8px; font-size: 1.15rem; font-weight: 800; color: var(--gray-900); }
+    .nav-logo img { width: 26px; height: 26px; border-radius: 6px; flex-shrink: 0; }
+    .nav-logo span { color: var(--blue-600); margin-left: -0.15em; }
+    .nav-back { font-size: 0.875rem; color: var(--gray-600); display: inline-flex; align-items: center; gap: 4px; }
+
+    /* === Hero === */
+    .hero { padding: 56px 16px 32px; text-align: center; max-width: 800px; margin: 0 auto; }
+    @media(min-width:768px) { .hero { padding: 80px 32px 48px; } }
+    .hero-tag { display: inline-block; padding: 6px 14px; background: var(--blue-50); color: var(--blue-700); border-radius: 99px; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; margin-bottom: 18px; }
+    .hero h1 { font-size: 2rem; font-weight: 800; letter-spacing: -0.025em; line-height: 1.15; margin: 0 0 16px; }
+    @media(min-width:768px) { .hero h1 { font-size: 3rem; } }
+    .hero p { font-size: 1.05rem; color: var(--gray-600); margin: 0 auto; max-width: 620px; }
+    @media(min-width:768px) { .hero p { font-size: 1.15rem; } }
+
+    /* === Layout: TOC sidebar + content === */
+    .layout { max-width: 1200px; margin: 0 auto; padding: 16px; display: grid; gap: 32px; }
+    @media(min-width:1024px) {
+      .layout { grid-template-columns: 240px 1fr; padding: 16px 32px 80px; gap: 56px; }
+    }
+
+    /* === TOC === */
+    .toc { font-size: 0.9rem; }
+    @media(min-width:1024px) {
+      .toc { position: sticky; top: 80px; align-self: start; max-height: calc(100vh - 100px); overflow-y: auto; }
+    }
+    .toc h2 { font-size: 0.7rem; font-weight: 700; color: var(--gray-500); text-transform: uppercase; letter-spacing: 0.08em; margin: 0 0 14px; }
+    .toc ol.toc-sections { list-style: none; padding: 0; margin: 0; counter-reset: toc-section; }
+    .toc ol.toc-sections > li { counter-increment: toc-section; margin-bottom: 4px; }
+    .toc ol.toc-sections > li > a { display: flex; gap: 10px; padding: 8px 12px; border-radius: 8px; color: var(--gray-700); font-weight: 600; line-height: 1.4; transition: background 0.15s, color 0.15s; }
+    .toc ol.toc-sections > li > a:hover { background: var(--blue-50); color: var(--blue-700); text-decoration: none; }
+    .toc ol.toc-sections > li > a::before { content: counter(toc-section, decimal-leading-zero); color: var(--gray-400); font-variant-numeric: tabular-nums; font-weight: 600; flex-shrink: 0; }
+    /* Sub-steps */
+    .toc ul.toc-substeps { list-style: none; padding: 0; margin: 4px 0 8px 23px; border-left: 1px solid var(--gray-200); }
+    .toc ul.toc-substeps li { margin: 0; }
+    .toc ul.toc-substeps a { display: block; padding: 5px 12px; font-size: 0.82rem; font-weight: 500; color: var(--gray-500); line-height: 1.4; border-left: 2px solid transparent; margin-left: -1px; transition: background 0.15s, color 0.15s, border-color 0.15s; }
+    .toc ul.toc-substeps a:hover { background: var(--blue-50); color: var(--blue-700); text-decoration: none; }
+    /* Active highlight (set by scroll-spy JS) */
+    .toc a.is-active { background: var(--blue-50); color: var(--blue-700); }
+    .toc ul.toc-substeps a.is-active { border-left-color: var(--blue-600); font-weight: 600; }
+    .toc ol.toc-sections > li > a.is-active { color: var(--blue-700); }
+    .toc-mobile-toggle { display: none; }
+    @media(max-width:1023px) {
+      .toc-mobile-toggle { display: block; width: 100%; padding: 14px 18px; background: var(--gray-50); border: 1px solid var(--gray-200); border-radius: 10px; font: inherit; font-weight: 600; color: var(--gray-900); text-align: left; cursor: pointer; }
+      .toc-mobile-toggle::after { content: "▾"; float: right; color: var(--gray-500); }
+      .toc.is-open .toc-mobile-toggle::after { content: "▴"; }
+      .toc[aria-expanded="false"] .toc-list { display: none; }
+      .toc-list { padding: 14px 0 0; }
+    }
+
+    /* === Sections === */
+    .content { min-width: 0; }
+    .section { margin-bottom: 64px; scroll-margin-top: 80px; }
+    .section-head { padding-bottom: 20px; margin-bottom: 32px; border-bottom: 1px solid var(--gray-200); }
+    .section-tag { display: block; font-size: 0.72rem; font-weight: 700; color: var(--blue-600); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 6px; }
+    .section h2 { font-size: 1.85rem; font-weight: 800; letter-spacing: -0.02em; line-height: 1.15; margin: 0 0 8px; }
+    @media(min-width:768px) { .section h2 { font-size: 2.2rem; } }
+    .section-intro { font-size: 1rem; color: var(--gray-600); margin: 0; max-width: 640px; }
+
+    /* === Step component === */
+    .step { margin-bottom: 48px; scroll-margin-top: 80px; }
+    .step-header { display: flex; gap: 16px; align-items: flex-start; margin-bottom: 18px; }
+    .step-num {
+      width: 38px; height: 38px; border-radius: 50%; background: var(--blue-600); color: var(--white);
+      display: inline-flex; align-items: center; justify-content: center; font-weight: 700; font-size: 1rem;
+      flex-shrink: 0; font-variant-numeric: tabular-nums;
+    }
+    .step-header > div { padding-top: 4px; }
+    .step-title { font-size: 1.35rem; font-weight: 700; line-height: 1.3; margin: 0; }
+    @media(min-width:768px) { .step-title { font-size: 1.55rem; } }
+    .step-tag { font-size: 0.72rem; font-weight: 600; color: var(--gray-500); text-transform: uppercase; letter-spacing: 0.05em; margin: 0 0 4px; }
+
+    .step-body { margin: 0 0 16px; padding-left: 54px; }
+    .step-body p { margin: 0 0 12px; color: var(--gray-700); }
+    .step-body p:last-child { margin-bottom: 0; }
+    .step-body strong { color: var(--gray-900); font-weight: 700; }
+    .step-body ul, .step-body ol { padding-left: 22px; margin: 0 0 12px; color: var(--gray-700); }
+    .step-body li { margin-bottom: 4px; }
+    .step-body code { background: var(--gray-100); padding: 2px 6px; border-radius: 4px; font-size: 0.9em; font-family: "Geist Mono", ui-monospace, SFMono-Regular, monospace; color: var(--gray-800); }
+    @media(max-width:540px) { .step-body { padding-left: 0; } }
+
+    .step-media {
+      margin: 0 0 16px;
+      padding-left: 54px;
+    }
+    @media(max-width:540px) { .step-media { padding-left: 0; } }
+    .step-media img,
+    .step-media video {
+      border: 1px solid var(--gray-200);
+      border-radius: 12px;
+      box-shadow: 0 8px 24px -12px rgba(15, 23, 42, 0.12);
+      background: var(--gray-50);
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .step-media figcaption {
+      font-size: 0.85rem;
+      color: var(--gray-500);
+      margin-top: 10px;
+      text-align: center;
+      font-style: italic;
+    }
+    .step-media-placeholder {
+      border: 2px dashed var(--gray-300);
+      border-radius: 12px;
+      background: var(--gray-50);
+      padding: 60px 20px;
+      text-align: center;
+      color: var(--gray-500);
+      font-size: 0.9rem;
+    }
+    .step-media-placeholder strong { color: var(--gray-700); display: block; margin-bottom: 4px; }
+
+    /* === Tip / warning / info boxes === */
+    .step-callout {
+      padding-left: 54px; margin: 0 0 16px;
+    }
+    @media(max-width:540px) { .step-callout { padding-left: 0; } }
+    .callout {
+      padding: 14px 18px; border-radius: 10px; border-left: 3px solid var(--blue-600);
+      background: var(--blue-50); font-size: 0.93rem; line-height: 1.55; color: var(--gray-800);
+    }
+    .callout strong { color: var(--gray-900); }
+    .callout.is-tip { border-color: var(--amber-600); background: var(--amber-50); }
+    .callout.is-warn { border-color: var(--red-600); background: var(--red-50); }
+    .callout.is-ok { border-color: var(--green-600); background: var(--green-50); }
+    .callout-icon { display: inline; margin-right: 6px; }
+
+    /* === Coming-soon notice === */
+    .coming-soon-card {
+      background: linear-gradient(135deg, var(--blue-50) 0%, #f5f9ff 100%);
+      border: 1px solid var(--blue-100);
+      border-radius: 16px;
+      padding: 32px 28px;
+    }
+    @media(min-width:768px) { .coming-soon-card { padding: 40px 36px; } }
+    .coming-soon-tag {
+      display: inline-block;
+      padding: 5px 12px;
+      background: var(--blue-600);
+      color: var(--white);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      border-radius: 99px;
+      margin-bottom: 16px;
+    }
+    .coming-soon-card h2 {
+      font-size: 1.5rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin: 0 0 12px;
+      color: var(--gray-900);
+    }
+    @media(min-width:768px) { .coming-soon-card h2 { font-size: 1.85rem; } }
+    .coming-soon-card p { margin: 0 0 14px; color: var(--gray-700); }
+    .coming-soon-card ul { padding-left: 22px; margin: 0 0 16px; color: var(--gray-700); }
+    .coming-soon-card li { margin-bottom: 10px; }
+
+    /* TOC: disabled "akan datang" items */
+    .toc ol.toc-sections > li.is-pending > span {
+      display: flex; gap: 10px;
+      padding: 8px 12px;
+      color: var(--gray-400);
+      font-weight: 600;
+      line-height: 1.4;
+      cursor: default;
+    }
+    .toc ol.toc-sections > li.is-pending > span::before {
+      content: counter(toc-section, decimal-leading-zero);
+      color: var(--gray-300);
+      font-variant-numeric: tabular-nums;
+      font-weight: 600;
+      flex-shrink: 0;
+    }
+    .toc ol.toc-sections > li.is-pending small { font-size: 0.7rem; font-weight: 500; color: var(--gray-400); display: block; padding-left: 22px; }
+
+    /* === Footer === */
+    footer { padding: 48px 16px; background: var(--gray-50); border-top: 1px solid var(--gray-200); margin-top: 64px; }
+    @media(min-width:768px) { footer { padding: 64px 32px; } }
+    .footer-inner { max-width: 1200px; margin: 0 auto; text-align: center; color: var(--gray-600); font-size: 0.9rem; }
+    .footer-inner p { margin: 0 0 8px; }
+    .footer-links { margin-top: 20px; display: inline-flex; gap: 24px; flex-wrap: wrap; justify-content: center; }
+    .footer-links a { color: var(--gray-700); font-weight: 500; }
+  </style>
+</head>
+<body>
+
+<!-- === Top nav === -->
+<nav class="topnav">
+  <div class="nav-inner">
+    <a href="/" class="nav-logo"><img src="icon128.png" alt="" aria-hidden="true">SMIS <span>Helper</span></a>
+    <a href="/" class="nav-back">← Kembali ke laman utama</a>
+  </div>
+</nav>
+
+<!-- === Hero === -->
+<header class="hero">
+  <div class="hero-tag">Panduan Pengguna</div>
+  <h1>Panduan SMIS Helper</h1>
+  <p>Tutorial lengkap dari pemasangan ke <strong>Sedia Dokumen</strong>. Setiap langkah dengan screenshot dan tip — sesuai untuk guru yang baharu menggunakan extension ini.</p>
+</header>
+
+<!-- === Main layout === -->
+<div class="layout">
+
+  <!-- TOC sidebar -->
+  <aside class="toc" aria-expanded="true">
+    <button class="toc-mobile-toggle" type="button" onclick="this.parentElement.toggleAttribute('aria-expanded'); this.parentElement.classList.toggle('is-open');">Daftar Kandungan</button>
+    <div class="toc-list">
+      <h2>Bahagian</h2>
+      <ol class="toc-sections">
+        <li>
+          <a href="#pengenalan">Pengenalan</a>
+        </li>
+        <li>
+          <a href="#pemasangan">Pemasangan</a>
+          <ul class="toc-substeps">
+            <li><a href="#step-2-1">Pergi ke Chrome Web Store</a></li>
+            <li><a href="#step-2-2">Tambah ke Chrome</a></li>
+            <li><a href="#step-2-3">Pinkan ikon di toolbar</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="#aliran-asas">Aliran Asas Popup</a>
+          <ul class="toc-substeps">
+            <li><a href="#step-3-1">Buka smis.events &amp; log masuk</a></li>
+            <li><a href="#step-3-2">Jana template / Papar peserta</a></li>
+            <li><a href="#step-3-3">Buka template &amp; isi Kod Sekolah</a></li>
+            <li><a href="#step-3-4">Isi Senarai Peserta</a></li>
+            <li><a href="#step-3-5">Rujuk sheet Panduan</a></li>
+            <li><a href="#step-3-6">Contoh template diisi</a></li>
+            <li><a href="#step-3-7">Upload &amp; jalankan Daftar</a></li>
+          </ul>
+        </li>
+        <li class="is-pending">
+          <span>Sedia Dokumen<small>akan datang</small></span>
+        </li>
+        <li class="is-pending">
+          <span>Soalan Lazim &amp; Sokongan<small>akan datang</small></span>
+        </li>
+      </ol>
+    </div>
+  </aside>
+
+  <!-- Content -->
+  <main class="content">
+
+    <!-- ============================================================ -->
+    <!-- SECTION 1 — Pengenalan -->
+    <!-- ============================================================ -->
+    <section class="section" id="pengenalan">
+      <div class="section-head">
+        <span class="section-tag">Bahagian 1</span>
+        <h2>Pengenalan</h2>
+        <p class="section-intro">Apa itu SMIS Helper, masalah yang diselesaikan, dan apa anda akan belajar dalam panduan ini.</p>
+      </div>
+
+      <article class="step" id="step-1-1">
+        <div class="step-header">
+          <span class="step-num">1</span>
+          <div>
+            <p class="step-tag">Mengapa SMIS Helper</p>
+            <h3 class="step-title">2 jam jadi 5 minit</h3>
+          </div>
+        </div>
+        <div class="step-body">
+          <p>Pendaftaran setiap kejohanan SMIS biasanya makan 2 sampai 3 jam:</p>
+          <ul>
+            <li>Daftar setiap peserta satu-satu</li>
+            <li>Isi 10+ medan setiap orang</li>
+            <li>Tetapkan acara, kategori, kelas</li>
+            <li>Upload gambar, IC, sahsiah satu fail per peserta</li>
+            <li>Muat turun M01/R01 berasingan</li>
+          </ul>
+          <p><strong>SMIS Helper menyelesaikan semua dalam satu klik.</strong></p>
+        </div>
+      </article>
+
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- SECTION 2 — Pemasangan -->
+    <!-- ============================================================ -->
+    <section class="section" id="pemasangan">
+      <div class="section-head">
+        <span class="section-tag">Bahagian 2</span>
+        <h2>Pemasangan</h2>
+        <p class="section-intro">Sekali sahaja. Selepas dipasang, ikon SMIS Helper akan kekal di toolbar Chrome anda.</p>
+      </div>
+
+      <article class="step" id="step-2-1">
+        <div class="step-header">
+          <span class="step-num">1</span>
+          <div>
+            <p class="step-tag">Buka halaman extension</p>
+            <h3 class="step-title">Pergi ke Chrome Web Store</h3>
+          </div>
+        </div>
+        <div class="step-body">
+          <p>Buka <a href="https://smis.davinhub.com" target="_blank" rel="noopener">smis.davinhub.com</a>, kemudian klik butang <strong>Pasang Percuma di Chrome</strong>. Halaman SMIS Helper di Chrome Web Store akan terbuka secara automatik.</p>
+          <p>Atau, klik pautan ini terus: <a href="https://chromewebstore.google.com/detail/smis-helper/djihfnjipghicanmkndpmeilpabclfpa" target="_blank" rel="noopener"><strong>Buka SMIS Helper di Chrome Web Store ↗</strong></a></p>
+        </div>
+        <figure class="step-media">
+          <img src="panduan-img/pemasangan-01-landing.png" alt="Laman utama smis.davinhub.com dengan butang Pasang Percuma di Chrome diserlahkan">
+        </figure>
+        <div class="step-callout">
+          <div class="callout"><span class="callout-icon">ⓘ</span><strong>Hanya berfungsi pada komputer</strong> dengan pelayar berasaskan Chromium (Chrome, Edge, Brave, Opera). Tidak boleh digunakan pada telefon atau Safari.</div>
+        </div>
+      </article>
+
+      <article class="step" id="step-2-2">
+        <div class="step-header">
+          <span class="step-num">2</span>
+          <div>
+            <p class="step-tag">Tambah ke Chrome</p>
+            <h3 class="step-title">Klik "Add to Chrome" dan sahkan</h3>
+          </div>
+        </div>
+        <div class="step-body">
+          <p>Di halaman SMIS Helper, klik butang biru <strong>Add to Chrome</strong> di sebelah kanan atas.</p>
+          <p>Satu dialog pengesahan akan muncul. Klik <strong>Add extension</strong> untuk siapkan pemasangan.</p>
+        </div>
+        <figure class="step-media">
+          <img src="panduan-img/pemasangan-02-cws-install.png" alt="Halaman Chrome Web Store SMIS Helper dengan butang Add to Chrome dan dialog Add extension">
+        </figure>
+      </article>
+
+      <article class="step" id="step-2-3">
+        <div class="step-header">
+          <span class="step-num">3</span>
+          <div>
+            <p class="step-tag">Pinkan ikon</p>
+            <h3 class="step-title">Pinkan SMIS Helper di toolbar</h3>
+          </div>
+        </div>
+        <div class="step-body">
+          <p>Klik ikon <strong>🧩 puzzle</strong> di kanan atas Chrome untuk buka senarai extension.</p>
+          <p>Cari <strong>SMIS Helper</strong> dalam senarai, kemudian klik ikon <strong>📌 pin</strong> di sebelahnya.</p>
+          <p>Selepas dipinkan, ikon SMIS Helper akan muncul terus di toolbar — anda boleh klik bila-bila masa untuk buka popup.</p>
+        </div>
+        <figure class="step-media">
+          <img src="panduan-img/pemasangan-03-pin-toolbar.png" alt="Senarai extension Chrome dengan ikon pin dan SMIS Helper di toolbar">
+        </figure>
+        <div class="step-callout">
+          <div class="callout is-ok"><span class="callout-icon">✓</span>Pemasangan selesai. Anda boleh teruskan ke <a href="#aliran-asas">Bahagian 3 — Aliran Asas Popup</a>.</div>
+        </div>
+      </article>
+
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- SECTION 3 — Aliran Asas Popup -->
+    <!-- ============================================================ -->
+    <section class="section" id="aliran-asas">
+      <div class="section-head">
+        <span class="section-tag">Bahagian 3</span>
+        <h2>Aliran Asas Popup</h2>
+        <p class="section-intro">Dari log masuk SMIS ke muat turun M01/R01 — keseluruhan proses dalam ~10 minit untuk 30 peserta.</p>
+      </div>
+
+      <article class="step" id="step-3-1">
+        <div class="step-header">
+          <span class="step-num">1</span>
+          <div>
+            <p class="step-tag">Sebelum mula</p>
+            <h3 class="step-title">Buka smis.events dan log masuk</h3>
+          </div>
+        </div>
+        <div class="step-body">
+          <p>SMIS Helper hanya berfungsi di laman <a href="https://smis.events" target="_blank" rel="noopener"><strong>smis.events</strong></a> (tanda 1). Buka laman ini dahulu sebelum gunakan extension.</p>
+          <p>Klik ikon SMIS Helper di toolbar (tanda 2) — popup akan muncul (tanda 3). Tetapi popup belum boleh digunakan sehingga anda log masuk ke smis.events.</p>
+          <p>Masukkan <strong>username</strong> dan <strong>password</strong> di kotak log masuk (tanda 4) untuk akses sistem.</p>
+        </div>
+        <figure class="step-media">
+          <img src="panduan-img/aliran-01-smis-popup-login.png" alt="Laman smis.events dengan ikon SMIS Helper, popup, dan kotak log masuk diserlahkan">
+        </figure>
+        <div class="step-callout">
+          <div class="callout"><span class="callout-icon">ⓘ</span>
+            <strong>Siapa pengguna SMIS Helper?</strong> Extension ini untuk <strong>Pengurus Pasukan</strong> — guru bertanggungjawab daftar peserta untuk kejohanan sukan (olahraga, sukan tahunan, bola keranjang, merentas desa, dan lain-lain). Akaun <a href="https://smis.events" target="_blank" rel="noopener">smis.events</a> biasanya diberi oleh pihak penganjur atau urusetia kejohanan.
+          </div>
+        </div>
+      </article>
+
+      <article class="step" id="step-3-2">
+        <div class="step-header">
+          <span class="step-num">2</span>
+          <div>
+            <p class="step-tag">Sediakan data peserta</p>
+            <h3 class="step-title">Jana template atau papar peserta sedia ada</h3>
+          </div>
+        </div>
+        <div class="step-body">
+          <p>Selepas log masuk, pergi ke halaman <strong>DAFTAR Peserta</strong> dalam <a href="https://smis.events" target="_blank" rel="noopener">smis.events</a>, kemudian klik ikon SMIS Helper sekali lagi.</p>
+          <p>Pastikan bar status di atas popup berwarna <strong style="color: var(--green-700);">hijau</strong> dan menunjukkan nama kejohanan anda (tanda 1) — ini bermakna extension sudah dikesan dan sedia digunakan.</p>
+          <p>Anda ada dua pilihan:</p>
+          <ul>
+            <li><strong>Jana template</strong> (tanda 2) — extension akan baca tetapan kejohanan anda dan jana fail Excel yang dah disesuaikan untuk event tersebut, lengkap dengan dropdown <em>Acara</em>, <em>Tahun</em>, dan <em>Kaum</em> yang betul.</li>
+            <li><strong>Papar peserta sedia ada</strong> — kalau anda sudah daftar peserta sebelum ini, klik butang ini untuk extension ambil senarai peserta dari SMIS dan paparkan terus dengan acara serta maklumat mereka.</li>
+          </ul>
+        </div>
+        <figure class="step-media">
+          <img src="panduan-img/aliran-02-jana-template.png" alt="Halaman DAFTAR Peserta dengan popup SMIS Helper menunjukkan bar status hijau dan butang Jana template diserlahkan">
+        </figure>
+        <div class="step-callout">
+          <div class="callout is-tip"><span class="callout-icon">💡</span>
+            <strong>Bar status tidak hijau?</strong> Klik butang <strong>↻ refresh</strong> di kanan bar status, atau pastikan tab semasa adalah halaman DAFTAR Peserta dalam smis.events.
+          </div>
+        </div>
+      </article>
+
+      <article class="step" id="step-3-3">
+        <div class="step-header">
+          <span class="step-num">3</span>
+          <div>
+            <p class="step-tag">Sediakan template</p>
+            <h3 class="step-title">Buka template Excel dan isi Kod Sekolah</h3>
+          </div>
+        </div>
+        <div class="step-body">
+          <p>Buka fail Excel yang anda muat turun tadi. Anda akan nampak nama fail di atas adalah nama kejohanan anda (tanda 1).</p>
+          <p>Pastikan anda berada di sheet pertama, <strong>Maklumat Sekolah</strong> (tanda 2). Sheet ini turut menyenaraikan semua acara yang tersedia untuk kejohanan anda (tanda 3) — sebagai rujukan semasa anda isi peserta nanti.</p>
+          <p>Bahagian paling penting ialah <strong>Kod Sekolah</strong> (tanda 4). Isi kod sekolah anda di sini — selepas anda upload semula template ini ke SMIS Helper, extension akan automatik ambil maklumat sekolah dari SMIS dan isikan semua sekali.</p>
+        </div>
+        <figure class="step-media">
+          <img src="panduan-img/aliran-03-template-kod-sekolah.png" alt="Template Excel SMIS dibuka di Microsoft Excel — nama kejohanan, sheet Maklumat Sekolah, senarai acara, dan kotak Kod Sekolah diserlahkan">
+        </figure>
+        <div class="step-callout">
+          <div class="callout"><span class="callout-icon">ⓘ</span>
+            <strong>Apa yang diisi automatik dari Kod Sekolah?</strong> Selepas anda upload Excel ke extension, maklumat berikut akan diambil terus dari SMIS:
+            <ul style="margin: 8px 0 0; padding-left: 22px;">
+              <li>Nama Sekolah</li>
+              <li>Alamat &amp; Poskod</li>
+              <li>No. Telefon Sekolah</li>
+              <li>Nama Guru Besar / Pengetua</li>
+            </ul>
+          </div>
+        </div>
+      </article>
+
+      <article class="step" id="step-3-4">
+        <div class="step-header">
+          <span class="step-num">4</span>
+          <div>
+            <p class="step-tag">Sediakan template</p>
+            <h3 class="step-title">Isi Senarai Peserta</h3>
+          </div>
+        </div>
+        <div class="step-body">
+          <p>Pergi ke sheet kedua, <strong>Senarai Peserta</strong> (tanda 1). Di sinilah anda isi semua maklumat peserta.</p>
+          <p>Lajur dengan tanda <strong>*</strong> dan diserlahkan kuning adalah <strong>Wajib</strong> (tanda 2):</p>
+          <ul>
+            <li><strong>Nama Penuh</strong> — seperti dalam Kad Pengenalan / MyKid</li>
+            <li><strong>No. KP / MyKid</strong> — 12 digit, tanpa sengkang</li>
+            <li><strong>Jantina</strong> — L (Lelaki) atau P (Perempuan)</li>
+            <li><strong>Acara</strong> — pilih dari dropdown</li>
+          </ul>
+          <p>Lajur lain pun digalakkan diisi, terutama <strong>No. Peserta / Bib</strong> dan <strong>Tahun / Tingkatan</strong>. Walaupun tidak ditanda wajib, sesetengah kejohanan memerlukan maklumat ini untuk mematuhi peraturan — luangkan sedikit masa di sini supaya proses kemudian lebih lancar.</p>
+        </div>
+        <figure class="step-media">
+          <img src="panduan-img/aliran-04-senarai-peserta.png" alt="Sheet Senarai Peserta dengan lajur Wajib (Nama Penuh, No. KP, Jantina, Acara) diserlahkan">
+        </figure>
+        <div class="step-callout">
+          <div class="callout is-tip"><span class="callout-icon">💡</span>
+            <strong>Acara — dropdown automatik.</strong> Klik sel di lajur Acara untuk pilih dari senarai. Jika beberapa peserta sertai acara yang sama, <strong>copy-paste</strong> jauh lebih cepat daripada pilih satu-satu.
+          </div>
+        </div>
+        <div class="step-callout">
+          <div class="callout is-tip"><span class="callout-icon">💡</span>
+            <strong>Power user — guna AI.</strong> Jika anda biasa guna AI (ChatGPT, Claude, dsb.), kumpul semua maklumat peserta dalam satu tempat (Word, nota, atau Excel sedia ada), kemudian minta AI tolong susun ke dalam template ini. Pastikan anda <strong>semak sendiri hasilnya</strong> sebelum upload — AI tidak sentiasa betul untuk No. KP atau ejaan nama.
+          </div>
+        </div>
+      </article>
+
+      <article class="step" id="step-3-5">
+        <div class="step-header">
+          <span class="step-num">5</span>
+          <div>
+            <p class="step-tag">Sediakan template</p>
+            <h3 class="step-title">Rujuk sheet Panduan kalau ragu</h3>
+          </div>
+        </div>
+        <div class="step-body">
+          <p>Jika anda tidak pasti tentang sesuatu format atau cara isi, pergi ke sheet ketiga, <strong>Panduan</strong> (tanda 1).</p>
+          <p>Sheet ini menyenaraikan langkah-demi-langkah cara isi template, plus <strong>NOTA PENTING</strong> tentang format yang sering jadi masalah:</p>
+          <ul>
+            <li><strong>Format Tarikh</strong> — <code>YYYY-MM-DD</code> (contoh: <code>2010-05-15</code>)</li>
+            <li><strong>Format No. KP / MyKid</strong> — 12 digit penuh, tanpa sengkang</li>
+            <li><strong>Nama Penuh</strong> — mesti sama persis dengan Kad Pengenalan / MyKid</li>
+            <li><strong>Acara</strong> — pilih dari dropdown; jika peserta sertai banyak acara, tambah baris baru dengan IC sama, atau pisahkan dengan koma <code>(,)</code></li>
+          </ul>
+          <p>Bonus: sheet ini juga ada rujukan ringkas semua 25 lajur template dan senarai penuh acara yang tersedia untuk kejohanan anda.</p>
+        </div>
+        <figure class="step-media">
+          <img src="panduan-img/aliran-05-panduan-sheet.png" alt="Sheet Panduan dalam template Excel — senarai langkah, NOTA PENTING, dan rujukan lajur">
+        </figure>
+      </article>
+
+      <article class="step" id="step-3-6">
+        <div class="step-header">
+          <span class="step-num">6</span>
+          <div>
+            <p class="step-tag">Rujukan</p>
+            <h3 class="step-title">Contoh template yang sudah diisi</h3>
+          </div>
+        </div>
+        <div class="step-body">
+          <p>Berikut contoh bagaimana template anda sepatutnya kelihatan selepas selesai diisi:</p>
+          <ul>
+            <li><strong>Maklumat Sekolah</strong> — Kod Sekolah sudah diisi (tanda 1).</li>
+            <li><strong>Senarai Peserta</strong> — semua lajur Wajib (Nama Penuh, No. KP, Jantina, Acara) sudah diisi untuk setiap peserta, dan lajur tambahan seperti Tahun dan Kaum turut dilengkapkan (tanda 2).</li>
+          </ul>
+        </div>
+        <figure class="step-media">
+          <img src="panduan-img/aliran-06-contoh-filled.png" alt="Contoh template SMIS yang telah diisi — Kod Sekolah, dan Senarai Peserta dengan 20 peserta">
+        </figure>
+        <div class="step-callout">
+          <div class="callout"><span class="callout-icon">ⓘ</span>
+            Data dalam contoh ini hanyalah untuk rujukan — tidak semestinya lengkap atau realistik. Yang penting ialah <strong>format</strong> dan <strong>kelengkapan lajur Wajib</strong>.
+          </div>
+        </div>
+      </article>
+
+      <article class="step" id="step-3-7">
+        <div class="step-header">
+          <span class="step-num">7</span>
+          <div>
+            <p class="step-tag">Daftar pukal</p>
+            <h3 class="step-title">Upload Excel ke extension dan jalankan Daftar</h3>
+          </div>
+        </div>
+        <div class="step-body">
+          <p>Buka popup SMIS Helper. <strong>Drag</strong> fail Excel yang anda telah isi tadi ke kawasan upload, atau klik untuk pilih fail.</p>
+          <p>Extension akan baca template, sahkan format data (No. KP 12 digit, lajur wajib lengkap), dan paparkan ringkasan peserta yang dikesan.</p>
+          <p>Pilih <strong>Negeri</strong> dan <strong>PPD</strong> dari dropdown — info ini tidak ada dari API sekolah, jadi anda perlu pilih sekali.</p>
+          <p>Klik <strong>Tambah + Kemaskini Peserta</strong>. Untuk setiap peserta, extension automatik:</p>
+          <ol>
+            <li>Tambah peserta baru ke SMIS</li>
+            <li>Isi semua maklumat (alamat, sekolah, dll.)</li>
+            <li>Tetapkan acara dan kategori</li>
+            <li>Sahkan dengan SMIS</li>
+          </ol>
+          <p>Status setiap peserta dipaparkan secara langsung dalam log popup.</p>
+        </div>
+        <figure class="step-media">
+          <video src="panduan-img/aliran-07-upload-daftar.mp4"
+                 controls muted playsinline preload="metadata"
+                 aria-label="Demo: upload Excel ke SMIS Helper, extension baca data dan daftar peserta secara automatik">
+          </video>
+          <figcaption>Demo penuh: dari Excel terisi → 20 peserta berdaftar dalam SMIS, semua automatik (~1:40)</figcaption>
+        </figure>
+        <div class="step-callout">
+          <div class="callout is-tip"><span class="callout-icon">💡</span>
+            <strong>Ada peserta yang gagal?</strong> Butang <strong>Cuba Semula yang Gagal</strong> akan muncul selepas selesai. Klik untuk re-try yang gagal sahaja — peserta yang sudah berjaya tidak akan didaftar semula.
+          </div>
+        </div>
+      </article>
+
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- IN-PROGRESS NOTICE — Bahagian 4 + 5 sedang dibuat -->
+    <!-- ============================================================ -->
+    <section class="section coming-soon" id="coming-soon">
+      <div class="coming-soon-card">
+        <div class="coming-soon-tag">Akan datang</div>
+        <h2>Lebih banyak panduan sedang disediakan</h2>
+        <p>Bahagian dan langkah seterusnya yang sedang ditulis:</p>
+        <ul>
+          <li><strong>Bahagian 3 (lanjutan)</strong>: muat naik gambar peserta, muat naik dokumen pengenalan / pengesahan, dan muat turun borang M01/R01.</li>
+          <li><strong>Bahagian 4 — Sedia Dokumen</strong>: OCR padan IC automatik, potong gambar 4:3, palang watermark, upload pukal dokumen.</li>
+          <li><strong>Bahagian 5 — Soalan Lazim &amp; Sokongan</strong>: versi percuma vs Pro, harga, dan cara hubungi kami.</li>
+        </ul>
+        <p>Sementara itu, kalau ada soalan, hubungi kami terus melalui Telegram <a href="https://t.me/mrdavinhub" target="_blank" rel="noopener">@mrdavinhub</a> atau emel <a href="mailto:hi@davinhub.com">hi@davinhub.com</a>.</p>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<!-- === Footer === -->
+<footer>
+  <div class="footer-inner">
+    <p>Dibina khas untuk guru-guru di Malaysia.</p>
+    <p><strong>Cikgu Davin</strong> · SJK(C) Tukau, Miri · <a href="https://davinhub.com" target="_blank" rel="noopener">davinhub.com</a></p>
+    <div class="footer-links">
+      <a href="/">Laman utama</a>
+      <a href="/privacy">Dasar privasi</a>
+      <a href="https://chromewebstore.google.com/detail/smis-helper/djihfnjipghicanmkndpmeilpabclfpa" target="_blank" rel="noopener">Chrome Web Store</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Scroll-spy: highlight TOC item closest to viewport top.
+  // Also handles two edge cases:
+  //  1. Click on TOC: instantly highlight the clicked link, suppress spy
+  //     for ~800ms so the smooth-scroll animation doesn't overwrite it.
+  //  2. Bottom of page: when scrolled to the very end, force-activate the
+  //     last spy target (otherwise short empty sections at the bottom
+  //     never reach the threshold).
+  (function () {
+    var spyTargets = document.querySelectorAll('.section, .step');
+    var tocLinks = document.querySelectorAll('.toc a[href^="#"]');
+    if (!spyTargets.length || !tocLinks.length) return;
+
+    var clickSuppress = false;
+
+    function setActive(id) {
+      for (var j = 0; j < tocLinks.length; j++) {
+        tocLinks[j].classList.toggle('is-active',
+          id && tocLinks[j].getAttribute('href') === '#' + id);
+      }
+    }
+
+    function updateActive() {
+      if (clickSuppress) return;
+      var threshold = 120;
+      var activeId = null;
+      // pick the LAST element whose top is at or above the threshold
+      for (var i = 0; i < spyTargets.length; i++) {
+        if (spyTargets[i].getBoundingClientRect().top - threshold <= 0) {
+          activeId = spyTargets[i].id;
+        }
+      }
+      // Bottom-of-page edge case
+      if (window.innerHeight + window.scrollY >= document.body.scrollHeight - 4) {
+        activeId = spyTargets[spyTargets.length - 1].id;
+      }
+      setActive(activeId);
+    }
+
+    // Instant feedback on TOC click (don't wait for scroll-spy)
+    for (var k = 0; k < tocLinks.length; k++) {
+      tocLinks[k].addEventListener('click', function () {
+        var id = this.getAttribute('href').slice(1);
+        setActive(id);
+        clickSuppress = true;
+        setTimeout(function () { clickSuppress = false; }, 800);
+      });
+    }
+
+    var ticking = false;
+    window.addEventListener('scroll', function () {
+      if (!ticking) {
+        requestAnimationFrame(function () { updateActive(); ticking = false; });
+        ticking = true;
+      }
+    }, { passive: true });
+    window.addEventListener('load', updateActive);
+    updateActive();
+  })();
+</script>
+
+</body>
+</html>

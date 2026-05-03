@@ -516,6 +516,45 @@
 
     /* How it works */
     .how { padding: 80px 0; background: var(--gray-50); }
+
+    /* Panduan teaser — bridge from "Cara Guna" overview to detailed
+       /panduan page. Single CTA card on white so the blue draws eyes. */
+    .panduan-teaser { padding: 64px 0; background: var(--white); }
+    .panduan-teaser-card {
+      max-width: 720px; margin: 0 auto; padding: 36px 28px;
+      background: linear-gradient(135deg, var(--blue-50) 0%, #f5f9ff 100%);
+      border: 1px solid var(--blue-100);
+      border-radius: 18px;
+      text-align: center;
+    }
+    @media(min-width:768px) { .panduan-teaser-card { padding: 48px 40px; } }
+    .panduan-teaser-tag {
+      display: inline-block; padding: 5px 12px;
+      background: var(--white); color: var(--blue-700);
+      font-size: 0.7rem; font-weight: 700;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      border-radius: 99px; margin: 0 0 16px;
+      box-shadow: 0 1px 0 rgba(15, 23, 42, 0.04);
+    }
+    .panduan-teaser-h {
+      font-size: 1.5rem; font-weight: 800; line-height: 1.2;
+      letter-spacing: -0.02em; margin: 0 0 12px; color: var(--gray-900);
+    }
+    @media(min-width:768px) { .panduan-teaser-h { font-size: 1.85rem; } }
+    .panduan-teaser-sub {
+      font-size: 1rem; color: var(--gray-600);
+      margin: 0 auto 24px; max-width: 540px; line-height: 1.6;
+    }
+    .panduan-teaser-btn {
+      display: inline-block; padding: 14px 28px;
+      background: var(--blue-600); color: var(--white);
+      font-size: 1rem; font-weight: 600;
+      border-radius: 10px; text-decoration: none;
+      transition: opacity 0.15s, transform 0.15s;
+      border: none; cursor: pointer;
+    }
+    .panduan-teaser-btn:hover { opacity: 0.92; color: var(--white); }
+
     /* How section as a vertical timeline — left-aligned, connected
        by a thin rail. Breaks the 4-up card-grid monotony other
        sections have, and reads the way teachers actually do this:
@@ -653,6 +692,7 @@
         <a href="#features">Ciri-Ciri</a>
         <a href="#sedia">Sedia Dokumen</a>
         <a href="#how">Cara Guna</a>
+        <a href="/panduan">Panduan</a>
         <a href="#pricing">Harga</a>
         <a href="#faq">FAQ</a>
         <a href="#pricing" class="nav-cta">Dapatkan Sekarang</a>
@@ -665,6 +705,7 @@
       <a href="#features">Ciri-Ciri</a>
       <a href="#sedia">Sedia Dokumen</a>
       <a href="#how">Cara Guna</a>
+      <a href="/panduan">Panduan</a>
       <a href="#pricing">Harga</a>
       <a href="#faq">FAQ</a>
       <button class="mob-cta" id="mobCta">Dapatkan Sekarang</button>
@@ -1387,6 +1428,18 @@
             <p>Padankan gambar dan dokumen dengan peserta. Untuk batch besar, buka <strong>Sedia Dokumen</strong>: OCR padan IC, potong saiz, palang watermark, semua dalam satu halaman.</p>
           </div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Panduan teaser — bridge from 4-step overview to /panduan page -->
+  <section class="panduan-teaser" aria-label="Panduan Lengkap">
+    <div class="container">
+      <div class="panduan-teaser-card">
+        <p class="panduan-teaser-tag">Panduan Lengkap</p>
+        <h2 class="panduan-teaser-h">Mahu lihat semua langkah dengan screenshot dan video?</h2>
+        <p class="panduan-teaser-sub">Panduan langkah-demi-langkah lengkap — pemasangan, jana template, isi peserta, daftar pukal. Ada video demo dan screenshot setiap step.</p>
+        <a href="/panduan" class="panduan-teaser-btn">Buka Panduan Lengkap →</a>
       </div>
     </div>
   </section>
