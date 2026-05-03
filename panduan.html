@@ -37,6 +37,8 @@
       background: var(--white); font-size: 16px; line-height: 1.65;
       -webkit-font-smoothing: antialiased; margin: 0;
     }
+    /* Prevent macOS / trackpad rubber-band overscroll past doc end. */
+    html, body { overscroll-behavior-y: none; }
     a { color: var(--blue-600); text-decoration: none; }
     a:hover { text-decoration: underline; }
     img { max-width: 100%; height: auto; display: block; }
