@@ -140,6 +140,15 @@
       height: auto;
       display: block;
     }
+    /* Cap tall portrait/square videos so a single asset doesn't
+       dominate the page height. Keeps aspect ratio + centers. */
+    .step-media video {
+      max-height: 540px;
+      width: auto;
+      max-width: 100%;
+      margin: 0 auto;
+      object-fit: contain;
+    }
     .step-media figcaption {
       font-size: 0.85rem;
       color: var(--gray-500);
@@ -222,6 +231,25 @@
       flex-shrink: 0;
     }
     .toc ol.toc-sections > li.is-pending small { font-size: 0.7rem; font-weight: 500; color: var(--gray-400); display: block; padding-left: 22px; }
+
+    /* === Back-to-top button === */
+    .to-top {
+      position: fixed; bottom: 24px; right: 24px;
+      width: 44px; height: 44px;
+      background: var(--blue-600); color: var(--white);
+      border: none; border-radius: 50%;
+      box-shadow: 0 6px 20px -6px rgba(15, 23, 42, 0.3);
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; visibility: hidden;
+      transform: translateY(8px);
+      transition: opacity 0.2s, visibility 0.2s, transform 0.2s, background 0.15s;
+      z-index: 60;
+    }
+    .to-top.is-visible { opacity: 1; visibility: visible; transform: translateY(0); }
+    .to-top:hover { background: var(--blue-700); }
+    .to-top svg { width: 18px; height: 18px; }
+    @media(min-width:768px) { .to-top { bottom: 32px; right: 32px; width: 48px; height: 48px; } }
 
     /* === Footer === */
     footer { padding: 48px 16px; background: var(--gray-50); border-top: 1px solid var(--gray-200); margin-top: 64px; }
@@ -626,6 +654,11 @@
   </main>
 </div>
 
+<!-- === Back-to-top button === -->
+<button class="to-top" id="toTop" aria-label="Kembali ke atas" type="button">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+</button>
+
 <!-- === Footer === -->
 <footer>
   <div class="footer-inner">
@@ -697,6 +730,20 @@
     }, { passive: true });
     window.addEventListener('load', updateActive);
     updateActive();
+  })();
+
+  // Back-to-top: show after scrolling past hero, smooth scroll on click
+  (function () {
+    var btn = document.getElementById('toTop');
+    if (!btn) return;
+    function onScroll() {
+      btn.classList.toggle('is-visible', window.scrollY > 600);
+    }
+    btn.addEventListener('click', function () {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
   })();
 </script>
 
