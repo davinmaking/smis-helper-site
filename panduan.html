@@ -244,9 +244,14 @@
     }
     .toc ol.toc-sections > li.is-pending small { font-size: 0.7rem; font-weight: 500; color: var(--gray-500); display: block; padding-left: 22px; font-style: normal; }
 
-    /* === Back-to-top button === */
-    .to-top {
-      position: fixed; bottom: 24px; right: 24px;
+    /* === Floating action buttons (FABs) ===
+       Two buttons stacked bottom-right on mobile + tablet:
+        ≡ menu — opens TOC bottom sheet for jumping anywhere in the doc
+        ↑ back-to-top — quick scroll to top
+       On desktop (≥1024px) the TOC sidebar is always visible so we hide
+       the menu FAB; back-to-top stays useful for super-long pages. */
+    .fab {
+      position: fixed; right: 24px;
       width: 44px; height: 44px;
       background: var(--blue-600); color: var(--white);
       border: none; border-radius: 50%;
@@ -258,10 +263,63 @@
       transition: opacity 0.2s, visibility 0.2s, transform 0.2s, background 0.15s;
       z-index: 60;
     }
-    .to-top.is-visible { opacity: 1; visibility: visible; transform: translateY(0); }
-    .to-top:hover { background: var(--blue-700); }
-    .to-top svg { width: 18px; height: 18px; }
-    @media(min-width:768px) { .to-top { bottom: 32px; right: 32px; width: 48px; height: 48px; } }
+    .fab.is-visible { opacity: 1; visibility: visible; transform: translateY(0); }
+    .fab:hover { background: var(--blue-700); }
+    .fab svg { width: 20px; height: 20px; }
+    .to-top { bottom: 24px; }
+    .toc-fab { bottom: 80px; }
+    @media(min-width:768px) { .fab { width: 48px; height: 48px; right: 32px; } .to-top { bottom: 32px; } .toc-fab { bottom: 92px; } }
+    @media(min-width:1024px) { .toc-fab { display: none; } }
+
+    /* === TOC bottom sheet (mobile/tablet) === */
+    .toc-sheet { position: fixed; inset: 0; z-index: 70; pointer-events: none; }
+    .toc-sheet.is-open { pointer-events: auto; }
+    .toc-sheet-backdrop {
+      position: absolute; inset: 0;
+      background: rgba(15, 23, 42, 0.4);
+      opacity: 0; transition: opacity 0.2s;
+    }
+    .toc-sheet.is-open .toc-sheet-backdrop { opacity: 1; }
+    .toc-sheet-panel {
+      position: absolute; left: 0; right: 0; bottom: 0;
+      max-height: 75vh; overflow-y: auto;
+      background: var(--white);
+      border-top-left-radius: 18px; border-top-right-radius: 18px;
+      padding: 8px 16px 32px;
+      transform: translateY(100%);
+      transition: transform 0.25s cubic-bezier(0.32, 0.72, 0, 1);
+      box-shadow: 0 -8px 32px -8px rgba(15, 23, 42, 0.25);
+    }
+    .toc-sheet.is-open .toc-sheet-panel { transform: translateY(0); }
+    .toc-sheet-handle {
+      width: 40px; height: 4px; background: var(--gray-300);
+      border-radius: 2px; margin: 8px auto 16px;
+    }
+    .toc-sheet-header { display: flex; align-items: center; justify-content: space-between; padding: 0 4px 12px; border-bottom: 1px solid var(--gray-200); margin-bottom: 12px; }
+    .toc-sheet-header h2 { font-size: 0.95rem; font-weight: 700; margin: 0; color: var(--gray-900); }
+    .toc-sheet-close { background: transparent; border: 0; font-size: 22px; line-height: 1; color: var(--gray-500); cursor: pointer; padding: 4px 8px; min-height: 36px; }
+    .toc-sheet-close:hover { color: var(--gray-900); }
+    .toc-sheet-body ol.toc-sections { list-style: none; padding: 0; margin: 0; counter-reset: toc-section; }
+    .toc-sheet-body ol.toc-sections > li { counter-increment: toc-section; margin-bottom: 4px; }
+    .toc-sheet-body ol.toc-sections > li > a, .toc-sheet-body ol.toc-sections > li > span {
+      display: flex; gap: 12px; padding: 12px 12px; min-height: 44px; align-items: center;
+      border-radius: 10px; color: var(--gray-700); font-weight: 600; font-size: 0.95rem; line-height: 1.4;
+      text-decoration: none;
+    }
+    .toc-sheet-body ol.toc-sections > li > a::before, .toc-sheet-body ol.toc-sections > li.is-pending > span::before {
+      content: counter(toc-section, decimal-leading-zero);
+      color: var(--gray-400); font-variant-numeric: tabular-nums; font-weight: 600; flex-shrink: 0;
+    }
+    .toc-sheet-body ol.toc-sections > li.is-pending > span { color: var(--gray-500); font-style: italic; cursor: default; }
+    .toc-sheet-body ol.toc-sections > li.is-pending small { font-size: 0.78rem; color: var(--gray-500); font-weight: 500; font-style: normal; padding-left: 22px; display: block; }
+    .toc-sheet-body ul.toc-substeps { list-style: none; padding: 0; margin: 4px 0 8px 22px; }
+    .toc-sheet-body ul.toc-substeps a {
+      display: block; padding: 10px 12px; min-height: 40px;
+      font-size: 0.88rem; font-weight: 500; color: var(--gray-600); line-height: 1.4;
+      border-radius: 8px; text-decoration: none;
+    }
+    .toc-sheet-body a:hover, .toc-sheet-body a.is-active { background: var(--blue-50); color: var(--blue-700); }
+    .toc-sheet-body ul.toc-substeps a.is-active { font-weight: 600; }
 
     /* === Footer === */
     footer { padding: 48px 16px; background: var(--gray-50); border-top: 1px solid var(--gray-200); margin-top: 64px; }
@@ -666,10 +724,26 @@
   </main>
 </div>
 
-<!-- === Back-to-top button === -->
-<button class="to-top" id="toTop" aria-label="Kembali ke atas" type="button">
+<!-- === Floating action buttons === -->
+<button class="fab toc-fab" id="tocFab" aria-label="Buka daftar kandungan" type="button">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="18" x2="14" y2="18"/></svg>
+</button>
+<button class="fab to-top" id="toTop" aria-label="Kembali ke atas" type="button">
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
 </button>
+
+<!-- === TOC bottom sheet (mobile) === -->
+<div class="toc-sheet" id="tocSheet" aria-hidden="true" role="dialog" aria-label="Daftar Kandungan">
+  <div class="toc-sheet-backdrop" data-toc-close></div>
+  <div class="toc-sheet-panel" role="document">
+    <div class="toc-sheet-handle" aria-hidden="true"></div>
+    <div class="toc-sheet-header">
+      <h2>Daftar Kandungan</h2>
+      <button class="toc-sheet-close" data-toc-close aria-label="Tutup">×</button>
+    </div>
+    <nav class="toc-sheet-body" id="tocSheetBody"></nav>
+  </div>
+</div>
 
 <!-- === Footer === -->
 <footer>
@@ -685,6 +759,14 @@
 </footer>
 
 <script>
+  // Clone sidebar TOC into the bottom sheet ONCE, before scroll-spy
+  // runs — so the spy can immediately track both DOMs.
+  (function () {
+    var body = document.getElementById('tocSheetBody');
+    var src = document.querySelector('.toc-list ol.toc-sections');
+    if (body && src) body.appendChild(src.cloneNode(true));
+  })();
+
   // Scroll-spy: highlight TOC item closest to viewport top.
   // Also handles two edge cases:
   //  1. Click on TOC: instantly highlight the clicked link, suppress spy
@@ -694,7 +776,9 @@
   //     never reach the threshold).
   (function () {
     var spyTargets = document.querySelectorAll('.section, .step');
-    var tocLinks = document.querySelectorAll('.toc a[href^="#"]');
+    // Highlight links in BOTH the sidebar TOC and the cloned bottom-sheet TOC,
+    // so when the sheet opens it shows the user's current position.
+    var tocLinks = document.querySelectorAll('.toc a[href^="#"], .toc-sheet-body a[href^="#"]');
     if (!spyTargets.length || !tocLinks.length) return;
 
     var clickSuppress = false;
@@ -744,16 +828,45 @@
     updateActive();
   })();
 
-  // Back-to-top: show after scrolling past hero, smooth scroll on click
+  // Back-to-top + TOC FAB: both fade in after scrolling past hero.
+  // Back-to-top scrolls to top; menu FAB opens the bottom sheet TOC.
   (function () {
-    var btn = document.getElementById('toTop');
-    if (!btn) return;
+    var toTop = document.getElementById('toTop');
+    var tocFab = document.getElementById('tocFab');
+    var sheet = document.getElementById('tocSheet');
+
     function onScroll() {
-      btn.classList.toggle('is-visible', window.scrollY > 600);
+      var show = window.scrollY > 600;
+      if (toTop) toTop.classList.toggle('is-visible', show);
+      if (tocFab) tocFab.classList.toggle('is-visible', show);
     }
-    btn.addEventListener('click', function () {
+    if (toTop) toTop.addEventListener('click', function () {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
+
+    function setSheetOpen(open) {
+      if (!sheet) return;
+      sheet.classList.toggle('is-open', open);
+      sheet.setAttribute('aria-hidden', open ? 'false' : 'true');
+      document.body.style.overflow = open ? 'hidden' : '';
+    }
+    if (tocFab) tocFab.addEventListener('click', function () { setSheetOpen(true); });
+    if (sheet) {
+      sheet.addEventListener('click', function (e) {
+        // Close on backdrop click, X click, or any TOC link click
+        if (e.target.hasAttribute('data-toc-close')) { setSheetOpen(false); return; }
+        var link = e.target.closest('a[href^="#"]');
+        if (link) {
+          // Let the browser handle the anchor jump, then close after animation
+          setTimeout(function () { setSheetOpen(false); }, 100);
+        }
+      });
+      // Esc to close
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && sheet.classList.contains('is-open')) setSheetOpen(false);
+      });
+    }
+
     window.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
   })();
