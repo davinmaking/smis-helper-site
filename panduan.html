@@ -377,10 +377,20 @@
             <li><a href="#step-3-5">Rujuk sheet Panduan</a></li>
             <li><a href="#step-3-6">Contoh template diisi</a></li>
             <li><a href="#step-3-7">Upload &amp; jalankan Daftar</a></li>
+            <li><a href="#step-3-8">Muat naik gambar pukal</a></li>
+            <li><a href="#step-3-9">Muat turun M01/R01</a></li>
           </ul>
         </li>
-        <li class="is-pending">
-          <span>Sedia Dokumen<small>akan datang</small></span>
+        <li>
+          <a href="#sedia-dokumen">Sedia Dokumen</a>
+          <ul class="toc-substeps">
+            <li><a href="#step-4-1">Apa itu Sedia Dokumen</a></li>
+            <li><a href="#step-4-2">Tab Gambar</a></li>
+            <li><a href="#step-4-3">Tab Pengenalan Diri</a></li>
+            <li><a href="#step-4-4">Tab Pengesahan</a></li>
+            <li><a href="#step-4-5">Sambung sesi</a></li>
+            <li><a href="#step-4-6">Selesai</a></li>
+          </ul>
         </li>
         <li class="is-pending">
           <span>Soalan Lazim &amp; Sokongan<small>akan datang</small></span>
@@ -616,6 +626,11 @@
             <strong>Power user, guna AI.</strong> Jika anda biasa guna AI (ChatGPT, Claude, dsb.), kumpul semua maklumat peserta dalam satu tempat (Word, nota, atau Excel sedia ada), kemudian minta AI tolong susun ke dalam template ini. Pastikan anda <strong>semak sendiri hasilnya</strong> sebelum upload: AI tidak sentiasa betul untuk No. KP atau ejaan nama.
           </div>
         </div>
+        <div class="step-callout">
+          <div class="callout is-tip"><span class="callout-icon">💡</span>
+            <strong>Sumber data: MOEIS + Google Sheets.</strong> Jika sekolah anda menggunakan MOEIS, eksport senarai murid yang mewakili sekolah (kelas, IC, nama, jantina, kaum) terus dari sana, kemudian copy-paste ke template ini. Jauh lebih cepat daripada taip semula, dan kurang silap. Mungkin perlu kebenaran admin sekolah untuk akses. Jika seorang guru tidak cukup masa, upload template ini ke <strong>Google Sheets</strong> dan beri akses kepada beberapa guru sekaligus, kemudian download semula sebagai .xlsx untuk upload kembali ke extension.
+          </div>
+        </div>
       </article>
 
       <article class="step" id="step-3-5">
@@ -702,6 +717,237 @@
         </div>
       </article>
 
+      <article class="step" id="step-3-8">
+        <div class="step-header">
+          <span class="step-num">8</span>
+          <div>
+            <p class="step-tag">Muat naik gambar pukal</p>
+            <h3 class="step-title">Upload gambar peserta dari folder</h3>
+          </div>
+        </div>
+        <div class="step-body">
+          <p>Selepas semua peserta berdaftar, anda perlu muat naik gambar peserta. Kumpul semua foto dalam satu folder di komputer.</p>
+          <p><strong>Cara nama fail:</strong> nama fail boleh terus pakai nama atau No. KP peserta. Format tidak ketat, contoh:</p>
+          <ul>
+            <li><code>120104134831.jpg</code>, IC 12-digit (paling tepat)</li>
+            <li><code>davinwong.jpg</code>, nama tanpa ruang juga dikesan</li>
+            <li><code>aiman_haziq_zulkarnain.jpg</code>, nama penuh dengan underscore</li>
+            <li><code>chong.jpg</code>, nama pertama sahaja (jika unik)</li>
+          </ul>
+          <p>Jika ada peserta sama nama, guna nama yang lebih panjang atau guna IC supaya extension dapat bezakan.</p>
+          <p>Buka popup, klik kawasan upload <strong>Muat Naik Gambar</strong>. Drag semua foto sekali gus, atau klik untuk pilih daripada Finder/Explorer.</p>
+          <p>Extension akan padankan setiap foto dengan peserta secara automatik dan paparkan preview. Klik <strong>Sahkan dan Upload</strong> selepas semak preview.</p>
+        </div>
+        <figure class="step-media">
+          <div class="step-media-placeholder"><strong>Skrinsut akan ditambah</strong>Folder gambar peserta (campuran nama + IC) dengan preview padanan extension</div>
+        </figure>
+        <div class="step-callout">
+          <div class="callout is-warn"><span class="callout-icon">⚠</span>
+            <strong>Saiz foto.</strong> SMIS hadkan foto kepada 900 KB. Foto besar (DSLR / kamera berkualiti tinggi) perlu dikecilkan dahulu. Atau guna <a href="#sedia-dokumen">Sedia Dokumen</a> di Bahagian 4 untuk crop interaktif dan auto-resize.
+          </div>
+        </div>
+        <div class="step-callout">
+          <div class="callout is-tip"><span class="callout-icon">💡</span>
+            <strong>Foto sudah betul-betul siap?</strong> Jika foto sudah dipotong nisbah 4:3 dan saiz &lt;900 KB, popup upload paling cepat. Untuk crop interaktif, palang watermark, dan OCR padan IC dari PDF, beralih ke <a href="#sedia-dokumen">Sedia Dokumen</a>.
+          </div>
+        </div>
+      </article>
+
+      <article class="step" id="step-3-9">
+        <div class="step-header">
+          <span class="step-num">9</span>
+          <div>
+            <p class="step-tag">Borang pendaftaran</p>
+            <h3 class="step-title">Muat turun M01 / R01 secara pukal</h3>
+          </div>
+        </div>
+        <div class="step-body">
+          <p>Selepas semua peserta dan dokumen disiapkan, anda perlu muat turun borang <strong>M01</strong> (lelaki) atau <strong>R01</strong> (perempuan). Borang ini perlu ditandatangan oleh pengetua dan dihantar kembali kepada urusetia kejohanan.</p>
+          <p>Dalam popup, klik <strong>Muat Turun M01/R01</strong>. Extension akan iterate setiap peserta dan simpan setiap PDF ke folder Downloads anda.</p>
+          <p>Untuk 30 peserta, proses ambil ~1-2 minit (bergantung pada kelajuan SMIS). Setiap fail dinamakan dengan IC peserta supaya mudah dicari kemudian.</p>
+        </div>
+        <figure class="step-media">
+          <div class="step-media-placeholder"><strong>Skrinsut akan ditambah</strong>Folder Downloads dengan 20-30 PDF M01/R01 selepas batch download selesai</div>
+        </figure>
+        <div class="step-callout">
+          <div class="callout is-tip"><span class="callout-icon">💡</span>
+            <strong>Selepas tandatangan pengetua.</strong> Kumpul semua borang yang sudah ditandatangan, scan menjadi <strong>satu PDF tunggal</strong> guna scanner sekolah atau aplikasi telefon. Kemudian buka <a href="#sedia-dokumen">Sedia Dokumen → tab Pengesahan</a> untuk batch upload kembali ke SMIS dengan palang &ldquo;Kegunaan Sukan&rdquo; otomatik.
+          </div>
+        </div>
+      </article>
+
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- SECTION 4, Sedia Dokumen -->
+    <!-- ============================================================ -->
+    <section class="section" id="sedia-dokumen">
+      <div class="section-head">
+        <span class="section-tag">Bahagian 4</span>
+        <h2>Sedia Dokumen</h2>
+        <p class="section-intro">Surface penuh untuk pukal upload foto, IC / Sijil Lahir, dan M01/R01 yang disahkan. OCR auto-padan kepada peserta, palang &ldquo;Kegunaan Sukan&rdquo; batch print, dan progress disimpan automatik.</p>
+      </div>
+
+      <article class="step" id="step-4-1">
+        <div class="step-header">
+          <span class="step-num">1</span>
+          <div>
+            <p class="step-tag">Pengenalan</p>
+            <h3 class="step-title">Apa itu Sedia Dokumen, dan bila guna</h3>
+          </div>
+        </div>
+        <div class="step-body">
+          <p>Sedia Dokumen adalah halaman <strong>penuh</strong> (bukan popup) untuk dokumen pukal. Buka dengan klik butang <strong>Sedia Dokumen</strong> di popup, tab baru akan dibuka.</p>
+          <p>Berbeza dari muat naik gambar di popup (Bahagian 3.8), Sedia Dokumen menambahkan:</p>
+          <ul>
+            <li><strong>OCR engine</strong>, baca teks dalam imej / PDF, auto-padan kepada peserta tanpa perlu nama fail tepat</li>
+            <li><strong>Crop interaktif</strong>, potong gambar 4:3 dengan drag corners</li>
+            <li><strong>Palang batch</strong>, lukis watermark &ldquo;Kegunaan Sukan&rdquo; pada setiap halaman PDF dalam beberapa saat</li>
+            <li><strong>Auto-save</strong>, tutup tab, buka semula, sambung daripada tempat anda berhenti</li>
+          </ul>
+          <p>Guna Sedia Dokumen apabila anda ada <strong>banyak peserta</strong> (10+), atau dokumen scan masih dalam <strong>PDF tunggal yang besar</strong> (semua IC dalam satu fail).</p>
+        </div>
+        <figure class="step-media">
+          <div class="step-media-placeholder"><strong>Skrinsut akan ditambah</strong>Halaman utama Sedia Dokumen dengan 3 tab: Gambar, Pengenalan Diri, Pengesahan</div>
+        </figure>
+      </article>
+
+      <article class="step" id="step-4-2">
+        <div class="step-header">
+          <span class="step-num">2</span>
+          <div>
+            <p class="step-tag">Gambar peserta</p>
+            <h3 class="step-title">Tab Gambar, drop, padan, crop, upload</h3>
+          </div>
+        </div>
+        <div class="step-body">
+          <p>Buka tab <strong>Gambar</strong>. Drag fail foto atau klik untuk pilih dari folder.</p>
+          <p>Extension auto-padan setiap foto kepada peserta berdasarkan nama fail (sama seperti popup di Bahagian 3.8).</p>
+          <p>Untuk setiap foto, anda boleh:</p>
+          <ul>
+            <li><strong>Crop</strong>, drag corners untuk potong nisbah 4:3 (saiz piawai SMIS)</li>
+            <li><strong>Adjust posisi</strong>, drag foto dalam kotak crop untuk pilih bahagian yang dipaparkan</li>
+            <li><strong>Drag ke peserta lain</strong>, jika padanan automatik salah</li>
+          </ul>
+          <p>Klik <strong>Upload Gambar</strong> setelah semua siap. Progress bar paparkan status setiap foto.</p>
+        </div>
+        <figure class="step-media">
+          <div class="step-media-placeholder"><strong>Video / skrinsut akan ditambah</strong>Demo: drop foto, auto-padan, crop interaktif, upload ke SMIS</div>
+        </figure>
+      </article>
+
+      <article class="step" id="step-4-3">
+        <div class="step-header">
+          <span class="step-num">3</span>
+          <div>
+            <p class="step-tag">IC / Sijil Lahir</p>
+            <h3 class="step-title">Tab Pengenalan Diri, OCR auto-padan dari PDF</h3>
+          </div>
+        </div>
+        <div class="step-body">
+          <p>Buka tab <strong>Pengenalan Diri</strong>. Tab ini untuk salinan IC, MyKid, atau Sijil Lahir.</p>
+          <p>Cara cepat: gunakan scanner sekolah atau aplikasi telefon (Adobe Scan, Notes, dsb.) untuk scan <strong>semua IC dalam satu PDF</strong>. Drag PDF tersebut ke kawasan upload.</p>
+          <p>Extension akan jalankan <strong>OCR</strong> (Tesseract.js) pada setiap halaman:</p>
+          <ol>
+            <li>Cari nombor IC 12-digit dalam imej</li>
+            <li>Padankan kepada peserta dalam senarai</li>
+            <li>Jika gagal IC, fallback kepada nama (case-insensitive)</li>
+          </ol>
+          <p>OCR ambil masa ~5-10 saat per halaman pada kali pertama (engine perlu load). Selepas semua halaman selesai, panel review paparkan semua padanan.</p>
+          <p>Jika scan kabur dan OCR tidak dapat baca, drag fail manual ke peserta yang betul.</p>
+          <p>Klik <strong>Upload Pengenalan Diri</strong> apabila semua disahkan.</p>
+        </div>
+        <figure class="step-media">
+          <div class="step-media-placeholder"><strong>Video akan ditambah</strong>Demo: drop PDF multi-halaman, OCR progress, review panel, manual fix, upload</div>
+        </figure>
+        <div class="step-callout">
+          <div class="callout is-tip"><span class="callout-icon">💡</span>
+            <strong>Quality scan = OCR yang lebih baik.</strong> Pastikan scan jelas (tidak terlalu cerah / gelap), dan IC kelihatan penuh dalam frame. Aplikasi telefon biasanya beri auto-tone yang lebih baik daripada scanner kantor.
+          </div>
+        </div>
+      </article>
+
+      <article class="step" id="step-4-4">
+        <div class="step-header">
+          <span class="step-num">4</span>
+          <div>
+            <p class="step-tag">M01/R01 yang disahkan</p>
+            <h3 class="step-title">Tab Pengesahan, palang batch + upload</h3>
+          </div>
+        </div>
+        <div class="step-body">
+          <p>Buka tab <strong>Pengesahan</strong>. Tab ini untuk M01/R01 yang sudah ditandatangan oleh pengetua.</p>
+          <p>Workflow sama dengan tab Pengenalan Diri (drop PDF / imej, OCR auto-padan), <strong>dengan satu tambahan</strong>:</p>
+          <p><strong>Palang &ldquo;Kegunaan Sukan&rdquo;</strong>, pilih checkbox di bawah review panel. Extension akan lukis watermark merah pada setiap halaman PDF, automatik. Anda tidak perlu tulis tangan satu-satu.</p>
+          <p>Preview palang dipaparkan dalam thumbnail setiap fail sebelum upload. Edit teks palang jika perlu (default: &ldquo;KEGUNAAN SUKAN SAHAJA&rdquo;).</p>
+          <p>Klik <strong>Upload Pengesahan</strong> untuk batch upload ke SMIS.</p>
+        </div>
+        <figure class="step-media">
+          <div class="step-media-placeholder"><strong>Skrinsut + video akan ditambah</strong>Tab Pengesahan dengan checkbox palang, preview watermark, batch upload progress</div>
+        </figure>
+        <div class="step-callout">
+          <div class="callout is-tip"><span class="callout-icon">💡</span>
+            <strong>Cara cepat dari M01/R01 download (Bahagian 3.9).</strong> Selepas pengetua tandatangan, scan semua dalam <strong>satu PDF</strong> dengan scanner sekolah, kemudian terus drop ke tab ini. OCR akan padan setiap halaman kepada peserta, dan palang batch print serentak.
+          </div>
+        </div>
+      </article>
+
+      <article class="step" id="step-4-5">
+        <div class="step-header">
+          <span class="step-num">5</span>
+          <div>
+            <p class="step-tag">Sambung sesi</p>
+            <h3 class="step-title">Auto-save dan sambung sesi yang ditutup</h3>
+          </div>
+        </div>
+        <div class="step-body">
+          <p>Sedia Dokumen menyimpan semua progress secara automatik dalam pelayar (IndexedDB). Tab boleh ditutup tanpa kehilangan apa-apa.</p>
+          <p>Untuk sambung:</p>
+          <ol>
+            <li>Buka popup, klik <strong>Sedia Dokumen</strong></li>
+            <li>Halaman utama paparkan sesi yang ada (dengan stats: jumlah peserta, fail dimuat naik, dll.)</li>
+            <li>Klik <strong>Sambung</strong> untuk teruskan</li>
+            <li>Atau klik <strong>+ Mulakan Sesi Baru</strong> untuk reset</li>
+          </ol>
+          <p>Sesi dikaitkan dengan kejohanan SMIS, jika anda tukar event, halaman utama akan paparkan sesi yang berbeza.</p>
+        </div>
+        <figure class="step-media">
+          <div class="step-media-placeholder"><strong>Skrinsut akan ditambah</strong>Halaman utama Sedia Dokumen dengan senarai sesi + stats</div>
+        </figure>
+        <div class="step-callout">
+          <div class="callout is-warn"><span class="callout-icon">⚠</span>
+            <strong>Hadkan satu tab pada satu masa.</strong> Sedia Dokumen tidak boleh dibuka dalam dua tab serentak (untuk kejohanan yang sama), extension auto-tutup tab kedua untuk elak data terlanggar.
+          </div>
+        </div>
+      </article>
+
+      <article class="step" id="step-4-6">
+        <div class="step-header">
+          <span class="step-num">6</span>
+          <div>
+            <p class="step-tag">Selesai</p>
+            <h3 class="step-title">Apa selepas Sedia Dokumen siap</h3>
+          </div>
+        </div>
+        <div class="step-body">
+          <p>Selepas semua tab (Gambar, Pengenalan Diri, Pengesahan) telah upload, peserta anda sepatutnya:</p>
+          <ul>
+            <li>Berdaftar di SMIS dengan acara yang ditetapkan</li>
+            <li>Maklumat lengkap (alamat, sekolah, dll.)</li>
+            <li>Foto pas 4:3 dimuat naik</li>
+            <li>Salinan IC / MyKid dimuat naik</li>
+            <li>M01/R01 yang disahkan dimuat naik dengan palang</li>
+          </ul>
+          <p>Buka semula laman SMIS dalam tab lain untuk semak setiap peserta. Setiap satu sepatutnya kelihatan lengkap dengan ikon kamera, ID, dan dokumen.</p>
+          <p>Jika ada peserta yang gagal dimuat naik, kembali ke tab yang berkenaan dan re-try (tidak perlu mula semula).</p>
+        </div>
+        <div class="step-callout">
+          <div class="callout is-ok"><span class="callout-icon">✓</span>
+            <strong>Bahagian 4 selesai.</strong> Workflow asas extension lengkap. Lihat <a href="#aliran-asas">Bahagian 3</a> untuk popup flow, atau hubungi kami melalui <a href="https://t.me/mrdavinhub" target="_blank" rel="noopener">Telegram</a> jika ada soalan.
+          </div>
+        </div>
+      </article>
+
     </section>
 
     <!-- ============================================================ -->
@@ -711,11 +957,9 @@
       <div class="coming-soon-card">
         <div class="coming-soon-tag">Akan datang</div>
         <h2>Lebih banyak panduan sedang disediakan</h2>
-        <p>Bahagian dan langkah seterusnya yang sedang ditulis:</p>
+        <p>Bahagian terakhir yang sedang ditulis:</p>
         <ul>
-          <li><strong>Bahagian 3 (lanjutan)</strong>: muat naik gambar peserta, muat naik dokumen pengenalan / pengesahan, dan muat turun borang M01/R01.</li>
-          <li><strong>Bahagian 4, Sedia Dokumen</strong>: OCR padan IC automatik, potong gambar 4:3, palang watermark, upload pukal dokumen.</li>
-          <li><strong>Bahagian 5, Soalan Lazim &amp; Sokongan</strong>: versi percuma vs Pro, harga, dan cara hubungi kami.</li>
+          <li><strong>Bahagian 5, Soalan Lazim &amp; Sokongan</strong>: versi percuma vs Pro, harga, soalan biasa, dan cara hubungi kami.</li>
         </ul>
         <p>Sementara itu, kalau ada soalan, hubungi kami terus melalui Telegram <a href="https://t.me/mrdavinhub" target="_blank" rel="noopener">@mrdavinhub</a> atau emel <a href="mailto:hi@davinhub.com">hi@davinhub.com</a>.</p>
       </div>
