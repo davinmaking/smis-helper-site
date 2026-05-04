@@ -9,7 +9,7 @@
   <link rel="apple-touch-icon" href="icon128.png">
   <link rel="canonical" href="https://smis.davinhub.com/">
   <meta property="og:title" content="SMIS Helper | Automasi Pendaftaran Sukan SMIS">
-  <meta property="og:description" content="Chrome Extension untuk Pengurus Pasukan. Daftar 24 peserta dalam 5 minit — bukan 2 jam. Sokong olahraga, sukan tahunan, merentas desa.">
+  <meta property="og:description" content="Chrome Extension untuk Pengurus Pasukan. Daftar 24 peserta dalam 5 minit, bukan 2 jam. Sokong olahraga, sukan tahunan, merentas desa.">
   <meta property="og:image" content="https://smis.davinhub.com/og-image.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
@@ -19,7 +19,7 @@
   <meta property="og:site_name" content="SMIS Helper">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="SMIS Helper | Automasi Pendaftaran Sukan SMIS">
-  <meta name="twitter:description" content="Chrome Extension untuk Pengurus Pasukan. Daftar 24 peserta dalam 5 minit — bukan 2 jam.">
+  <meta name="twitter:description" content="Chrome Extension untuk Pengurus Pasukan. Daftar 24 peserta dalam 5 minit, bukan 2 jam.">
   <meta name="twitter:image" content="https://smis.davinhub.com/og-image.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -34,7 +34,7 @@
         "applicationCategory": "EducationalApplication",
         "applicationSubCategory": "Browser Extension",
         "url": "https://smis.davinhub.com/",
-        "description": "Chrome Extension untuk automasi pendaftaran peserta sukan di SMIS. Daftar 24 peserta dalam 5 minit — bukan 2 jam. Untuk Pengurus Pasukan sekolah Malaysia.",
+        "description": "Chrome Extension untuk automasi pendaftaran peserta sukan di SMIS. Daftar 24 peserta dalam 5 minit, bukan 2 jam. Untuk Pengurus Pasukan sekolah Malaysia.",
         "inLanguage": "ms-MY",
         "image": "https://smis.davinhub.com/og-image.png",
         "screenshot": "https://smis.davinhub.com/og-image.png",
@@ -75,7 +75,7 @@
             "name": "Bagaimana cara pasang Chrome Extension?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Klik pautan Pasang dari Chrome Web Store di bahagian harga. Anda akan dibawa ke kedai rasmi Chrome — klik Add to Chrome dan sahkan. Ikon SMIS Helper akan muncul di sebelah kanan atas pelayar. Pasang sekali sahaja, kemudian guna pada bila-bila masa. Extension hanya berfungsi pada komputer (Chrome, Edge, Brave, Opera). Tidak boleh digunakan pada telefon atau Safari."
+              "text": "Klik pautan Pasang dari Chrome Web Store di bahagian harga. Anda akan dibawa ke kedai rasmi Chrome, klik Add to Chrome dan sahkan. Ikon SMIS Helper akan muncul di sebelah kanan atas pelayar. Pasang sekali sahaja, kemudian guna pada bila-bila masa. Extension hanya berfungsi pada komputer (Chrome, Edge, Brave, Opera). Tidak boleh digunakan pada telefon atau Safari."
             }
           },
           {
@@ -149,7 +149,7 @@
     .nav-logo span { color: var(--blue-600); margin-left: -0.15em; }
     .nav-links { display: none; align-items: center; gap: 32px; }
     @media(min-width:768px) { .nav-links { display: flex; } }
-    .nav-links a { font-size: 0.875rem; color: var(--gray-600); text-decoration: none; transition: color 0.15s; }
+    .nav-links a { font-size: 0.875rem; color: var(--gray-600); text-decoration: none; transition: color 0.15s; padding: 11px 8px; display: inline-flex; align-items: center; min-height: 44px; }
     .nav-links a:hover { color: var(--gray-900); }
     .nav-links a.nav-cta { padding: 12px 20px; min-height: 44px; background: var(--blue-600); color: var(--white); font-size: 0.875rem; font-weight: 600; border-radius: 8px; border: none; cursor: pointer; text-decoration: none; transition: opacity 0.15s; }
     .nav-links a.nav-cta:hover { color: var(--white); opacity: 0.9; }
@@ -159,7 +159,7 @@
     .mobile-menu { display: none; border-top: 1px solid var(--gray-100); background: var(--white); padding: 16px; }
     .mobile-menu.open { display: block; }
     @media(min-width:768px) { .mobile-menu { display: none !important; } }
-    .mobile-menu a { display: block; padding: 10px 12px; font-size: 0.875rem; color: var(--gray-600); text-decoration: none; border-radius: 8px; }
+    .mobile-menu a { display: block; padding: 14px 12px; min-height: 44px; font-size: 0.95rem; color: var(--gray-700); text-decoration: none; border-radius: 8px; }
     .mobile-menu a:hover { background: var(--gray-50); }
     .mobile-menu .mob-cta { display: block; width: 100%; padding: 10px; background: var(--blue-600); color: var(--white); font-size: 0.875rem; font-weight: 600; border-radius: 8px; border: none; cursor: pointer; margin-top: 8px; text-align: center; }
 
@@ -185,7 +185,7 @@
     .btn-dark:hover { background: var(--gray-800); }
     .btn-light { padding: 16px 32px; background: var(--white); color: var(--gray-700); font-weight: 600; border-radius: 12px; border: 1px solid var(--gray-200); cursor: pointer; font-size: 1rem; font-family: inherit; transition: all 0.15s; text-decoration: none; }
     .btn-light:hover { border-color: var(--gray-300); background: var(--gray-50); }
-    .hero-note { margin-top: 16px; font-size: 0.875rem; color: var(--gray-400); }
+    .hero-note { margin-top: 16px; font-size: 0.875rem; color: var(--gray-500); }
 
     /* Hero product mockup — three CSS-rendered popups side-by-side
        so the page actually shows what teachers will see. Each popup
@@ -202,13 +202,13 @@
     .hm-header { display: flex; align-items: center; gap: 8px; padding: 12px 16px; background: var(--blue-600); color: var(--white); }
     .hm-app-icon { width: 28px; height: 28px; border-radius: 6px; background: rgba(255,255,255,0.2); display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
     .hm-title { font-size: 0.95rem; font-weight: 700; flex: 1; }
-    .hm-title span { font-size: 0.7rem; font-weight: 500; opacity: 0.8; margin-left: 4px; }
+    .hm-title span { font-size: 0.7rem; font-weight: 500; opacity: 1; color: rgba(255,255,255,0.92); margin-left: 4px; }
 
     /* License + status strips — match popup.html exactly */
     .hm-license { display: flex; align-items: center; gap: 8px; padding: 6px 16px; background: #fff8e1; border-bottom: 1px solid var(--gray-100); font-size: 0.7rem; color: #8a5a00; }
-    .hm-badge { font-size: 0.6rem; font-weight: 700; padding: 1px 6px; border-radius: 3px; background: #fff8e1; border: 1px solid var(--amber-500); color: var(--amber-500); text-transform: uppercase; letter-spacing: 0.04em; }
+    .hm-badge { font-size: 0.6rem; font-weight: 700; padding: 1px 6px; border-radius: 3px; background: #fff8e1; border: 1px solid #b45309; color: #92400e; text-transform: uppercase; letter-spacing: 0.04em; }
     .hm-license-text { flex: 1; }
-    .hm-upgrade { font-weight: 600; color: #c87a00; text-decoration: underline; text-underline-offset: 2px; white-space: nowrap; }
+    .hm-upgrade { font-weight: 600; color: #92400e; text-decoration: underline; text-underline-offset: 2px; white-space: nowrap; }
     .hm-status { display: flex; align-items: center; gap: 8px; padding: 8px 16px; background: #eaf6ed; color: #166030; font-size: 0.7rem; border-bottom: 1px solid var(--gray-100); }
     .hm-status-dot { width: 6px; height: 6px; border-radius: 50%; background: #166030; flex-shrink: 0; }
     .hm-status-text { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
@@ -235,13 +235,13 @@
     .hm-row { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 10px; }
     .hm-field-label { font-size: 0.65rem; color: var(--gray-500); margin-bottom: 4px; }
     .hm-field-label::after { content: " *"; color: var(--blue-600); }
-    .hm-select { padding: 6px 8px; border: 1px solid var(--gray-200); border-radius: 4px; font-size: 0.68rem; color: var(--gray-400); background: var(--white); display: flex; justify-content: space-between; align-items: center; }
+    .hm-select { padding: 6px 8px; border: 1px solid var(--gray-200); border-radius: 4px; font-size: 0.68rem; color: var(--gray-500); background: var(--white); display: flex; justify-content: space-between; align-items: center; }
 
     /* Section 3 — Senarai Peserta */
     .hm-list-meta { font-size: 0.7rem; color: var(--gray-500); margin-bottom: 10px; }
     .hm-list-meta b { color: var(--gray-900); font-weight: 600; }
     .hm-list-meta .l { color: var(--blue-600); font-weight: 600; }
-    .hm-list-meta .p { color: #d23f6f; font-weight: 600; }
+    .hm-list-meta .p { color: #b91c5c; font-weight: 600; }
     .hm-cat-header { background: var(--blue-50); padding: 6px 10px; border-radius: 4px; font-size: 0.7rem; font-weight: 700; color: var(--blue-700); margin-bottom: 6px; display: flex; justify-content: space-between; align-items: center; border: 1px solid var(--blue-100); }
     .hm-cat-chevron { font-size: 0.6rem; opacity: 0.7; }
     .hm-student { display: grid; grid-template-columns: 14px 18px 1fr auto; gap: 8px; padding: 8px 4px; align-items: center; border-bottom: 1px solid var(--gray-100); }
@@ -250,11 +250,11 @@
     .hm-student-num { font-size: 0.7rem; color: var(--gray-500); }
     .hm-student-info strong { display: block; font-size: 0.72rem; font-weight: 600; color: var(--gray-900); line-height: 1.3; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
     .hm-pill { display: inline-block; padding: 1px 6px; background: #eef2fb; color: var(--blue-700); font-size: 0.58rem; font-weight: 600; border-radius: 99px; margin-top: 3px; }
-    .hm-student-ic { font-size: 0.62rem; color: var(--gray-400); white-space: nowrap; text-align: right; }
+    .hm-student-ic { font-size: 0.62rem; color: var(--gray-500); white-space: nowrap; text-align: right; }
     .hm-student-ic .l-tag { color: var(--blue-600); margin-left: 4px; font-weight: 700; }
     .hm-list-footer { display: flex; justify-content: space-between; align-items: center; padding-top: 12px; gap: 8px; }
     .hm-list-footer-link { font-size: 0.7rem; color: var(--blue-600); text-decoration: underline; }
-    .hm-list-footer-meta { font-size: 0.7rem; color: var(--gray-400); }
+    .hm-list-footer-meta { font-size: 0.7rem; color: var(--gray-500); }
     .hm-btn-danger { padding: 6px 10px; background: #f5b1b3; color: #8a2424; font-size: 0.68rem; border-radius: 6px; font-weight: 600; }
 
     /* Section 4 — Tindakan (action menu) */
@@ -270,7 +270,7 @@
     /* Mock window footer (Dibina oleh ...) — margin-top:auto pushes
        it to the bottom so all 3 popups end at the same baseline even
        when content above is shorter. */
-    .hm-foot { margin-top: auto; padding: 10px 16px; text-align: center; font-size: 0.65rem; color: var(--gray-400); border-top: 1px solid var(--gray-100); background: var(--gray-50); }
+    .hm-foot { margin-top: auto; padding: 10px 16px; text-align: center; font-size: 0.65rem; color: var(--gray-500); border-top: 1px solid var(--gray-100); background: var(--gray-50); }
 
     @media(max-width: 960px) {
       .hero-mock { max-width: 380px; }
@@ -305,7 +305,7 @@
     .vs-time-bad svg { color: #b94a4f; }
     .vs-time-good { background: #ecf7ee; color: #1f6638; font-weight: 600; }
     .vs-time-good svg { color: #2c8849; }
-    .vs-time-label { font-size: 0.7rem; opacity: 0.65; margin-right: auto; padding-right: 8px; text-transform: uppercase; letter-spacing: 0.04em; }
+    .vs-time-label { font-size: 0.7rem; opacity: 0.85; font-weight: 700; margin-right: auto; padding-right: 8px; text-transform: uppercase; letter-spacing: 0.04em; }
 
     /* Section header */
     .sh-label { font-size: 0.875rem; font-weight: 600; color: var(--blue-600); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 12px; }
@@ -380,7 +380,7 @@
     .promo-pill { font-size: 0.7rem; font-weight: 700; padding: 4px 10px; background: var(--blue-600); color: var(--white); border-radius: 99px; letter-spacing: 0.06em; flex-shrink: 0; }
     .promo-price { font-weight: 700; color: var(--gray-900); }
     .promo-price b { font-size: 1.25rem; color: var(--blue-700); }
-    .promo-price .struck { color: var(--gray-500); text-decoration: line-through; font-weight: 500; margin-right: 4px; }
+    .promo-price .struck { color: var(--gray-600); text-decoration: line-through; font-weight: 500; margin-right: 4px; }
     .promo-end { color: var(--gray-700); font-weight: 600; }
     .promo-strip.expired { background: var(--gray-50); border-color: var(--gray-200); }
     .promo-strip.expired .promo-pill { background: var(--gray-400); }
@@ -402,7 +402,7 @@
     .sd-appbar-icon { width: 28px; height: 28px; border-radius: 6px; background: rgba(255,255,255,0.15); display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
     .sd-appbar-text { flex: 1; min-width: 0; }
     .sd-appbar-text strong { display: block; font-size: 0.95rem; font-weight: 700; line-height: 1.1; }
-    .sd-appbar-text small { display: block; font-size: 0.65rem; font-weight: 500; opacity: 0.7; margin-top: 2px; letter-spacing: 0.03em; }
+    .sd-appbar-text small { display: block; font-size: 0.65rem; font-weight: 500; color: rgba(255,255,255,0.92); margin-top: 2px; letter-spacing: 0.03em; }
     .sd-event-pill { padding: 4px 10px; background: rgba(255,255,255,0.18); border-radius: 99px; font-size: 0.7rem; font-weight: 600; max-width: 220px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
     .sd-saved { display: inline-flex; align-items: center; gap: 5px; font-size: 0.7rem; color: rgba(255,255,255,0.9); }
     .sd-saved::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: #6ee06e; }
@@ -576,13 +576,13 @@
     .service-link { max-width: 720px; margin: 28px auto 0; padding: 18px 24px; background: var(--white); border: 1px solid var(--gray-200); border-radius: 12px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; }
     .service-link-text strong { display: block; font-size: 0.95rem; font-weight: 700; color: var(--gray-900); margin-bottom: 2px; }
     .service-link-text small { font-size: 0.8rem; color: var(--gray-500); }
-    .service-link a { display: inline-flex; align-items: center; gap: 6px; padding: 10px 18px; background: var(--orange-500); color: var(--white); border-radius: 8px; font-size: 0.85rem; font-weight: 600; text-decoration: none; transition: background 0.15s; }
-    .service-link a:hover { background: var(--orange-600); }
+    .service-link a { display: inline-flex; align-items: center; gap: 6px; padding: 12px 20px; min-height: 44px; background: var(--orange-700); color: var(--white); border-radius: 8px; font-size: 0.85rem; font-weight: 700; text-decoration: none; transition: background 0.15s; }
+    .service-link a:hover { background: #9a3208; }
     .plan { padding: 32px; border-radius: 16px; position: relative; }
     .plan.default { background: var(--white); border: 1px solid var(--gray-200); }
     .plan.popular { background: var(--blue-700); color: var(--white); }
     .plan.service { background: var(--white); border: 2px solid var(--orange-500); }
-    .plan-pop-badge { display: inline-block; font-size: 0.75rem; font-weight: 600; background: rgba(255,255,255,0.2); padding: 4px 12px; border-radius: 99px; margin-bottom: 16px; }
+    .plan-pop-badge { display: inline-block; font-size: 0.75rem; font-weight: 700; background: rgba(0,0,0,0.28); color: var(--white); padding: 4px 12px; border-radius: 99px; margin-bottom: 16px; }
     .plan-name { font-size: 1.25rem; font-weight: 700; margin-bottom: 4px; }
     .plan-desc { font-size: 0.875rem; margin-bottom: 24px; }
     .plan.default .plan-desc, .plan.service .plan-desc { color: var(--gray-500); }
@@ -595,7 +595,7 @@
     .plan.default .plan-price .old { color: var(--gray-400); }
     .plan.popular .plan-price .old { color: var(--blue-200); }
     .plan-period { font-size: 0.8rem; margin-bottom: 24px; }
-    .plan.default .plan-period { color: var(--gray-400); }
+    .plan.default .plan-period { color: var(--gray-500); }
     .plan.popular .plan-period { color: var(--blue-100); }
     .plan.service .plan-period { color: var(--gray-500); }
     .plan-features { list-style: none; margin-bottom: 32px; }
@@ -641,11 +641,11 @@
     .footer-brand { max-width: 280px; }
     .footer-brand .logo { font-size: 1.25rem; font-weight: 800; color: var(--gray-900); margin-bottom: 8px; }
     .footer-brand .logo span { color: var(--blue-600); }
-    .footer-brand p { font-size: 0.875rem; color: var(--gray-400); }
+    .footer-brand p { font-size: 0.875rem; color: var(--gray-500); }
     .footer-links { display: flex; gap: 48px; }
     .footer-col p { font-weight: 600; color: var(--gray-700); margin-bottom: 12px; font-size: 0.875rem; }
-    .footer-col a { display: block; font-size: 0.875rem; color: var(--gray-400); text-decoration: none; padding: 4px 0; transition: color 0.15s; }
-    .footer-col a:hover { color: var(--gray-600); }
+    .footer-col a { display: block; font-size: 0.875rem; color: var(--gray-600); text-decoration: none; padding: 12px 0; min-height: 44px; transition: color 0.15s; }
+    .footer-col a:hover { color: var(--gray-900); }
     .footer-bottom { margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--gray-100); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; font-size: 0.875rem; color: var(--gray-400); }
     .footer-bottom a { color: var(--gray-400); text-decoration: none; }
     .footer-bottom a:hover { color: var(--blue-600); }
@@ -712,6 +712,8 @@
     </div>
   </nav>
 
+  <main>
+
   <!-- Hero -->
   <section class="hero">
     <div class="container">
@@ -724,13 +726,13 @@
       </div>
       <p class="hero-note">Percuma untuk 15 peserta. Tiada pendaftaran, tiada kad kredit.</p>
 
-      <!-- Product mockup — three CSS-rendered popups capturing the
+      <!-- Product mockup, three CSS-rendered popups capturing the
            three logical sections of the real popup.html. Data is
            fictional ("CONTOH BAKTI", anonymized ICs); no real PII. -->
       <div class="hero-mock" aria-label="Pratonton popup SMIS Helper">
         <div class="hm-stack">
 
-          <!-- Popup 1 — Setup (Upload Excel + Maklumat Sekolah) -->
+          <!-- Popup 1, Setup (Upload Excel + Maklumat Sekolah) -->
           <div class="hm-window">
             <div class="hm-titlebar">
               <span class="hm-dot"></span><span class="hm-dot"></span><span class="hm-dot"></span>
@@ -750,7 +752,7 @@
               </div>
               <div class="hm-status">
                 <span class="hm-status-dot"></span>
-                <span class="hm-status-text">Bersambung — KEJOHANAN OLAHRAGA MSSB DEMO 2026</span>
+                <span class="hm-status-text">Bersambung: KEJOHANAN OLAHRAGA MSSB DEMO 2026</span>
                 <span class="hm-status-refresh">↻</span>
               </div>
 
@@ -795,7 +797,7 @@
             </div>
           </div>
 
-          <!-- Popup 2 — Senarai Peserta -->
+          <!-- Popup 2, Senarai Peserta -->
           <div class="hm-window">
             <div class="hm-titlebar">
               <span class="hm-dot"></span><span class="hm-dot"></span><span class="hm-dot"></span>
@@ -815,7 +817,7 @@
               </div>
               <div class="hm-status">
                 <span class="hm-status-dot"></span>
-                <span class="hm-status-text">Bersambung — KEJOHANAN OLAHRAGA MSSB DEMO 2026</span>
+                <span class="hm-status-text">Bersambung: KEJOHANAN OLAHRAGA MSSB DEMO 2026</span>
                 <span class="hm-status-refresh">↻</span>
               </div>
 
@@ -826,7 +828,7 @@
                 </div>
 
                 <div class="hm-cat-header">
-                  <span>L12 — LELAKI 12 TAHUN KE BAWAH (12)</span>
+                  <span>L12: LELAKI 12 TAHUN KE BAWAH (12)</span>
                   <span class="hm-cat-chevron">▾</span>
                 </div>
 
@@ -895,7 +897,7 @@
             </div>
           </div>
 
-          <!-- Popup 3 — Tindakan -->
+          <!-- Popup 3, Tindakan -->
           <div class="hm-window">
             <div class="hm-titlebar">
               <span class="hm-dot"></span><span class="hm-dot"></span><span class="hm-dot"></span>
@@ -915,7 +917,7 @@
               </div>
               <div class="hm-status">
                 <span class="hm-status-dot"></span>
-                <span class="hm-status-text">Bersambung — KEJOHANAN OLAHRAGA MSSB DEMO 2026</span>
+                <span class="hm-status-text">Bersambung: KEJOHANAN OLAHRAGA MSSB DEMO 2026</span>
                 <span class="hm-status-refresh">↻</span>
               </div>
 
@@ -987,7 +989,7 @@
     </div>
   </section>
 
-  <!-- Sebelum vs Selepas — concrete time-to-task comparison.
+  <!-- Sebelum vs Selepas, concrete time-to-task comparison.
        Numbers are based on real workflow (Davin's Bola Keranjang
        MSSB Miri 2026 production: 24 peserta, 60 dokumen, ~2.5 jam
        manual estimate vs ~5 minit dengan extension). -->
@@ -1001,7 +1003,7 @@
           <span class="vs-arrow">→</span>
           <span class="vs-good-num">5 minit</span>
         </h2>
-        <p class="vs-sub">Excel sendiri masih perlu disediakan, tapi bahagian klik-klik di SMIS yang biasanya makan masa anda — sekarang cuma upload sekali.</p>
+        <p class="vs-sub">Excel sendiri masih perlu disediakan, tapi bahagian klik-klik di SMIS yang biasanya makan masa anda, sekarang cuma upload sekali.</p>
       </div>
 
       <div class="vs-rows">
@@ -1098,29 +1100,29 @@
           <div class="feat-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
           </div>
-          <h3>Sedia Dokumen — halaman penuh</h3>
-          <p>OCR padan IC dengan peserta, potong gambar 4:3, tambah palang watermark, upload pukal — semua dalam satu halaman dengan resume kalau halaman terputup.</p>
+          <h3>Sedia Dokumen, halaman penuh</h3>
+          <p>OCR padan IC dengan peserta, potong gambar 4:3, tambah palang watermark, upload pukal, semua dalam satu halaman dengan resume kalau halaman terputup.</p>
         </div>
         <div class="feat">
           <div class="feat-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="2" width="8" height="4" rx="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><line x1="9" y1="12" x2="15" y2="12"/><line x1="9" y1="16" x2="15" y2="16"/></svg>
           </div>
           <h3>Template auto dropdown</h3>
-          <p>Tak perlu taip Kaum, Tahun, atau Kategori semula. Excel dijana terus dari tetapan kejohanan anda — Acara dan Kategori jadi dropdown auto.</p>
+          <p>Tak perlu taip Kaum, Tahun, atau Kategori semula. Excel dijana terus dari tetapan kejohanan anda, Acara dan Kategori jadi dropdown auto.</p>
         </div>
         <div class="feat">
           <div class="feat-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><line x1="20" y1="8" x2="20" y2="14"/><line x1="23" y1="11" x2="17" y2="11"/></svg>
           </div>
           <h3>20 peserta sekaligus</h3>
-          <p>Tiada salah copy-paste, tiada IC tertinggal. Sistem tambah peserta, isi semua maklumat, dan tetapkan acara — satu operasi untuk seluruh senarai.</p>
+          <p>Tiada salah copy-paste, tiada IC tertinggal. Sistem tambah peserta, isi semua maklumat, dan tetapkan acara, satu operasi untuk seluruh senarai.</p>
         </div>
         <div class="feat">
           <div class="feat-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/><circle cx="12" cy="13" r="3.5"/></svg>
           </div>
           <h3>Auto match nama dengan IC</h3>
-          <p>Gambar, IC, dan surat pengesahan padan dengan peserta yang betul — extension baca nama fail, tak salah orang.</p>
+          <p>Gambar, IC, dan surat pengesahan padan dengan peserta yang betul, extension baca nama fail, tak salah orang.</p>
         </div>
         <div class="feat">
           <div class="feat-icon" aria-hidden="true">
@@ -1133,7 +1135,7 @@
     </div>
   </section>
 
-  <!-- Sedia Dokumen mockups — full-page window snapshots that
+  <!-- Sedia Dokumen mockups, full-page window snapshots that
        mirror the actual UI: blue app bar, help banner, tab strip,
        drop zone, two-pane workspace, bottom action bar.
        Fictional data ("CONTOH BAKTI", anonymized ICs); no real PII. -->
@@ -1147,7 +1149,7 @@
 
       <div class="sd-stack">
 
-        <!-- Mockup A: Gambar tab — full app bar, help banner, drop
+        <!-- Mockup A: Gambar tab, full app bar, help banner, drop
              zone, action row, two-pane workspace, bottom action bar -->
         <div class="sd-window">
           <div class="hm-titlebar">
@@ -1270,7 +1272,7 @@
           </div>
         </div>
 
-        <!-- Mockup B: Pengenalan Diri tab — palang controls + drop
+        <!-- Mockup B: Pengenalan Diri tab, palang controls + drop
              zone + matched-document cards with PDF thumbnails -->
         <div class="sd-window">
           <div class="hm-titlebar">
@@ -1432,19 +1434,19 @@
     </div>
   </section>
 
-  <!-- Panduan teaser — bridge from 4-step overview to /panduan page -->
+  <!-- Panduan teaser, bridge from 4-step overview to /panduan page -->
   <section class="panduan-teaser" aria-label="Panduan Lengkap">
     <div class="container">
       <div class="panduan-teaser-card">
         <p class="panduan-teaser-tag">Panduan Lengkap</p>
         <h2 class="panduan-teaser-h">Mahu lihat semua langkah dengan screenshot dan video?</h2>
-        <p class="panduan-teaser-sub">Panduan langkah-demi-langkah lengkap — pemasangan, jana template, isi peserta, daftar pukal. Ada video demo dan screenshot setiap step.</p>
+        <p class="panduan-teaser-sub">Panduan langkah-demi-langkah lengkap, pemasangan, jana template, isi peserta, daftar pukal. Ada video demo dan screenshot setiap step.</p>
         <a href="/panduan" class="panduan-teaser-btn">Buka Panduan Lengkap →</a>
       </div>
     </div>
   </section>
 
-  <!-- Founder note — Cikgu Davin. Trust signal between Cara Guna
+  <!-- Founder note, Cikgu Davin. Trust signal between Cara Guna
        and Pricing. Avatar removed (gradient monogram circle read
        as fake placeholder per critique); add a real photo later
        above .founder-quote if available. -->
@@ -1452,7 +1454,7 @@
     <div class="container">
       <div class="founder-inner">
         <div class="founder-quote">
-          <p>Tahun lepas, saya jaga pendaftaran sukan untuk pasukan sekolah. Hadap SMIS sampai pukul 12 malam — taip 24 IC, padan acara, upload gambar satu-satu. Hari Isnin lemah.</p>
+          <p>Tahun lepas, saya jaga pendaftaran sukan untuk pasukan sekolah. Hadap SMIS sampai pukul 12 malam, taip 24 IC, padan acara, upload gambar satu-satu. Hari Isnin lemah.</p>
           <p>Lepas habis, saya bina extension ini untuk diri sendiri. Sekarang bahagian SMIS yang dulu makan 2 jam, selesai dalam 5 minit. Saya kongsi dengan guru lain di Malaysia supaya tidak lagi ada guru yang tidur lewat sebab SMIS.</p>
         </div>
         <div class="founder-name">
@@ -1475,7 +1477,7 @@
         <p class="sh-sub">Tiada langganan, tiada yuran bulanan. Bayar sekali, guna selama-lamanya.</p>
       </div>
 
-      <!-- Promo banner — calm but visible. PROMO_END is read by
+      <!-- Promo banner, calm but visible. PROMO_END is read by
            the script below to flip the price and banner state once
            the date passes. -->
       <div class="promo-strip" id="promoStrip" role="status">
@@ -1516,7 +1518,7 @@
         </div>
       </div>
 
-      <!-- Servis exit ramp — for the rare buyer who doesn't want
+      <!-- Servis exit ramp, for the rare buyer who doesn't want
            software at all. Demoted from a full pricing card to a
            small line so it doesn't compete with Free vs Pro. -->
       <div class="service-link" role="note">
@@ -1541,7 +1543,7 @@
         <p class="sh-sub">Semua yang anda perlu tahu sebelum bermula.</p>
       </div>
       <div class="faq-list" id="faqList">
-        <div class="faq-item"><button><span>Bagaimana cara pasang Chrome Extension?</span><svg width="20" height="20"><use href="#icon-chevron"/></svg></button><div class="faq-answer"><p>Klik pautan "Pasang dari Chrome Web Store" di bahagian harga. Anda akan dibawa ke kedai rasmi Chrome — klik <strong>Add to Chrome</strong> dan sahkan. Ikon SMIS Helper akan muncul di sebelah kanan atas pelayar (sebelah bar alamat). Pasang sekali sahaja, kemudian guna pada bila-bila masa.</p><p style="margin-top:8px"><em>Nota:</em> Extension hanya berfungsi pada komputer (Chrome / Edge / Brave / Opera). Tidak boleh digunakan pada telefon atau Safari.</p></div></div>
+        <div class="faq-item"><button><span>Bagaimana cara pasang Chrome Extension?</span><svg width="20" height="20"><use href="#icon-chevron"/></svg></button><div class="faq-answer"><p>Klik pautan "Pasang dari Chrome Web Store" di bahagian harga. Anda akan dibawa ke kedai rasmi Chrome, klik <strong>Add to Chrome</strong> dan sahkan. Ikon SMIS Helper akan muncul di sebelah kanan atas pelayar (sebelah bar alamat). Pasang sekali sahaja, kemudian guna pada bila-bila masa.</p><p style="margin-top:8px"><em>Nota:</em> Extension hanya berfungsi pada komputer (Chrome / Edge / Brave / Opera). Tidak boleh digunakan pada telefon atau Safari.</p></div></div>
         <div class="faq-item"><button><span>Adakah data peserta selamat?</span><svg width="20" height="20"><use href="#icon-chevron"/></svg></button><div class="faq-answer"><p>Ya. Extension hanya berinteraksi dengan smis.events untuk tujuan pendaftaran. Tiada data peserta disimpan di pelayan lain. Tiada penjejak, tiada analitik, tiada perkongsian dengan pihak ketiga. <a href="privacy.html">Baca dasar privasi penuh</a>.</p></div></div>
         <div class="faq-item"><button><span>Bolehkah saya guna untuk semua jenis sukan?</span><svg width="20" height="20"><use href="#icon-chevron"/></svg></button><div class="faq-answer"><p>Ya. Extension menyokong semua sukan dalam SMIS: olahraga, sukan tahunan, merentas desa, bola keranjang, badminton, dan lain-lain.</p></div></div>
         <div class="faq-item"><button><span>Bagaimana saya mendapat kunci Pro selepas bayar?</span><svg width="20" height="20"><use href="#icon-chevron"/></svg></button><div class="faq-answer"><p>Selepas pembayaran berjaya melalui FPX, halaman penyelesaian akan memaparkan kunci lesen secara automatik. Salin kunci dan masukkan dalam popup Extension untuk mengaktifkan Pro. Sekiranya proses lambat, kunci juga akan dihantar ke emel yang anda berikan.</p></div></div>
@@ -1551,7 +1553,7 @@
     </div>
   </section>
 
-  <!-- Support — direct contact channels for help, feedback,
+  <!-- Support, direct contact channels for help, feedback,
        license recovery. Sits between FAQ and footer. -->
   <section class="support" aria-labelledby="support-title">
     <div class="container">
@@ -1567,7 +1569,7 @@
           </span>
           <div>
             <strong>Telegram</strong>
-            <small>@davinwzy — sokongan langsung</small>
+            <small>@davinwzy, sokongan langsung</small>
           </div>
         </a>
         <a class="support-card" href="mailto:hi@davinhub.com">
@@ -1601,6 +1603,8 @@
     </div>
   </section>
 
+  </main>
+
   <!-- Footer -->
   <footer>
     <div class="container">
@@ -1633,7 +1637,7 @@
     </div>
   </footer>
 
-  <!-- Sticky bottom CTA on mobile only — single button to keep
+  <!-- Sticky bottom CTA on mobile only, single button to keep
        cognitive load low. Auto-hides while pricing section is in
        view so the in-section Beli Sekarang takes priority. -->
   <div class="sticky-cta" id="stickyCta">
@@ -1660,9 +1664,9 @@
   </div>
 
   <script>
-    // Promo state — RM59 launch promo. Edit PROMO_END to extend or
+    // Promo state: RM59 launch promo. Edit PROMO_END to extend or
     // shorten. Once the date passes, the strip flips to .expired
-    // and the Pro price updates to RM99. No ticking clock — the
+    // and the Pro price updates to RM99. No ticking clock, the
     // earlier countdown read as fake-scarcity per design review.
     var PROMO_END = new Date("2026-05-15T23:59:59+08:00");
     var PROMO_NORMAL_PRO = "RM99";
@@ -1682,7 +1686,7 @@
     }
     applyPromoState();
 
-    // Sticky mobile CTA — show after user scrolls past hero. Hide
+    // Sticky mobile CTA, show after user scrolls past hero. Hide
     // when pricing section is in view (the in-section CTAs take
     // over) so we don't double-stack purchase prompts.
     var stickyCta = document.getElementById("stickyCta");
