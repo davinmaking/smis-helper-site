@@ -86,11 +86,12 @@
     /* Sub-steps */
     .toc ul.toc-substeps { list-style: none; padding: 0; margin: 4px 0 8px 23px; border-left: 1px solid var(--gray-200); }
     .toc ul.toc-substeps li { margin: 0; }
-    .toc ul.toc-substeps a { display: block; padding: 5px 12px; font-size: 0.82rem; font-weight: 500; color: var(--gray-500); line-height: 1.4; border-left: 2px solid transparent; margin-left: -1px; transition: background 0.15s, color 0.15s, border-color 0.15s; }
+    .toc ul.toc-substeps a { display: block; padding: 6px 12px; font-size: 0.82rem; font-weight: 500; color: var(--gray-500); line-height: 1.4; border-radius: 8px; transition: background 0.15s, color 0.15s; }
     .toc ul.toc-substeps a:hover { background: var(--blue-50); color: var(--blue-700); text-decoration: none; }
-    /* Active highlight (set by scroll-spy JS) */
+    /* Active highlight (set by scroll-spy JS) — pill matches section level
+       for visual consistency. Indentation alone carries the hierarchy. */
     .toc a.is-active { background: var(--blue-50); color: var(--blue-700); }
-    .toc ul.toc-substeps a.is-active { border-left-color: var(--blue-600); font-weight: 600; }
+    .toc ul.toc-substeps a.is-active { font-weight: 600; }
     .toc ol.toc-sections > li > a.is-active { color: var(--blue-700); }
     .toc-mobile-toggle { display: none; }
     @media(max-width:1023px) {
