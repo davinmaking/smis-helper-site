@@ -27,7 +27,7 @@
 <body>
   <a href="index.html" class="back">&larr; Kembali ke laman utama</a>
   <h1>Dasar Privasi / Privacy Policy</h1>
-  <p class="updated">Kemaskini terakhir: 1 Mei 2026</p>
+  <p class="updated">Kemaskini terakhir: 9 Jun 2026</p>
 
   <h2>1. Pengenalan</h2>
   <p>SMIS Helper ("Extension") ialah Chrome Extension yang membantu guru mendaftarkan peserta sukan ke dalam sistem SMIS (smis.events). Dasar privasi ini menerangkan bagaimana Extension mengendalikan data anda.</p>
@@ -39,6 +39,7 @@
     <li><strong>Maklumat sekolah:</strong> Kod sekolah, nama, alamat. Diambil dari API smis.events.</li>
     <li><strong>Kunci lesen:</strong> Kunci lesen Pro dan ID peranti (dijana secara rawak). Disimpan di pelayan kami untuk pengesahan lesen.</li>
     <li><strong>Tetapan Extension:</strong> Pilihan Negeri/PPD, status data. Disimpan dalam chrome.storage.local pada peranti anda.</li>
+    <li><strong>Laporan ralat (pilihan sahaja):</strong> Jika guru klik "Lapor Ralat kepada Cikgu Davin", Extension menghantar log teknikal yang telah ditapis (nama peserta digantikan dengan "Peserta #N", No. KP disembunyikan), versi Extension, jenis pelayar (user agent), nama kejohanan, langkah yang gagal, dan nota pilihan yang ditulis guru. Hanya dihantar apabila guru memilih untuk menghantarnya.</li>
   </ul>
 
   <h2>3. Data Yang TIDAK Dikumpul</h2>
@@ -52,7 +53,8 @@
   <h2>4. Ke Mana Data Dihantar</h2>
   <ul>
     <li><strong>smis.events</strong> — Data peserta dihantar ke SMIS melalui API rasmi mereka. Extension bertindak sebagai perantara antara guru dan SMIS.</li>
-    <li><strong>davinhub-api.davin-making.workers.dev</strong> — Hanya untuk pengesahan kunci lesen (kunci + ID peranti) dan pemprosesan pembayaran. Tiada data peserta dihantar ke pelayan ini.</li>
+    <li><strong>davinhub-api.davin-making.workers.dev</strong> — Untuk pengesahan kunci lesen (kunci + ID peranti) dan pemprosesan pembayaran. Tiada data peserta (nama, IC, gambar, dokumen) dihantar ke pelayan ini.</li>
+    <li><strong>Lapor Ralat (pilihan, ke davinhub-api):</strong> Jika guru klik "Lapor Ralat", log teknikal yang telah ditapis daripada maklumat peribadi (nama → "Peserta #N", No. KP disembunyikan), versi Extension, user agent, nama kejohanan dan nota guru dihantar ke pelayan kami (disimpan dalam pangkalan data D1) dan satu pemberitahuan dihantar kepada pembangun melalui Telegram — semata-mata untuk membantu pembangun membaiki ralat. Guru melihat kandungan penuh sebelum menghantar, dan tiada apa-apa dihantar melainkan guru memilih untuk menghantarnya.</li>
   </ul>
 
   <h2>5. Penyimpanan Data</h2>
@@ -71,7 +73,7 @@
     <li><strong>tabs:</strong> Untuk mencari tab SMIS yang aktif, mengesan nama kejohanan, dan memuat semula halaman selepas operasi selesai.</li>
     <li><strong>debugger:</strong> Untuk menjana PDF borang M01/R01 melalui Page.printToPDF. Hanya digunakan pada tab tersembunyi yang dicipta oleh Extension, bukan tab pengguna.</li>
     <li><strong>downloads:</strong> Untuk memuat turun fail PDF (M01/R01) dan fail HTML ke folder Muat Turun pengguna.</li>
-    <li><strong>host_permissions (smis.events):</strong> Untuk mengakses halaman dan API SMIS. Juga mengakses pelayan lesen (Supabase) untuk pengesahan kunci sahaja.</li>
+    <li><strong>host_permissions (smis.events):</strong> Untuk mengakses halaman dan API SMIS. Juga mengakses pelayan lesen (Cloudflare Workers) untuk pengesahan kunci sahaja.</li>
   </ul>
 
   <h2>7. Keselamatan</h2>
