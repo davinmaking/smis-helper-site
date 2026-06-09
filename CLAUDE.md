@@ -26,6 +26,14 @@ open http://localhost:8765/panduan.html
 
 (Or use `npx serve .` if you prefer Node-based.)
 
+## Pricing (index.html) — static RM59, NO promo logic
+Pro is a flat **RM59 sekali bayar** (matches ToyyibPay backend `SMIS_HELPER_PRO_AMOUNT=5900`). Shown in 3 places: promo strip, Pro card (`#proPrice`), pay modal (`#modalSub`).
+
+⚠️ **Gotcha:** a previous time-bound promo (`PROMO_END` + `applyPromoState()`) silently flipped the LIVE price to RM99 when the date passed (2026-06-09 incident — site quoted RM99 while ToyyibPay billed RM59). Removed. Keep pricing as **static markup only** — no date/JS price logic. The planned RM99 "normal" price was abandoned; RM59 is permanent.
+
+## Version pills — manual bump per release
+Three hardcoded `SMIS Helper v2.1.X` pills in the hero mockups (`index.html:746, 811, 911`) + the JSON-LD `softwareVersion` do NOT auto-update. Bump all of them to match the CWS-live version each time a new build publishes (e.g. → `v2.1.3` once it's approved).
+
 ## Lighthouse Targets — all 100/100/100 (verified 2026-05-04)
 | Page | Mobile | Desktop |
 |---|---|---|
