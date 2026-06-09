@@ -91,7 +91,7 @@
             "name": "Bolehkah saya guna untuk semua jenis sukan?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Ya. Extension menyokong semua sukan dalam SMIS: olahraga, sukan tahunan, merentas desa, bola keranjang, badminton, dan lain-lain."
+              "text": "Ya. Extension menyokong hampir semua sukan dalam SMIS (~96%): olahraga, sukan tahunan, merentas desa, bola keranjang, badminton, dan lain-lain."
             }
           },
           {
@@ -380,11 +380,6 @@
     .promo-pill { font-size: 0.7rem; font-weight: 700; padding: 4px 10px; background: var(--blue-600); color: var(--white); border-radius: 99px; letter-spacing: 0.06em; flex-shrink: 0; }
     .promo-price { font-weight: 700; color: var(--gray-900); }
     .promo-price b { font-size: 1.25rem; color: var(--blue-700); }
-    .promo-price .struck { color: var(--gray-600); text-decoration: line-through; font-weight: 500; margin-right: 4px; }
-    .promo-end { color: var(--gray-700); font-weight: 600; }
-    .promo-strip.expired { background: var(--gray-50); border-color: var(--gray-200); }
-    .promo-strip.expired .promo-pill { background: var(--gray-400); }
-    .promo-strip.expired .promo-price b { color: var(--gray-700); }
 
     /* Sedia Dokumen mockups — full-page window snapshots that mirror
        the actual Sedia Dokumen UI: blue app bar, help banner, tab
@@ -1477,13 +1472,11 @@
         <p class="sh-sub">Tiada langganan, tiada yuran bulanan. Bayar sekali, guna selama-lamanya.</p>
       </div>
 
-      <!-- Promo banner, calm but visible. PROMO_END is read by
-           the script below to flip the price and banner state once
-           the date passes. -->
+      <!-- Flat permanent price, calm but visible. No promo/expiry. -->
       <div class="promo-strip" id="promoStrip" role="status">
-        <span class="promo-pill">PROMO PELANCARAN</span>
-        <span class="promo-price"><span class="struck">RM99</span> <b>RM59</b> sekali bayar</span>
-        <span>Sah hingga <span class="promo-end" id="promoEndDate">15 Mei 2026</span></span>
+        <span class="promo-pill">HARGA</span>
+        <span class="promo-price"><b>RM59</b> sekali bayar</span>
+        <span>Guna selagi SMIS aktif</span>
       </div>
 
       <div class="pricing-grid">
@@ -1504,7 +1497,7 @@
           <span class="plan-pop-badge">Paling Popular</span>
           <div class="plan-name">Pro</div>
           <div class="plan-desc">Untuk guru yang serius</div>
-          <div class="plan-price"><span id="proPrice">RM59</span> <span class="old" id="proOldPrice">RM99</span></div>
+          <div class="plan-price"><span id="proPrice">RM59</span></div>
           <div class="plan-period">Sekali bayar. Selagi SMIS aktif.</div>
           <ul class="plan-features">
             <li><svg width="16" height="16"><use href="#icon-check"/></svg> Semua ciri Percuma</li>
@@ -1545,7 +1538,7 @@
       <div class="faq-list" id="faqList">
         <div class="faq-item"><button><span>Bagaimana cara pasang Chrome Extension?</span><svg width="20" height="20"><use href="#icon-chevron"/></svg></button><div class="faq-answer"><p>Klik pautan "Pasang dari Chrome Web Store" di bahagian harga. Anda akan dibawa ke kedai rasmi Chrome, klik <strong>Add to Chrome</strong> dan sahkan. Ikon SMIS Helper akan muncul di sebelah kanan atas pelayar (sebelah bar alamat). Pasang sekali sahaja, kemudian guna pada bila-bila masa.</p><p style="margin-top:8px"><em>Nota:</em> Extension hanya berfungsi pada komputer (Chrome / Edge / Brave / Opera). Tidak boleh digunakan pada telefon atau Safari.</p></div></div>
         <div class="faq-item"><button><span>Adakah data peserta selamat?</span><svg width="20" height="20"><use href="#icon-chevron"/></svg></button><div class="faq-answer"><p>Ya. Extension hanya berinteraksi dengan smis.events untuk tujuan pendaftaran. Tiada data peserta disimpan di pelayan lain. Tiada penjejak, tiada analitik, tiada perkongsian dengan pihak ketiga. <a href="privacy.html">Baca dasar privasi penuh</a>.</p></div></div>
-        <div class="faq-item"><button><span>Bolehkah saya guna untuk semua jenis sukan?</span><svg width="20" height="20"><use href="#icon-chevron"/></svg></button><div class="faq-answer"><p>Ya. Extension menyokong semua sukan dalam SMIS: olahraga, sukan tahunan, merentas desa, bola keranjang, badminton, dan lain-lain.</p></div></div>
+        <div class="faq-item"><button><span>Bolehkah saya guna untuk semua jenis sukan?</span><svg width="20" height="20"><use href="#icon-chevron"/></svg></button><div class="faq-answer"><p>Ya. Extension menyokong hampir semua sukan dalam SMIS (~96%): olahraga, sukan tahunan, merentas desa, bola keranjang, badminton, dan lain-lain.</p></div></div>
         <div class="faq-item"><button><span>Bagaimana saya mendapat kunci Pro selepas bayar?</span><svg width="20" height="20"><use href="#icon-chevron"/></svg></button><div class="faq-answer"><p>Selepas pembayaran berjaya melalui FPX, halaman penyelesaian akan memaparkan kunci lesen secara automatik. Salin kunci dan masukkan dalam popup Extension untuk mengaktifkan Pro. Sekiranya proses lambat, kunci juga akan dihantar ke emel yang anda berikan.</p></div></div>
         <div class="faq-item"><button><span>Bagaimana jika saya tukar komputer atau padam Extension?</span><svg width="20" height="20"><use href="#icon-chevron"/></svg></button><div class="faq-answer"><p>Kunci anda kekal sah selama-lamanya. Hubungi kami melalui Telegram atau emel untuk reset kunci ke peranti baharu. Tiada kos tambahan.</p></div></div>
         <div class="faq-item"><button><span>Pelayar apa yang disokong?</span><svg width="20" height="20"><use href="#icon-chevron"/></svg></button><div class="faq-answer"><p>Chrome, Edge, Brave, dan Opera (semua pelayar berasaskan Chromium). Belum menyokong Firefox atau Safari.</p></div></div>
@@ -1648,7 +1641,7 @@
   <div class="modal-overlay" id="buyModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
     <div class="modal">
       <h3 id="modalTitle">SMIS Helper Pro</h3>
-      <p class="modal-sub" id="modalSub">RM59.00 (promosi pelancaran). Sekali bayar, guna selagi SMIS aktif.</p>
+      <p class="modal-sub" id="modalSub">RM59.00 sekali bayar. Guna selagi SMIS aktif.</p>
       <label for="buyName">Nama (pilihan)</label>
       <input type="text" id="buyName" placeholder="Nama anda">
       <label for="buyEmail">Emel <span class="req-mark" aria-hidden="true">*</span></label>
@@ -1664,27 +1657,8 @@
   </div>
 
   <script>
-    // Promo state: RM59 launch promo. Edit PROMO_END to extend or
-    // shorten. Once the date passes, the strip flips to .expired
-    // and the Pro price updates to RM99. No ticking clock, the
-    // earlier countdown read as fake-scarcity per design review.
-    var PROMO_END = new Date("2026-05-15T23:59:59+08:00");
-    var PROMO_NORMAL_PRO = "RM99";
-    function applyPromoState() {
-      var strip = document.getElementById("promoStrip");
-      var proPrice = document.getElementById("proPrice");
-      var proOld = document.getElementById("proOldPrice");
-      var modalSub = document.getElementById("modalSub");
-      if (!strip) return;
-      if (new Date() >= PROMO_END) {
-        strip.classList.add("expired");
-        strip.innerHTML = '<span class="promo-pill">HARGA NORMAL</span> <span class="promo-price"><b>' + PROMO_NORMAL_PRO + '</b> sekali bayar</span> <span>Promo pelancaran telah tamat</span>';
-        if (proPrice) proPrice.textContent = PROMO_NORMAL_PRO;
-        if (proOld) proOld.style.display = "none";
-        if (modalSub) modalSub.textContent = PROMO_NORMAL_PRO + ".00. Sekali bayar, guna selagi SMIS aktif.";
-      }
-    }
-    applyPromoState();
+    // Pricing is a flat permanent RM59 (no promo / no expiry).
+    // The static markup is the source of truth; no JS price logic.
 
     // Sticky mobile CTA, show after user scrolls past hero. Hide
     // when pricing section is in view (the in-section CTAs take
