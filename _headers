@@ -1,0 +1,4 @@
+# Screenshot filenames are NOT content-hashed — do not use immutable,
+# or replaced screenshots would never refresh for returning visitors.
+/panduan-img/*
+  Cache-Control: public, max-age=604800

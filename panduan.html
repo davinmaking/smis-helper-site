@@ -15,6 +15,7 @@
   <meta property="og:type" content="article">
   <meta property="og:locale" content="ms_MY">
   <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     /* === Tokens (mirror landing page) === */
@@ -31,7 +32,8 @@
     }
     *, *::before, *::after { box-sizing: border-box; }
     *:focus-visible { outline: 2px solid var(--blue-600); outline-offset: 2px; border-radius: 4px; }
-    html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+    html { scroll-padding-top: 80px; }
+    @media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
     body {
       font-family: "Inter", system-ui, sans-serif; color: var(--gray-900);
       background: var(--white); font-size: 16px; line-height: 1.65;
@@ -98,8 +100,8 @@
       .toc-mobile-toggle { display: block; width: 100%; padding: 14px 18px; background: var(--gray-50); border: 1px solid var(--gray-200); border-radius: 10px; font: inherit; font-weight: 600; color: var(--gray-900); text-align: left; cursor: pointer; }
       .toc-mobile-toggle::after { content: "▾"; float: right; color: var(--gray-500); }
       .toc.is-open .toc-mobile-toggle::after { content: "▴"; }
-      .toc[aria-expanded="false"] .toc-list { display: none; }
-      .toc-list { padding: 14px 0 0; }
+      .toc .toc-list { display: none; }
+      .toc.is-open .toc-list { display: block; padding: 14px 0 0; }
     }
 
     /* === Sections === */
@@ -272,8 +274,8 @@
     @media(min-width:1024px) { .toc-fab { display: none; } }
 
     /* === TOC bottom sheet (mobile/tablet) === */
-    .toc-sheet { position: fixed; inset: 0; z-index: 70; pointer-events: none; }
-    .toc-sheet.is-open { pointer-events: auto; }
+    .toc-sheet { position: fixed; inset: 0; z-index: 70; pointer-events: none; visibility: hidden; transition: visibility 0s linear 0.3s; }
+    .toc-sheet.is-open { pointer-events: auto; visibility: visible; transition: visibility 0s; }
     .toc-sheet-backdrop {
       position: absolute; inset: 0;
       background: rgba(15, 23, 42, 0.4);
@@ -351,9 +353,9 @@
 <div class="layout">
 
   <!-- TOC sidebar -->
-  <aside class="toc" aria-expanded="true">
-    <button class="toc-mobile-toggle" type="button" onclick="this.parentElement.toggleAttribute('aria-expanded'); this.parentElement.classList.toggle('is-open');">Daftar Kandungan</button>
-    <div class="toc-list">
+  <aside class="toc">
+    <button class="toc-mobile-toggle" type="button" aria-expanded="false" aria-controls="tocList" onclick="var open=this.parentElement.classList.toggle('is-open'); this.setAttribute('aria-expanded', String(open));">Daftar Kandungan</button>
+    <div class="toc-list" id="tocList">
       <h2>Bahagian</h2>
       <ol class="toc-sections">
         <li>
@@ -458,10 +460,10 @@
           <p>Atau, klik pautan ini terus: <a href="https://chromewebstore.google.com/detail/smis-helper/djihfnjipghicanmkndpmeilpabclfpa" target="_blank" rel="noopener"><strong>Buka SMIS Helper di Chrome Web Store ↗</strong></a></p>
         </div>
         <figure class="step-media">
-          <img src="panduan-img/pemasangan-01-landing.png" alt="Laman utama smis.davinhub.com dengan butang Pasang Percuma di Chrome diserlahkan">
+          <img src="panduan-img/pemasangan-01-landing.png" width="1392" height="1430" loading="lazy" decoding="async" alt="Laman utama smis.davinhub.com dengan butang Pasang Percuma di Chrome diserlahkan">
         </figure>
         <div class="step-callout">
-          <div class="callout"><span class="callout-icon">ⓘ</span><strong>Hanya berfungsi pada komputer</strong> dengan pelayar berasaskan Chromium (Chrome, Edge, Brave, Opera). Tidak boleh digunakan pada telefon atau Safari.</div>
+          <div class="callout"><span class="callout-icon" aria-hidden="true">ⓘ</span><strong>Hanya berfungsi pada komputer</strong> dengan pelayar berasaskan Chromium (Chrome, Edge, Brave, Opera). Tidak boleh digunakan pada telefon atau Safari.</div>
         </div>
       </article>
 
@@ -478,7 +480,7 @@
           <p>Satu dialog pengesahan akan muncul. Klik <strong>Add extension</strong> untuk siapkan pemasangan.</p>
         </div>
         <figure class="step-media">
-          <img src="panduan-img/pemasangan-02-cws-install.png" alt="Halaman Chrome Web Store SMIS Helper dengan butang Add to Chrome dan dialog Add extension">
+          <img src="panduan-img/pemasangan-02-cws-install.png" width="1428" height="1466" loading="lazy" decoding="async" alt="Halaman Chrome Web Store SMIS Helper dengan butang Add to Chrome dan dialog Add extension">
         </figure>
       </article>
 
@@ -496,10 +498,10 @@
           <p>Selepas dipinkan, ikon SMIS Helper akan muncul terus di toolbar, anda boleh klik bila-bila masa untuk buka popup.</p>
         </div>
         <figure class="step-media">
-          <img src="panduan-img/pemasangan-03-pin-toolbar.png" alt="Senarai extension Chrome dengan ikon pin dan SMIS Helper di toolbar">
+          <img src="panduan-img/pemasangan-03-pin-toolbar.png" width="507" height="330" loading="lazy" decoding="async" alt="Senarai extension Chrome dengan ikon pin dan SMIS Helper di toolbar">
         </figure>
         <div class="step-callout">
-          <div class="callout is-ok"><span class="callout-icon">✓</span>Pemasangan selesai. Anda boleh teruskan ke <a href="#aliran-asas">Bahagian 3, Aliran Asas Popup</a>.</div>
+          <div class="callout is-ok"><span class="callout-icon" aria-hidden="true">✓</span>Pemasangan selesai. Anda boleh teruskan ke <a href="#aliran-asas">Bahagian 3, Aliran Asas Popup</a>.</div>
         </div>
       </article>
 
@@ -529,10 +531,10 @@
           <p>Masukkan <strong>username</strong> dan <strong>password</strong> di kotak log masuk (tanda 4) untuk akses sistem.</p>
         </div>
         <figure class="step-media">
-          <img src="panduan-img/aliran-01-smis-popup-login.png" alt="Laman smis.events dengan ikon SMIS Helper, popup, dan kotak log masuk diserlahkan">
+          <img src="panduan-img/aliran-01-smis-popup-login.png" width="1392" height="1430" loading="lazy" decoding="async" alt="Laman smis.events dengan ikon SMIS Helper, popup, dan kotak log masuk diserlahkan">
         </figure>
         <div class="step-callout">
-          <div class="callout"><span class="callout-icon">ⓘ</span>
+          <div class="callout"><span class="callout-icon" aria-hidden="true">ⓘ</span>
             <strong>Siapa pengguna SMIS Helper?</strong> Extension ini untuk <strong>Pengurus Pasukan</strong>, guru bertanggungjawab daftar peserta untuk kejohanan sukan (olahraga, sukan tahunan, bola keranjang, merentas desa, dan lain-lain). Akaun <a href="https://smis.events" target="_blank" rel="noopener">smis.events</a> biasanya diberi oleh pihak penganjur atau urusetia kejohanan.
           </div>
         </div>
@@ -556,10 +558,10 @@
           </ul>
         </div>
         <figure class="step-media">
-          <img src="panduan-img/aliran-02-jana-template.png" alt="Halaman DAFTAR Peserta dengan popup SMIS Helper menunjukkan bar status hijau dan butang Jana template diserlahkan">
+          <img src="panduan-img/aliran-02-jana-template.png" width="1392" height="1430" loading="lazy" decoding="async" alt="Halaman DAFTAR Peserta dengan popup SMIS Helper menunjukkan bar status hijau dan butang Jana template diserlahkan">
         </figure>
         <div class="step-callout">
-          <div class="callout is-tip"><span class="callout-icon">💡</span>
+          <div class="callout is-tip"><span class="callout-icon" aria-hidden="true">💡</span>
             <strong>Bar status tidak hijau?</strong> Klik butang <strong>↻ refresh</strong> di kanan bar status, atau pastikan tab semasa adalah halaman DAFTAR Peserta dalam smis.events.
           </div>
         </div>
@@ -579,10 +581,10 @@
           <p>Bahagian paling penting ialah <strong>Kod Sekolah</strong> (tanda 4). Isi kod sekolah anda di sini, selepas anda upload semula template ini ke SMIS Helper, extension akan automatik ambil maklumat sekolah dari SMIS dan isikan semua sekali.</p>
         </div>
         <figure class="step-media">
-          <img src="panduan-img/aliran-03-template-kod-sekolah.png" alt="Template Excel SMIS dibuka di Microsoft Excel, nama kejohanan, sheet Maklumat Sekolah, senarai acara, dan kotak Kod Sekolah diserlahkan">
+          <img src="panduan-img/aliran-03-template-kod-sekolah.png" width="1392" height="1430" loading="lazy" decoding="async" alt="Template Excel SMIS dibuka di Microsoft Excel, nama kejohanan, sheet Maklumat Sekolah, senarai acara, dan kotak Kod Sekolah diserlahkan">
         </figure>
         <div class="step-callout">
-          <div class="callout"><span class="callout-icon">ⓘ</span>
+          <div class="callout"><span class="callout-icon" aria-hidden="true">ⓘ</span>
             <strong>Apa yang diisi automatik dari Kod Sekolah?</strong> Selepas anda upload Excel ke extension, maklumat berikut akan diambil terus dari SMIS:
             <ul style="margin: 8px 0 0; padding-left: 22px;">
               <li>Nama Sekolah</li>
@@ -614,20 +616,20 @@
           <p>Lajur lain pun digalakkan diisi, terutama <strong>No. Peserta / Bib</strong> dan <strong>Tahun / Tingkatan</strong>. Walaupun tidak ditanda wajib, sesetengah kejohanan memerlukan maklumat ini untuk mematuhi peraturan, luangkan sedikit masa di sini supaya proses kemudian lebih lancar.</p>
         </div>
         <figure class="step-media">
-          <img src="panduan-img/aliran-04-senarai-peserta.png" alt="Sheet Senarai Peserta dengan lajur Wajib (Nama Penuh, No. KP, Jantina, Acara) diserlahkan">
+          <img src="panduan-img/aliran-04-senarai-peserta.png" width="2672" height="1430" loading="lazy" decoding="async" alt="Sheet Senarai Peserta dengan lajur Wajib (Nama Penuh, No. KP, Jantina, Acara) diserlahkan">
         </figure>
         <div class="step-callout">
-          <div class="callout is-tip"><span class="callout-icon">💡</span>
+          <div class="callout is-tip"><span class="callout-icon" aria-hidden="true">💡</span>
             <strong>Acara, dropdown automatik.</strong> Klik sel di lajur Acara untuk pilih dari senarai. Jika beberapa peserta sertai acara yang sama, <strong>copy-paste</strong> jauh lebih cepat daripada pilih satu-satu.
           </div>
         </div>
         <div class="step-callout">
-          <div class="callout is-tip"><span class="callout-icon">💡</span>
+          <div class="callout is-tip"><span class="callout-icon" aria-hidden="true">💡</span>
             <strong>Power user, guna AI.</strong> Jika anda biasa guna AI (ChatGPT, Claude, dsb.), kumpul semua maklumat peserta dalam satu tempat (Word, nota, atau Excel sedia ada), kemudian minta AI tolong susun ke dalam template ini. Pastikan anda <strong>semak sendiri hasilnya</strong> sebelum upload: AI tidak sentiasa betul untuk No. KP atau ejaan nama.
           </div>
         </div>
         <div class="step-callout">
-          <div class="callout is-tip"><span class="callout-icon">💡</span>
+          <div class="callout is-tip"><span class="callout-icon" aria-hidden="true">💡</span>
             <strong>Sumber data: MOEIS + Google Sheets.</strong> Jika sekolah anda menggunakan MOEIS, eksport senarai murid yang mewakili sekolah (kelas, IC, nama, jantina, kaum) terus dari sana, kemudian copy-paste ke template ini. Jauh lebih cepat daripada taip semula, dan kurang silap. Mungkin perlu kebenaran admin sekolah untuk akses. Jika seorang guru tidak cukup masa, upload template ini ke <strong>Google Sheets</strong> dan beri akses kepada beberapa guru sekaligus, kemudian download semula sebagai .xlsx untuk upload kembali ke extension.
           </div>
         </div>
@@ -653,7 +655,7 @@
           <p>Bonus: sheet ini juga ada rujukan ringkas semua 25 lajur template dan senarai penuh acara yang tersedia untuk kejohanan anda.</p>
         </div>
         <figure class="step-media">
-          <img src="panduan-img/aliran-05-panduan-sheet.png" alt="Sheet Panduan dalam template Excel, senarai langkah, NOTA PENTING, dan rujukan lajur">
+          <img src="panduan-img/aliran-05-panduan-sheet.png" width="1392" height="1430" loading="lazy" decoding="async" alt="Sheet Panduan dalam template Excel, senarai langkah, NOTA PENTING, dan rujukan lajur">
         </figure>
       </article>
 
@@ -673,10 +675,10 @@
           </ul>
         </div>
         <figure class="step-media">
-          <img src="panduan-img/aliran-06-contoh-filled.png" alt="Contoh template SMIS yang telah diisi, Kod Sekolah, dan Senarai Peserta dengan 20 peserta">
+          <img src="panduan-img/aliran-06-contoh-filled.png" width="1392" height="1430" loading="lazy" decoding="async" alt="Contoh template SMIS yang telah diisi, Kod Sekolah, dan Senarai Peserta dengan 20 peserta">
         </figure>
         <div class="step-callout">
-          <div class="callout"><span class="callout-icon">ⓘ</span>
+          <div class="callout"><span class="callout-icon" aria-hidden="true">ⓘ</span>
             Data dalam contoh ini hanyalah untuk rujukan, tidak semestinya lengkap atau realistik. Yang penting ialah <strong>format</strong> dan <strong>kelengkapan lajur Wajib</strong>.
           </div>
         </div>
@@ -711,7 +713,7 @@
           <figcaption>Demo penuh: dari Excel terisi → 20 peserta berdaftar dalam SMIS, semua automatik (~1:40)</figcaption>
         </figure>
         <div class="step-callout">
-          <div class="callout is-tip"><span class="callout-icon">💡</span>
+          <div class="callout is-tip"><span class="callout-icon" aria-hidden="true">💡</span>
             <strong>Ada peserta yang gagal?</strong> Butang <strong>Cuba Semula yang Gagal</strong> akan muncul selepas selesai. Klik untuk re-try yang gagal sahaja, peserta yang sudah berjaya tidak akan didaftar semula.
           </div>
         </div>
@@ -742,12 +744,12 @@
           <div class="step-media-placeholder"><strong>Skrinsut akan ditambah</strong>Folder gambar peserta (campuran nama + IC) dengan preview padanan extension</div>
         </figure>
         <div class="step-callout">
-          <div class="callout is-warn"><span class="callout-icon">⚠</span>
+          <div class="callout is-warn"><span class="callout-icon" aria-hidden="true">⚠</span>
             <strong>Saiz foto.</strong> SMIS hadkan foto kepada 900 KB. Foto besar (DSLR / kamera berkualiti tinggi) perlu dikecilkan dahulu. Atau guna <a href="#sedia-dokumen">Sedia Dokumen</a> di Bahagian 4 untuk crop interaktif dan auto-resize.
           </div>
         </div>
         <div class="step-callout">
-          <div class="callout is-tip"><span class="callout-icon">💡</span>
+          <div class="callout is-tip"><span class="callout-icon" aria-hidden="true">💡</span>
             <strong>Foto sudah betul-betul siap?</strong> Jika foto sudah dipotong nisbah 4:3 dan saiz &lt;900 KB, popup upload paling cepat. Untuk crop interaktif, palang watermark, dan OCR padan IC dari PDF, beralih ke <a href="#sedia-dokumen">Sedia Dokumen</a>.
           </div>
         </div>
@@ -770,7 +772,7 @@
           <div class="step-media-placeholder"><strong>Skrinsut akan ditambah</strong>Folder Downloads dengan 20-30 PDF M01/R01 selepas batch download selesai</div>
         </figure>
         <div class="step-callout">
-          <div class="callout is-tip"><span class="callout-icon">💡</span>
+          <div class="callout is-tip"><span class="callout-icon" aria-hidden="true">💡</span>
             <strong>Selepas tandatangan pengetua.</strong> Kumpul semua borang yang sudah ditandatangan, scan menjadi <strong>satu PDF tunggal</strong> guna scanner sekolah atau aplikasi telefon. Kemudian buka <a href="#sedia-dokumen">Sedia Dokumen → tab Pengesahan</a> untuk batch upload kembali ke SMIS dengan palang &ldquo;Kegunaan Sukan&rdquo; otomatik.
           </div>
         </div>
@@ -861,7 +863,7 @@
           <div class="step-media-placeholder"><strong>Video akan ditambah</strong>Demo: drop PDF multi-halaman, OCR progress, review panel, manual fix, upload</div>
         </figure>
         <div class="step-callout">
-          <div class="callout is-tip"><span class="callout-icon">💡</span>
+          <div class="callout is-tip"><span class="callout-icon" aria-hidden="true">💡</span>
             <strong>Quality scan = OCR yang lebih baik.</strong> Pastikan scan jelas (tidak terlalu cerah / gelap), dan IC kelihatan penuh dalam frame. Aplikasi telefon biasanya beri auto-tone yang lebih baik daripada scanner kantor.
           </div>
         </div>
@@ -886,7 +888,7 @@
           <div class="step-media-placeholder"><strong>Skrinsut + video akan ditambah</strong>Tab Pengesahan dengan checkbox palang, preview watermark, batch upload progress</div>
         </figure>
         <div class="step-callout">
-          <div class="callout is-tip"><span class="callout-icon">💡</span>
+          <div class="callout is-tip"><span class="callout-icon" aria-hidden="true">💡</span>
             <strong>Cara cepat dari M01/R01 download (Bahagian 3.9).</strong> Selepas pengetua tandatangan, scan semua dalam <strong>satu PDF</strong> dengan scanner sekolah, kemudian terus drop ke tab ini. OCR akan padan setiap halaman kepada peserta, dan palang batch print serentak.
           </div>
         </div>
@@ -915,7 +917,7 @@
           <div class="step-media-placeholder"><strong>Skrinsut akan ditambah</strong>Halaman utama Sedia Dokumen dengan senarai sesi + stats</div>
         </figure>
         <div class="step-callout">
-          <div class="callout is-warn"><span class="callout-icon">⚠</span>
+          <div class="callout is-warn"><span class="callout-icon" aria-hidden="true">⚠</span>
             <strong>Hadkan satu tab pada satu masa.</strong> Sedia Dokumen tidak boleh dibuka dalam dua tab serentak (untuk kejohanan yang sama), extension auto-tutup tab kedua untuk elak data terlanggar.
           </div>
         </div>
@@ -942,7 +944,7 @@
           <p>Jika ada peserta yang gagal dimuat naik, kembali ke tab yang berkenaan dan re-try (tidak perlu mula semula).</p>
         </div>
         <div class="step-callout">
-          <div class="callout is-ok"><span class="callout-icon">✓</span>
+          <div class="callout is-ok"><span class="callout-icon" aria-hidden="true">✓</span>
             <strong>Bahagian 4 selesai.</strong> Workflow asas extension lengkap. Lihat <a href="#aliran-asas">Bahagian 3</a> untuk popup flow, atau hubungi kami melalui <a href="https://t.me/cikgudavin" target="_blank" rel="noopener">Telegram</a> jika ada soalan.
           </div>
         </div>
@@ -1037,16 +1039,39 @@
     function updateActive() {
       if (clickSuppress) return;
       var threshold = 120;
-      var activeId = null;
+      var activeEl = null;
       // pick the LAST element whose top is at or above the threshold
       for (var i = 0; i < spyTargets.length; i++) {
         if (spyTargets[i].getBoundingClientRect().top - threshold <= 0) {
-          activeId = spyTargets[i].id;
+          activeEl = spyTargets[i];
         }
       }
       // Bottom-of-page edge case
       if (window.innerHeight + window.scrollY >= document.body.scrollHeight - 4) {
-        activeId = spyTargets[spyTargets.length - 1].id;
+        activeEl = spyTargets[spyTargets.length - 1];
+      }
+      var activeId = activeEl ? activeEl.id : null;
+      // Steps without their own TOC entry (e.g. step-1-1) and #coming-soon
+      // used to blank the highlight — climb to the containing section's pill.
+      function hasLink(id) {
+        if (!id) return false;
+        for (var j = 0; j < tocLinks.length; j++) {
+          if (tocLinks[j].getAttribute('href') === '#' + id) return true;
+        }
+        return false;
+      }
+      if (activeEl && !hasLink(activeId)) {
+        var sec = activeEl.closest('.section');
+        if (sec && hasLink(sec.id)) {
+          activeId = sec.id;
+        } else {
+          for (var m = 0; m < spyTargets.length; m++) {
+            if (hasLink(spyTargets[m].id) &&
+                spyTargets[m].getBoundingClientRect().top - threshold <= 0) {
+              activeId = spyTargets[m].id;
+            }
+          }
+        }
       }
       setActive(activeId);
     }
@@ -1085,7 +1110,8 @@
       if (tocFab) tocFab.classList.toggle('is-visible', show);
     }
     if (toTop) toTop.addEventListener('click', function () {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' });
     });
 
     function setSheetOpen(open) {

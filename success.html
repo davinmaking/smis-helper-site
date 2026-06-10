@@ -38,10 +38,13 @@
     .error.show { display: block; }
     .spinner { display: inline-block; width: 24px; height: 24px; border: 3px solid #ddd; border-top-color: #3f6dbe; border-radius: 50%; animation: spin 0.8s linear infinite; }
     @keyframes spin { to { transform: rotate(360deg); } }
+    @media (prefers-reduced-motion: reduce) { .spinner { animation: none; } } /* "Mengesahkan..." text carries the state */
   </style>
 </head>
 <body>
-  <div class="card">
+  <!-- aria-live: the loading -> success/error swap is the page's whole point;
+       without it SR users are never told the key has appeared -->
+  <div class="card" aria-live="polite">
     <!-- Success state -->
     <div id="successState" style="display:none">
       <div class="icon">&#10003;</div>
@@ -131,19 +134,27 @@
         await new Promise(r => setTimeout(r, 2000)); // wait 2s between polls
       }
 
-      // Timeout — webhook might be delayed
+      // Timeout — webhook might be delayed. The teacher HAS paid at this
+      // point; "Pembayaran Belum Disahkan" as a heading reads as failure,
+      // so soften it for this branch only.
       document.getElementById("loadingState").classList.remove("show");
       document.getElementById("errorState").classList.add("show");
-      document.getElementById("errorMsg").textContent = "Pengesahan mengambil masa lebih lama dari biasa. Kunci lesen akan dihantar ke emel anda, atau hubungi kami.";
+      document.querySelector("#errorState h1").textContent = "Pengesahan Mengambil Masa";
+      document.getElementById("errorMsg").textContent = "Pembayaran anda diterima tetapi pengesahan mengambil masa lebih lama dari biasa. Kunci lesen akan dihantar ke emel anda, atau hubungi kami.";
     }
 
     function copyKey() {
       const key = document.getElementById("licenseKey").textContent;
+      const btn = document.getElementById("copyBtn");
       navigator.clipboard.writeText(key).then(() => {
-        const btn = document.getElementById("copyBtn");
         btn.textContent = "Disalin!";
         btn.classList.add("copied");
         setTimeout(() => { btn.textContent = "Salin Kunci"; btn.classList.remove("copied"); }, 2000);
+      }).catch(() => {
+        // Clipboard can be denied — don't pretend it copied. The key span
+        // is user-select:all, so one tap selects it for manual copy.
+        btn.textContent = "Salin manual: tekan kunci di atas";
+        setTimeout(() => { btn.textContent = "Salin Kunci"; }, 4000);
       });
     }
 
