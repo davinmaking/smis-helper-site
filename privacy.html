@@ -25,9 +25,9 @@
   </style>
 </head>
 <body>
-  <a href="index.html" class="back">&larr; Kembali ke laman utama</a>
+  <a href="/" class="back">&larr; Kembali ke laman utama</a>
   <h1>Dasar Privasi / Privacy Policy</h1>
-  <p class="updated">Kemaskini terakhir: 9 Jun 2026</p>
+  <p class="updated">Kemaskini terakhir: 10 Jun 2026</p>
 
   <h2>1. Pengenalan</h2>
   <p>SMIS Helper ("Extension") ialah Chrome Extension yang membantu guru mendaftarkan peserta sukan ke dalam sistem SMIS (smis.events). Dasar privasi ini menerangkan bagaimana Extension mengendalikan data anda.</p>
@@ -40,20 +40,24 @@
     <li><strong>Kunci lesen:</strong> Kunci lesen Pro dan ID peranti (dijana secara rawak). Disimpan di pelayan kami untuk pengesahan lesen.</li>
     <li><strong>Tetapan Extension:</strong> Pilihan Negeri/PPD, status data. Disimpan dalam chrome.storage.local pada peranti anda.</li>
     <li><strong>Laporan ralat (pilihan sahaja):</strong> Jika guru klik "Lapor Ralat kepada Cikgu Davin", Extension menghantar log teknikal yang telah ditapis (nama peserta digantikan dengan "Peserta #N", No. KP disembunyikan), versi Extension, jenis pelayar (user agent), nama kejohanan, langkah yang gagal, dan nota pilihan yang ditulis guru. Hanya dihantar apabila guru memilih untuk menghantarnya.</li>
+    <li><strong>Maklumat pembelian (jika membeli Pro):</strong> Nama, emel dan nombor telefon yang diisi semasa pembelian. Disimpan di pelayan kami bersama rekod pesanan, dan diproses oleh ToyyibPay untuk pembayaran FPX.</li>
   </ul>
 
   <h2>3. Data Yang TIDAK Dikumpul</h2>
   <ul>
-    <li>Kami <strong>tidak</strong> mengumpul data peribadi guru (nama, emel, telefon) kecuali jika guru secara sukarela menghubungi kami.</li>
+    <li>Kami <strong>tidak</strong> mengumpul data peribadi guru semasa penggunaan biasa Extension. Nama, emel dan telefon hanya dikumpul jika guru membeli Pro (untuk pemprosesan bayaran dan penghantaran kunci lesen) atau menghubungi kami secara sukarela.</li>
     <li>Kami <strong>tidak</strong> menyimpan data peserta (nama, IC, gambar, dokumen) di mana-mana pelayan selain smis.events.</li>
-    <li>Kami <strong>tidak</strong> menggunakan cookies penjejak, analitik, atau perkhidmatan pihak ketiga.</li>
-    <li>Kami <strong>tidak</strong> menjual atau berkongsi sebarang data dengan pihak ketiga.</li>
+    <li>Kami <strong>tidak</strong> menggunakan cookies penjejak atau analitik.</li>
+    <li>Kami <strong>tidak</strong> menjual sebarang data. Data tidak dikongsi dengan pihak ketiga kecuali pemproses perkhidmatan yang disenaraikan di Seksyen 4 (ToyyibPay untuk pembayaran, Resend untuk emel kunci lesen, Telegram untuk notifikasi laporan ralat kepada pembangun) — setakat yang perlu sahaja.</li>
   </ul>
 
   <h2>4. Ke Mana Data Dihantar</h2>
   <ul>
     <li><strong>smis.events</strong> — Data peserta dihantar ke SMIS melalui API rasmi mereka. Extension bertindak sebagai perantara antara guru dan SMIS.</li>
     <li><strong>davinhub-api.davin-making.workers.dev</strong> — Untuk pengesahan kunci lesen (kunci + ID peranti) dan pemprosesan pembayaran. Tiada data peserta (nama, IC, gambar, dokumen) dihantar ke pelayan ini.</li>
+    <li><strong>ToyyibPay</strong> — Pembelian Pro dibayar melalui ToyyibPay (FPX). Nama, emel dan telefon pembeli diproses oleh ToyyibPay mengikut dasar privasi mereka.</li>
+    <li><strong>Resend</strong> — Selepas pembayaran berjaya, kunci lesen dihantar ke emel pembeli melalui perkhidmatan emel Resend.</li>
+    <li><strong>Telegram</strong> — Laporan ralat yang dihantar guru turut mencetuskan satu notifikasi kepada pembangun melalui Telegram (kandungan sama dengan laporan yang ditapis; tiada data tambahan).</li>
     <li><strong>Lapor Ralat (pilihan, ke davinhub-api):</strong> Jika guru klik "Lapor Ralat", log teknikal yang telah ditapis daripada maklumat peribadi (nama → "Peserta #N", No. KP disembunyikan), versi Extension, user agent, nama kejohanan dan nota guru dihantar ke pelayan kami (disimpan dalam pangkalan data D1) dan satu pemberitahuan dihantar kepada pembangun melalui Telegram — semata-mata untuk membantu pembangun membaiki ralat. Guru melihat kandungan penuh sebelum menghantar, dan tiada apa-apa dihantar melainkan guru memilih untuk menghantarnya.</li>
   </ul>
 
@@ -62,7 +66,7 @@
     <li>Data peserta disimpan sementara dalam chrome.storage.local (peranti guru) selama 2 jam, kemudian dikosongkan secara automatik.</li>
     <li>Kunci lesen disimpan dalam chrome.storage.local sehingga guru memadam Extension.</li>
     <li><strong>Sedia Dokumen (v2.1):</strong> Halaman penuh untuk sediakan gambar dan dokumen pukal menggunakan IndexedDB pelayar untuk simpan sesi (gambar, PDF, tetapan palang) supaya guru boleh sambung kerja selepas tutup tab. Data ini kekal sepenuhnya pada peranti guru, tidak dihantar ke mana-mana pelayan. Sesi yang tidak diakses selama 7 hari akan dipadam automatik.</li>
-    <li>Di pelayan lesen, kami menyimpan: kunci lesen, ID peranti, tarikh pengaktifan. Tiada data peribadi disimpan.</li>
+    <li>Di pelayan kami, kami menyimpan: kunci lesen, ID peranti, tarikh pengaktifan, dan (untuk pembeli Pro) rekod pesanan berserta nama, emel dan telefon pembeli. Tiada data peserta disimpan.</li>
   </ul>
 
   <h2>6. Kebenaran Extension</h2>
