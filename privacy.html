@@ -12,9 +12,13 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://smis.davinhub.com/privacy">
   <meta property="og:locale" content="ms_MY">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: -apple-system, 'Segoe UI', sans-serif; color: #333; line-height: 1.8; padding: 40px 20px; max-width: 700px; margin: 0 auto; }
+    body { font-family: "Inter", system-ui, sans-serif; color: #333; line-height: 1.8; margin: 0; }
+    .page-main { padding: 40px 20px; max-width: 700px; margin: 0 auto; }
     h1 { font-size: 1.8rem; margin-bottom: 8px; color: #3f6dbe; }
     h2 { font-size: 1.2rem; margin: 24px 0 8px; color: #333; }
     p, li { font-size: 0.9rem; color: #555; margin-bottom: 8px; }
@@ -25,7 +29,11 @@
   </style>
 </head>
 <body>
-  <a href="/" class="back">&larr; Kembali ke laman utama</a>
+  <nav style="position:sticky;top:0;background:#fff;border-bottom:1px solid #E5E7EB;padding:12px 20px;display:flex;align-items:center;justify-content:space-between;z-index:10">
+    <a href="/" style="display:inline-flex;align-items:center;gap:8px;font-size:1.1rem;font-weight:800;color:#111827;text-decoration:none"><img src="icon128.png" alt="" width="24" height="24" style="border-radius:6px">SMIS <span style="color:#3f6dbe">Helper</span></a>
+    <a href="/" style="font-size:0.85rem;color:#3f6dbe;text-decoration:none;font-weight:600;padding:8px 0">&larr; Laman utama</a>
+  </nav>
+  <main class="page-main">
   <h1>Dasar Privasi / Privacy Policy</h1>
   <p class="updated">Kemaskini terakhir: 10 Jun 2026</p>
 
@@ -96,5 +104,9 @@
 
   <h2>10. Perubahan Dasar</h2>
   <p>Dasar privasi ini mungkin dikemaskini dari semasa ke semasa. Perubahan akan diumumkan melalui kemaskini Extension.</p>
+  </main>
+  <footer style="text-align:center;padding:24px 20px;font-size:0.8rem;color:#6B7280">
+    &copy; 2026 <a href="https://davinhub.com" target="_blank" rel="noopener" style="color:inherit">Cikgu Davin</a> &middot; <a href="/privacy" style="color:#3f6dbe;text-decoration:none">Dasar Privasi</a>
+  </footer>
 </body>
 </html>

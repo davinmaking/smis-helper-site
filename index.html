@@ -182,8 +182,8 @@
     @media(min-width:768px) { .hero-sub { font-size: 1.25rem; } }
     .hero-btns { display: flex; flex-direction: column; gap: 16px; justify-content: center; align-items: center; }
     @media(min-width:640px) { .hero-btns { flex-direction: row; } }
-    .btn-dark { padding: 16px 32px; background: var(--gray-900); color: var(--white); font-weight: 600; border-radius: 12px; border: none; cursor: pointer; font-size: 1rem; font-family: inherit; transition: background 0.15s; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; }
-    .btn-dark:hover { background: var(--gray-800); }
+    .btn-dark { padding: 16px 32px; background: var(--blue-600); color: var(--white); font-weight: 600; border-radius: 12px; border: none; cursor: pointer; font-size: 1rem; font-family: inherit; transition: background 0.15s; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; }
+    .btn-dark:hover { background: var(--blue-700); }
     .btn-light { padding: 16px 32px; background: var(--white); color: var(--gray-700); font-weight: 600; border-radius: 12px; border: 1px solid var(--gray-200); cursor: pointer; font-size: 1rem; font-family: inherit; transition: all 0.15s; text-decoration: none; }
     .btn-light:hover { border-color: var(--gray-300); background: var(--gray-50); }
     .hero-note { margin-top: 16px; font-size: 0.875rem; color: var(--gray-500); }
@@ -309,7 +309,7 @@
     .vs-time-label { font-size: 0.7rem; opacity: 0.85; font-weight: 700; margin-right: auto; padding-right: 8px; text-transform: uppercase; letter-spacing: 0.04em; }
 
     /* Section header */
-    .sh-label { font-size: 0.875rem; font-weight: 600; color: var(--blue-600); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 12px; }
+    .sh-label { font-size: 0.9rem; font-weight: 700; color: var(--blue-600); margin-bottom: 12px; }
     .sh-title { font-size: 1.875rem; font-weight: 800; margin-bottom: 20px; }
     @media(min-width:768px) { .sh-title { font-size: 2.25rem; } }
     .sh-sub { color: var(--gray-500); max-width: 576px; margin: 0 auto; }
@@ -369,7 +369,7 @@
        (so the in-section Beli Sekarang button takes priority). */
     .sticky-cta { display: none; position: fixed; bottom: 0; left: 0; right: 0; background: var(--white); border-top: 1px solid var(--gray-200); padding: 10px 16px; z-index: 40; box-shadow: 0 -8px 20px -8px rgba(0,0,0,0.08); }
     @media(max-width: 767px) { .sticky-cta.show { display: block; } body.has-sticky-cta { padding-bottom: 76px; } }
-    .sticky-cta a { display: block; width: 100%; padding: 14px; font-size: 0.9rem; font-weight: 600; border-radius: 10px; text-align: center; text-decoration: none; background: var(--gray-900); color: var(--white); }
+    .sticky-cta a { display: block; width: 100%; padding: 14px; font-size: 0.9rem; font-weight: 600; border-radius: 10px; text-align: center; text-decoration: none; background: var(--blue-600); color: var(--white); }
 
     /* Pricing promo — static, on-brand. Calm enough to honor
        "gentle · patient" but visible enough that nobody misses it.
@@ -518,7 +518,7 @@
     .panduan-teaser { padding: 64px 0; background: var(--white); }
     .panduan-teaser-card {
       max-width: 720px; margin: 0 auto; padding: 36px 28px;
-      background: linear-gradient(135deg, var(--blue-50) 0%, #f5f9ff 100%);
+      background: var(--blue-50);
       border: 1px solid var(--blue-100);
       border-radius: 18px;
       text-align: center;
@@ -527,8 +527,7 @@
     .panduan-teaser-tag {
       display: inline-block; padding: 5px 12px;
       background: var(--white); color: var(--blue-700);
-      font-size: 0.7rem; font-weight: 700;
-      letter-spacing: 0.08em; text-transform: uppercase;
+      font-size: 0.75rem; font-weight: 700;
       border-radius: 99px; margin: 0 0 16px;
       box-shadow: 0 1px 0 rgba(15, 23, 42, 0.04);
     }
@@ -691,7 +690,7 @@
         <a href="/panduan">Panduan</a>
         <a href="#pricing">Harga</a>
         <a href="#faq">FAQ</a>
-        <a href="#pricing" class="nav-cta">Dapatkan Sekarang</a>
+        <a href="https://chromewebstore.google.com/detail/djihfnjipghicanmkndpmeilpabclfpa" target="_blank" rel="noopener" class="nav-cta">Pasang Percuma</a>
       </div>
       <button class="nav-burger" id="navBurger" aria-label="Menu" aria-expanded="false" aria-controls="mobileMenu">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
@@ -704,7 +703,7 @@
       <a href="/panduan">Panduan</a>
       <a href="#pricing">Harga</a>
       <a href="#faq">FAQ</a>
-      <button class="mob-cta" id="mobCta">Dapatkan Sekarang</button>
+      <button class="mob-cta" id="mobCta">Pasang Percuma</button>
     </div>
   </nav>
 
@@ -1497,7 +1496,7 @@
           <a href="https://chromewebstore.google.com/detail/djihfnjipghicanmkndpmeilpabclfpa" target="_blank" rel="noopener" class="plan-btn">Pasang dari Chrome Web Store</a>
         </div>
         <div class="plan popular">
-          <span class="plan-pop-badge">Paling Popular</span>
+          <span class="plan-pop-badge">Disyorkan</span>
           <div class="plan-name">Pro</div>
           <div class="plan-desc">Untuk guru yang serius</div>
           <div class="plan-price"><span id="proPrice">RM59</span></div>
@@ -1752,7 +1751,7 @@
     document.getElementById("mobCta").addEventListener("click", function() {
       mobileMenu.classList.remove("open");
       burger.setAttribute("aria-expanded", "false");
-      document.getElementById("pricing").scrollIntoView();
+      window.open("https://chromewebstore.google.com/detail/djihfnjipghicanmkndpmeilpabclfpa", "_blank", "noopener");
     });
     document.getElementById("modalClose").addEventListener("click", closeModal);
     buyModal.addEventListener("click", function(e) { if (e.target === buyModal) closeModal(); });

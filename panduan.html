@@ -14,6 +14,31 @@
   <meta property="og:url" content="https://smis.davinhub.com/panduan">
   <meta property="og:type" content="article">
   <meta property="og:locale" content="ms_MY">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Panduan SMIS Helper, Tutorial Lengkap">
+  <meta name="twitter:description" content="Pemasangan ke daftar peserta ke Sedia Dokumen, semua langkah dengan screenshot dan tip.">
+  <meta name="twitter:image" content="https://smis.davinhub.com/og-image.png">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "Cara daftar peserta sukan SMIS secara pukal dengan SMIS Helper",
+    "description": "Tutorial lengkap SMIS Helper: pemasangan, jana template Excel, daftar pukal peserta, upload gambar dan dokumen, M01/R01.",
+    "inLanguage": "ms-MY",
+    "totalTime": "PT10M",
+    "supply": [{ "@type": "HowToSupply", "name": "Senarai peserta (Excel)" }],
+    "tool": [{ "@type": "HowToTool", "name": "SMIS Helper Chrome Extension" }],
+    "step": [
+      { "@type": "HowToStep", "name": "Pasang SMIS Helper dari Chrome Web Store", "url": "https://smis.davinhub.com/panduan#pemasangan" },
+      { "@type": "HowToStep", "name": "Log masuk SMIS dan buka popup SMIS Helper", "url": "https://smis.davinhub.com/panduan#step-3-1" },
+      { "@type": "HowToStep", "name": "Jana template Excel dari SMIS", "url": "https://smis.davinhub.com/panduan#step-3-2" },
+      { "@type": "HowToStep", "name": "Isi maklumat sekolah dan senarai peserta", "url": "https://smis.davinhub.com/panduan#step-3-3" },
+      { "@type": "HowToStep", "name": "Upload Excel dan daftar peserta secara automatik", "url": "https://smis.davinhub.com/panduan#step-3-6" }
+    ]
+  }
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -460,7 +485,7 @@
           <p>Atau, klik pautan ini terus: <a href="https://chromewebstore.google.com/detail/smis-helper/djihfnjipghicanmkndpmeilpabclfpa" target="_blank" rel="noopener"><strong>Buka SMIS Helper di Chrome Web Store ↗</strong></a></p>
         </div>
         <figure class="step-media">
-          <img src="panduan-img/pemasangan-01-landing.png" width="1392" height="1430" loading="lazy" decoding="async" alt="Laman utama smis.davinhub.com dengan butang Pasang Percuma di Chrome diserlahkan">
+          <img src="panduan-img/pemasangan-01-landing.webp" width="1392" height="1430" loading="lazy" decoding="async" alt="Laman utama smis.davinhub.com dengan butang Pasang Percuma di Chrome diserlahkan">
         </figure>
         <div class="step-callout">
           <div class="callout"><span class="callout-icon" aria-hidden="true">ⓘ</span><strong>Hanya berfungsi pada komputer</strong> dengan pelayar berasaskan Chromium (Chrome, Edge, Brave, Opera). Tidak boleh digunakan pada telefon atau Safari.</div>
@@ -480,7 +505,7 @@
           <p>Satu dialog pengesahan akan muncul. Klik <strong>Add extension</strong> untuk siapkan pemasangan.</p>
         </div>
         <figure class="step-media">
-          <img src="panduan-img/pemasangan-02-cws-install.png" width="1428" height="1466" loading="lazy" decoding="async" alt="Halaman Chrome Web Store SMIS Helper dengan butang Add to Chrome dan dialog Add extension">
+          <img src="panduan-img/pemasangan-02-cws-install.webp" width="1428" height="1466" loading="lazy" decoding="async" alt="Halaman Chrome Web Store SMIS Helper dengan butang Add to Chrome dan dialog Add extension">
         </figure>
       </article>
 
@@ -498,7 +523,7 @@
           <p>Selepas dipinkan, ikon SMIS Helper akan muncul terus di toolbar, anda boleh klik bila-bila masa untuk buka popup.</p>
         </div>
         <figure class="step-media">
-          <img src="panduan-img/pemasangan-03-pin-toolbar.png" width="507" height="330" loading="lazy" decoding="async" alt="Senarai extension Chrome dengan ikon pin dan SMIS Helper di toolbar">
+          <img src="panduan-img/pemasangan-03-pin-toolbar.webp" width="507" height="330" loading="lazy" decoding="async" alt="Senarai extension Chrome dengan ikon pin dan SMIS Helper di toolbar">
         </figure>
         <div class="step-callout">
           <div class="callout is-ok"><span class="callout-icon" aria-hidden="true">✓</span>Pemasangan selesai. Anda boleh teruskan ke <a href="#aliran-asas">Bahagian 3, Aliran Asas Popup</a>.</div>
@@ -531,7 +556,7 @@
           <p>Masukkan <strong>username</strong> dan <strong>password</strong> di kotak log masuk (tanda 4) untuk akses sistem.</p>
         </div>
         <figure class="step-media">
-          <img src="panduan-img/aliran-01-smis-popup-login.png" width="1392" height="1430" loading="lazy" decoding="async" alt="Laman smis.events dengan ikon SMIS Helper, popup, dan kotak log masuk diserlahkan">
+          <img src="panduan-img/aliran-01-smis-popup-login.webp" width="1392" height="1430" loading="lazy" decoding="async" alt="Laman smis.events dengan ikon SMIS Helper, popup, dan kotak log masuk diserlahkan">
         </figure>
         <div class="step-callout">
           <div class="callout"><span class="callout-icon" aria-hidden="true">ⓘ</span>
@@ -558,7 +583,7 @@
           </ul>
         </div>
         <figure class="step-media">
-          <img src="panduan-img/aliran-02-jana-template.png" width="1392" height="1430" loading="lazy" decoding="async" alt="Halaman DAFTAR Peserta dengan popup SMIS Helper menunjukkan bar status hijau dan butang Jana template diserlahkan">
+          <img src="panduan-img/aliran-02-jana-template.webp" width="1392" height="1430" loading="lazy" decoding="async" alt="Halaman DAFTAR Peserta dengan popup SMIS Helper menunjukkan bar status hijau dan butang Jana template diserlahkan">
         </figure>
         <div class="step-callout">
           <div class="callout is-tip"><span class="callout-icon" aria-hidden="true">💡</span>
@@ -581,7 +606,7 @@
           <p>Bahagian paling penting ialah <strong>Kod Sekolah</strong> (tanda 4). Isi kod sekolah anda di sini, selepas anda upload semula template ini ke SMIS Helper, extension akan automatik ambil maklumat sekolah dari SMIS dan isikan semua sekali.</p>
         </div>
         <figure class="step-media">
-          <img src="panduan-img/aliran-03-template-kod-sekolah.png" width="1392" height="1430" loading="lazy" decoding="async" alt="Template Excel SMIS dibuka di Microsoft Excel, nama kejohanan, sheet Maklumat Sekolah, senarai acara, dan kotak Kod Sekolah diserlahkan">
+          <img src="panduan-img/aliran-03-template-kod-sekolah.webp" width="1392" height="1430" loading="lazy" decoding="async" alt="Template Excel SMIS dibuka di Microsoft Excel, nama kejohanan, sheet Maklumat Sekolah, senarai acara, dan kotak Kod Sekolah diserlahkan">
         </figure>
         <div class="step-callout">
           <div class="callout"><span class="callout-icon" aria-hidden="true">ⓘ</span>
@@ -616,7 +641,7 @@
           <p>Lajur lain pun digalakkan diisi, terutama <strong>No. Peserta / Bib</strong> dan <strong>Tahun / Tingkatan</strong>. Walaupun tidak ditanda wajib, sesetengah kejohanan memerlukan maklumat ini untuk mematuhi peraturan, luangkan sedikit masa di sini supaya proses kemudian lebih lancar.</p>
         </div>
         <figure class="step-media">
-          <img src="panduan-img/aliran-04-senarai-peserta.png" width="2672" height="1430" loading="lazy" decoding="async" alt="Sheet Senarai Peserta dengan lajur Wajib (Nama Penuh, No. KP, Jantina, Acara) diserlahkan">
+          <img src="panduan-img/aliran-04-senarai-peserta.webp" width="2672" height="1430" loading="lazy" decoding="async" alt="Sheet Senarai Peserta dengan lajur Wajib (Nama Penuh, No. KP, Jantina, Acara) diserlahkan">
         </figure>
         <div class="step-callout">
           <div class="callout is-tip"><span class="callout-icon" aria-hidden="true">💡</span>
@@ -655,7 +680,7 @@
           <p>Bonus: sheet ini juga ada rujukan ringkas semua 25 lajur template dan senarai penuh acara yang tersedia untuk kejohanan anda.</p>
         </div>
         <figure class="step-media">
-          <img src="panduan-img/aliran-05-panduan-sheet.png" width="1392" height="1430" loading="lazy" decoding="async" alt="Sheet Panduan dalam template Excel, senarai langkah, NOTA PENTING, dan rujukan lajur">
+          <img src="panduan-img/aliran-05-panduan-sheet.webp" width="1392" height="1430" loading="lazy" decoding="async" alt="Sheet Panduan dalam template Excel, senarai langkah, NOTA PENTING, dan rujukan lajur">
         </figure>
       </article>
 
@@ -675,7 +700,7 @@
           </ul>
         </div>
         <figure class="step-media">
-          <img src="panduan-img/aliran-06-contoh-filled.png" width="1392" height="1430" loading="lazy" decoding="async" alt="Contoh template SMIS yang telah diisi, Kod Sekolah, dan Senarai Peserta dengan 20 peserta">
+          <img src="panduan-img/aliran-06-contoh-filled.webp" width="1392" height="1430" loading="lazy" decoding="async" alt="Contoh template SMIS yang telah diisi, Kod Sekolah, dan Senarai Peserta dengan 20 peserta">
         </figure>
         <div class="step-callout">
           <div class="callout"><span class="callout-icon" aria-hidden="true">ⓘ</span>
