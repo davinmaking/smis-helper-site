@@ -27,7 +27,7 @@ open http://localhost:8765/panduan.html
 (Or use `npx serve .` if you prefer Node-based.)
 
 ## Pricing (index.html) — static RM59, NO promo logic
-Pro is a flat **RM59 sekali bayar** (matches ToyyibPay backend `SMIS_HELPER_PRO_AMOUNT=5900`). Shown in 3 places: promo strip, Pro card (`#proPrice`), pay modal (`#modalSub`).
+Pro is a flat **RM59 sekali bayar**. Shown in 2 places: promo strip, Pro card (`#proPrice`). **Checkout moved OFF this site (2026-07-03):** #buyProBtn now navigates to `https://davinhub.com/store/buy/smis-helper-pro` (Billplz rail — form, payment, key display + email all handled there). The old ToyyibPay modal + `/api/payment/create` flow is retired; `success.html` is legacy-only (no new redirects land there).
 
 ⚠️ **Gotcha:** a previous time-bound promo (`PROMO_END` + `applyPromoState()`) silently flipped the LIVE price to RM99 when the date passed (2026-06-09 incident — site quoted RM99 while ToyyibPay billed RM59). Removed. Keep pricing as **static markup only** — no date/JS price logic. The planned RM99 "normal" price was abandoned; RM59 is permanent.
 

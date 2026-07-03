@@ -48,7 +48,7 @@
     <li><strong>Kunci lesen:</strong> Kunci lesen Pro dan ID peranti (dijana secara rawak). Disimpan di pelayan kami untuk pengesahan lesen.</li>
     <li><strong>Tetapan Extension:</strong> Pilihan Negeri/PPD, status data. Disimpan dalam chrome.storage.local pada peranti anda.</li>
     <li><strong>Laporan ralat (pilihan sahaja):</strong> Jika guru klik "Lapor Ralat kepada Cikgu Davin", Extension menghantar log teknikal yang telah ditapis (nama peserta digantikan dengan "Peserta #N", No. KP disembunyikan), versi Extension, jenis pelayar (user agent), nama kejohanan, langkah yang gagal, dan nota pilihan yang ditulis guru. Hanya dihantar apabila guru memilih untuk menghantarnya.</li>
-    <li><strong>Maklumat pembelian (jika membeli Pro):</strong> Nama, emel dan nombor telefon yang diisi semasa pembelian. Disimpan di pelayan kami bersama rekod pesanan, dan diproses oleh ToyyibPay untuk pembayaran FPX.</li>
+    <li><strong>Maklumat pembelian (jika membeli Pro):</strong> Nama dan emel yang diisi semasa pembelian di davinhub.com. Disimpan di pelayan kami bersama rekod pesanan, dan diproses oleh Billplz untuk pembayaran FPX.</li>
   </ul>
 
   <h2>3. Data Yang TIDAK Dikumpul</h2>
@@ -56,14 +56,14 @@
     <li>Kami <strong>tidak</strong> mengumpul data peribadi guru semasa penggunaan biasa Extension. Nama, emel dan telefon hanya dikumpul jika guru membeli Pro (untuk pemprosesan bayaran dan penghantaran kunci lesen) atau menghubungi kami secara sukarela.</li>
     <li>Kami <strong>tidak</strong> menyimpan data peserta (nama, IC, gambar, dokumen) di mana-mana pelayan selain smis.events.</li>
     <li>Kami <strong>tidak</strong> menggunakan cookies penjejak atau analitik.</li>
-    <li>Kami <strong>tidak</strong> menjual sebarang data. Data tidak dikongsi dengan pihak ketiga kecuali pemproses perkhidmatan yang disenaraikan di Seksyen 4 (ToyyibPay untuk pembayaran, Resend untuk emel kunci lesen, Telegram untuk notifikasi laporan ralat kepada pembangun) — setakat yang perlu sahaja.</li>
+    <li>Kami <strong>tidak</strong> menjual sebarang data. Data tidak dikongsi dengan pihak ketiga kecuali pemproses perkhidmatan yang disenaraikan di Seksyen 4 (Billplz untuk pembayaran, Resend untuk emel kunci lesen, Telegram untuk notifikasi laporan ralat kepada pembangun) — setakat yang perlu sahaja.</li>
   </ul>
 
   <h2>4. Ke Mana Data Dihantar</h2>
   <ul>
     <li><strong>smis.events</strong> — Data peserta dihantar ke SMIS melalui API rasmi mereka. Extension bertindak sebagai perantara antara guru dan SMIS.</li>
     <li><strong>davinhub-api.davin-making.workers.dev</strong> — Untuk pengesahan kunci lesen (kunci + ID peranti) dan pemprosesan pembayaran. Tiada data peserta (nama, IC, gambar, dokumen) dihantar ke pelayan ini.</li>
-    <li><strong>ToyyibPay</strong> — Pembelian Pro dibayar melalui ToyyibPay (FPX). Nama, emel dan telefon pembeli diproses oleh ToyyibPay mengikut dasar privasi mereka.</li>
+    <li><strong>Billplz</strong> — Pembelian Pro dibayar melalui Billplz (FPX) di davinhub.com. Nama dan emel pembeli diproses oleh Billplz mengikut dasar privasi mereka.</li>
     <li><strong>Resend</strong> — Selepas pembayaran berjaya, kunci lesen dihantar ke emel pembeli melalui perkhidmatan emel Resend.</li>
     <li><strong>Telegram</strong> — Laporan ralat yang dihantar guru turut mencetuskan satu notifikasi kepada pembangun melalui Telegram (kandungan sama dengan laporan yang ditapis; tiada data tambahan).</li>
     <li><strong>Lapor Ralat (pilihan, ke davinhub-api):</strong> Jika guru klik "Lapor Ralat", log teknikal yang telah ditapis daripada maklumat peribadi (nama → "Peserta #N", No. KP disembunyikan), versi Extension, user agent, nama kejohanan dan nota guru dihantar ke pelayan kami (disimpan dalam pangkalan data D1) dan satu pemberitahuan dihantar kepada pembangun melalui Telegram — semata-mata untuk membantu pembangun membaiki ralat. Guru melihat kandungan penuh sebelum menghantar, dan tiada apa-apa dihantar melainkan guru memilih untuk menghantarnya.</li>
