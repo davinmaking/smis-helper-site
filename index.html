@@ -100,7 +100,7 @@
             "name": "Bagaimana saya mendapat kunci Pro selepas bayar?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Klik 'Beli Pro' dan anda akan dibawa ke halaman pembayaran selamat di davinhub.com (FPX melalui Billplz). Selepas pembayaran berjaya, kunci lesen dipaparkan secara automatik dan turut dihantar ke emel anda. Salin kunci dan masukkan dalam popup Extension untuk mengaktifkan Pro."
+              "text": "Klik 'Beli Sekarang', isikan nama dan emel, dan anda akan dibawa ke halaman pembayaran selamat Billplz (FPX). Selepas pembayaran berjaya, halaman penyelesaian memaparkan kunci lesen secara automatik — dan kunci turut dihantar ke emel anda. Salin kunci dan masukkan dalam popup Extension untuk mengaktifkan Pro."
             }
           },
           {
@@ -646,6 +646,23 @@
     .footer-bottom a:hover { color: var(--blue-600); }
 
     /* Modal */
+    .modal-overlay { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); z-index: 100; align-items: center; justify-content: center; padding: 20px; }
+    .modal-overlay.show { display: flex; }
+    .modal { background: var(--white); padding: 40px; border-radius: 20px; max-width: 420px; width: 100%; }
+    .modal h3 { font-size: 1.5rem; font-weight: 800; margin-bottom: 4px; }
+    .modal .modal-sub { font-size: 0.875rem; color: var(--gray-500); margin-bottom: 24px; }
+    .modal label { display: block; font-size: 0.75rem; font-weight: 600; color: var(--gray-500); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 4px; margin-top: 16px; }
+    .modal label .req-mark { color: var(--blue-600); margin-left: 2px; }
+    .modal .field-hint { font-size: 0.75rem; color: var(--gray-500); margin-top: 6px; line-height: 1.45; }
+    .modal input { width: 100%; padding: 12px 16px; border: 1px solid var(--gray-200); border-radius: 12px; font-size: 1rem; font-family: inherit; outline: none; transition: border-color 0.15s; }
+    .modal input:focus { border-color: var(--blue-600); box-shadow: 0 0 0 3px var(--blue-100); }
+    .modal input::placeholder { color: var(--gray-400); }
+    .modal-btn { width: 100%; margin-top: 24px; padding: 14px; background: var(--blue-600); color: var(--white); border: none; border-radius: 12px; font-size: 0.9rem; font-weight: 700; cursor: pointer; font-family: inherit; transition: opacity 0.15s; }
+    .modal-btn:hover { opacity: 0.9; }
+    .modal-btn:disabled { opacity: 0.5; cursor: wait; }
+    .modal-close { background: none; border: none; color: var(--gray-600); font-size: 0.875rem; cursor: pointer; margin-top: 12px; font-family: inherit; padding: 8px; } /* gray-400 was 2.5:1 — below AA in the purchase flow */
+    .modal-error { display: none; color: #DC2626; font-size: 0.8rem; margin-top: 8px; }
+    .modal-error.show { display: block; }
 
     /* Utilities */
     .text-center { text-align: center; }
@@ -1524,7 +1541,7 @@
         <div class="faq-item"><button><span>Bagaimana cara pasang Chrome Extension?</span><svg width="20" height="20"><use href="#icon-chevron"/></svg></button><div class="faq-answer"><p>Klik pautan "Pasang dari Chrome Web Store" di bahagian harga. Anda akan dibawa ke kedai rasmi Chrome, klik <strong>Add to Chrome</strong> dan sahkan. Ikon SMIS Helper akan muncul di sebelah kanan atas pelayar (sebelah bar alamat). Pasang sekali sahaja, kemudian guna pada bila-bila masa.</p><p style="margin-top:8px"><em>Nota:</em> Extension hanya berfungsi pada komputer (Chrome / Edge / Brave / Opera). Tidak boleh digunakan pada telefon atau Safari.</p></div></div>
         <div class="faq-item"><button><span>Adakah data peserta selamat?</span><svg width="20" height="20"><use href="#icon-chevron"/></svg></button><div class="faq-answer"><p>Ya. Extension hanya berinteraksi dengan smis.events untuk tujuan pendaftaran. Tiada data peserta disimpan di pelayan lain. Tiada penjejak, tiada analitik, dan data peserta tidak dikongsi dengan mana-mana pihak ketiga. <a href="/privacy">Baca dasar privasi penuh</a>.</p></div></div>
         <div class="faq-item"><button><span>Bolehkah saya guna untuk semua jenis sukan?</span><svg width="20" height="20"><use href="#icon-chevron"/></svg></button><div class="faq-answer"><p>Ya. Extension menyokong hampir semua sukan dalam SMIS (~96%): olahraga, sukan tahunan, merentas desa, bola keranjang, badminton, dan lain-lain.</p></div></div>
-        <div class="faq-item"><button><span>Bagaimana saya mendapat kunci Pro selepas bayar?</span><svg width="20" height="20"><use href="#icon-chevron"/></svg></button><div class="faq-answer"><p>Klik 'Beli Pro' dan anda akan dibawa ke halaman pembayaran selamat di davinhub.com (FPX melalui Billplz). Selepas pembayaran berjaya, kunci lesen dipaparkan secara automatik dan turut dihantar ke emel anda. Salin kunci dan masukkan dalam popup Extension untuk mengaktifkan Pro.</p></div></div>
+        <div class="faq-item"><button><span>Bagaimana saya mendapat kunci Pro selepas bayar?</span><svg width="20" height="20"><use href="#icon-chevron"/></svg></button><div class="faq-answer"><p>Klik 'Beli Sekarang', isikan nama dan emel, dan anda akan dibawa ke halaman pembayaran selamat Billplz (FPX). Selepas pembayaran berjaya, halaman penyelesaian memaparkan kunci lesen secara automatik — dan kunci turut dihantar ke emel anda. Salin kunci dan masukkan dalam popup Extension untuk mengaktifkan Pro.</p></div></div>
         <div class="faq-item"><button><span>Bagaimana jika saya tukar komputer atau padam Extension?</span><svg width="20" height="20"><use href="#icon-chevron"/></svg></button><div class="faq-answer"><p>Kunci anda kekal sah selama-lamanya. Hubungi kami melalui Telegram atau emel untuk reset kunci ke peranti baharu. Tiada kos tambahan.</p></div></div>
         <div class="faq-item"><button><span>Pelayar apa yang disokong?</span><svg width="20" height="20"><use href="#icon-chevron"/></svg></button><div class="faq-answer"><p>Chrome, Edge, Brave, dan Opera (semua pelayar berasaskan Chromium). Belum menyokong Firefox atau Safari.</p></div></div>
       </div>
@@ -1622,6 +1639,21 @@
     <a href="https://chromewebstore.google.com/detail/djihfnjipghicanmkndpmeilpabclfpa" target="_blank" rel="noopener">Pasang Percuma di Chrome</a>
   </div>
 
+  <!-- Modal -->
+  <div class="modal-overlay" id="buyModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal">
+      <h3 id="modalTitle">SMIS Helper Pro</h3>
+      <p class="modal-sub" id="modalSub">RM59.00 sekali bayar. Guna selagi SMIS aktif.</p>
+      <label for="buyName">Nama (pilihan)</label>
+      <input type="text" id="buyName" placeholder="Nama anda">
+      <label for="buyEmail">Emel <span class="req-mark" aria-hidden="true">*</span></label>
+      <input type="email" id="buyEmail" placeholder="emel@contoh.com" required aria-required="true">
+      <p class="field-hint">Kunci lesen akan dihantar ke emel ini sekiranya proses webhook lambat.</p>
+      <button class="modal-btn" id="payBtn">Teruskan ke Pembayaran</button>
+      <button class="modal-close" id="modalClose">Batal</button>
+      <div class="modal-error" id="payError" role="alert"></div>
+    </div>
+  </div>
 
   <script>
     // Pricing is a flat permanent RM59 (no promo / no expiry).
@@ -1685,17 +1717,92 @@
       });
     });
 
-    // Beli Pro — checkout kini di davinhub.com (Billplz). Halaman itu
-    // uruskan borang, pembayaran, paparan kunci + emel. Modal lama dibuang.
-    document.getElementById("buyProBtn").addEventListener("click", function() {
-      window.location.href = "https://davinhub.com/store/buy/smis-helper-pro";
-    });
+    // Buy modal
+    var buyModal = document.getElementById("buyModal");
+    // Reset the submit button to its idle state. Called from openModal
+    // and pageshow so a back-from-Billplz (bfcache restore) doesn't
+    // leave the button stuck on "Memproses..." disabled.
+    function resetPayBtn() {
+      var btn = document.getElementById("payBtn");
+      if (btn) { btn.disabled = false; btn.textContent = "Teruskan ke Pembayaran"; }
+      var err = document.getElementById("payError");
+      if (err) err.classList.remove("show");
+    }
+    var modalTrigger = null;
+    function openModal() {
+      modalTrigger = document.activeElement; // restore focus here on close
+      resetPayBtn();
+      buyModal.classList.add("show");
+      document.getElementById("buyName").focus();
+    }
+    function closeModal() {
+      buyModal.classList.remove("show");
+      if (modalTrigger && typeof modalTrigger.focus === "function") modalTrigger.focus();
+    }
+    // Browser back from Billplz restores DOM verbatim from bfcache;
+    // explicitly reset on persisted pageshow so the user can retry.
+    window.addEventListener("pageshow", function(e) { if (e.persisted) resetPayBtn(); });
+    document.getElementById("buyProBtn").addEventListener("click", openModal);
     // Freemium funnel starts at the free install — the mobile nav CTA goes
     // to the pricing section like the desktop one, not straight to payment.
     document.getElementById("mobCta").addEventListener("click", function() {
       mobileMenu.classList.remove("open");
       burger.setAttribute("aria-expanded", "false");
       window.open("https://chromewebstore.google.com/detail/djihfnjipghicanmkndpmeilpabclfpa", "_blank", "noopener");
+    });
+    document.getElementById("modalClose").addEventListener("click", closeModal);
+    buyModal.addEventListener("click", function(e) { if (e.target === buyModal) closeModal(); });
+    document.addEventListener("keydown", function(e) {
+      if (e.key === "Escape" && buyModal.classList.contains("show")) { closeModal(); return; }
+      // Tab trap while the dialog is open — aria-modal promises AT the
+      // background is gone, so focus must not wander into it
+      if (e.key !== "Tab" || !buyModal.classList.contains("show")) return;
+      var f = Array.prototype.filter.call(
+        buyModal.querySelectorAll("input, button"),
+        function(el) { return !el.disabled; }
+      );
+      if (!f.length) return;
+      var first = f[0], last = f[f.length - 1];
+      if (!buyModal.contains(document.activeElement)) { e.preventDefault(); first.focus(); }
+      else if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    });
+
+    // Payment
+    document.getElementById("payBtn").addEventListener("click", async function() {
+      var btn = this;
+      var err = document.getElementById("payError");
+      var emailEl = document.getElementById("buyEmail");
+      var emailVal = emailEl.value.trim();
+      // Email required so success.html's webhook-delay fallback (key
+      // delivered to emel) actually works. Without this, a delayed
+      // webhook leaves the customer with no key and no recovery path.
+      if (!emailVal || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailVal)) {
+        err.textContent = "Sila masukkan alamat emel yang sah. Kunci lesen akan dihantar ke sini sekiranya proses lambat.";
+        err.classList.add("show");
+        emailEl.focus();
+        return;
+      }
+      btn.textContent = "Memproses..."; btn.disabled = true; err.classList.remove("show");
+      try {
+        // Billplz rail (shared with davinhub store) — no phone needed.
+        // returnUrl keeps the buyer on THIS site's BM success page.
+        var resp = await fetch("https://davinhub-api.davin-making.workers.dev/api/license-purchase", {
+          method: "POST", headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            slug: "smis-helper-pro",
+            name: document.getElementById("buyName").value || "Guru",
+            email: emailVal,
+            returnUrl: "https://smis.davinhub.com/success",
+          }),
+        });
+        var data = await resp.json();
+        if (data.ok && data.data && data.data.payUrl) { window.location.href = data.data.payUrl; }
+        else { throw new Error(data.error || "Gagal mencipta pembayaran"); }
+      } catch (e) {
+        err.textContent = e.message; err.classList.add("show");
+        btn.textContent = "Teruskan ke Pembayaran"; btn.disabled = false;
+      }
     });
   </script>
 </body>
