@@ -144,3 +144,7 @@ Public channel for SMIS Helper / Cikgu Davin brand: `https://t.me/cikgudavin` (B
 - Extension repo: `/Users/davins/Developer/smis-helper/` (private — see its CLAUDE.md for SMIS API details, KAUM gotchas, etc.)
 - Promo video repo: `/Users/davins/Developer/smis-helper-promo/`
 - Backend (license + payment): davinhub repo — admin at `https://davinhub.com/admin`
+
+## Panduan page — editing recipe (moved from smis-helper CLAUDE.md 2026-10-19)
+https://smis.davinhub.com/panduan — step-by-step BM tutorial with screenshots + video demos. Live since 2026-05-03. **In progress:** Bahagian 1-4 done; only Bahagian 5 (FAQ + Sokongan) still "akan datang". Updated by adding new `<article class="step">` blocks in `panduan.html` + corresponding entries in TOC sidebar; media goes in `panduan-img/` — screenshots as WebP (`cwebp -q 82 in.png -o out.webp`, ~3.6× smaller; keep source PNGs in repo), MP4s compressed with `ffmpeg -crf 28 -an`, video needs a `poster` frame. New `<img>` must carry `width`/`height` + `loading="lazy"` (CLS-stable anchors). HowTo JSON-LD in head mirrors the main steps — re-sync if steps change.
+
